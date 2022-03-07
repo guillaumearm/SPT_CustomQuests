@@ -9,13 +9,15 @@ class QuestsLoader {
     }
 
     loadAll() {
-        let nbLoadedQuests = 0;
+        let loadedQuests = [];
+
         VFS.getFiles(this.questDirectory)
             .forEach(fileName => {
-                nbLoadedQuests += this._loadFile(fileName)
+                const quests = this._loadFile(fileName);
+                loadedQuests = [...loadedQuests, ...quests];
             });
 
-        return nbLoadedQuests;
+        return loadedQuests;
     }
 
     _loadQuest(quest) {
@@ -50,8 +52,6 @@ class QuestsLoader {
     }
 
     _loadFile(fileName) {
-        let nbLoadedQuests = 0;
-
         const fullPath = path.join(this.questDirectory, fileName);
 
         const storyOrQuest = require(fullPath);
@@ -62,13 +62,12 @@ class QuestsLoader {
         // array of tuple [quest, questLocales]
         const questsPayloads = questGen.generateWithLocales();
 
-        questsPayloads.forEach(([quest, questLocales]) => {
+        return questsPayloads.map(([quest, questLocales]) => {
             this._loadQuest(quest);
             this._loadLocales(quest._id, questLocales);
-            nbLoadedQuests += 1;
-        })
 
-        return nbLoadedQuests;
+            return quest;
+        });
     }
 }
 

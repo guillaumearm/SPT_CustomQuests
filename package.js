@@ -3,6 +3,7 @@
 const path = require('path');
 
 const QuestsLoader = require('./src/QuestsLoader');
+const OnStartHandler = require('./src/OnStartHandler');
 
 const DEFAULT_QUESTS_DIR = "quests";
 
@@ -26,9 +27,16 @@ class CustomQuests {
 
 
     onLoad() {
+        const onStart = new OnStartHandler(this.config);
+
+        onStart.beforeCustomQuestsLoaded();
+
         const questsLoader = new QuestsLoader(this.questDirectory);
-        const nbLoadedQuests = questsLoader.loadAll();
-        Logger.success(`=> Custom Quests: ${nbLoadedQuests} quests loaded`)
+        const loadedQuests = questsLoader.loadAll();
+
+        onStart.afterCustomQuestsLoaded(loadedQuests);
+
+        Logger.success(`=> Custom Quests: ${loadedQuests.length} quests loaded`)
     }
 }
 
