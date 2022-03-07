@@ -1,8 +1,8 @@
 {
-    "name": "CustomQuests",
-    "author": "trap",
-    "version": "0.0.0",
-    "akiVersion": "2.2.*",
-    "license": "MIT",
-    "main": "package.js"
+  "name": "CustomQuests",
+  "author": "trap",
+  "version": "0.1.0",
+  "akiVersion": "2.2.*",
+  "license": "MIT",
+  "main": "package.js"
 }
