@@ -1,0 +1,138 @@
+[
+  {
+    "id": "trap_quest_example_1",
+    "disabled": false,
+    "location": "any",
+    "type": "Completion",
+    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "image": "5a29222486f77456f50d09e7",
+    "name": {
+      "en": "Example quest part 1",
+      "fr": "Le nom de la premiere quete"
+    },
+    "description": {
+      "en": "This is the first example quest, just give me 2 car first aid kits and 3 ifak, then I will give you back this kits",
+      "fr": "La description de la premiere quete"
+    },
+    "success_message": {
+      "en": "First example quest sucessfully completed!",
+      "fr": "Ca marche !"
+    },
+    "level_needed": 1,
+    "locked_by_quests": [],
+    "unlock_on_quest_start": [],
+    "missions": [
+      {
+        "type": "GiveItem",
+        "accepted_items": [
+          "590c661e86f7741e566b646a"
+        ],
+        "count": 2,
+        "found_in_raid_only": false,
+        "message": {
+          "en": "Give me 2 car first aid kits"
+        }
+      },
+      {
+        "type": "GiveItem",
+        "accepted_items": [
+          "590c678286f77426c9660122"
+        ],
+        "count": 3,
+        "found_in_raid_only": false,
+        "message": {
+          "en": "Give me 3 AFAKs"
+        }
+      }
+    ],
+    "rewards": {
+      "xp": 100,
+      "items": {
+        "590c661e86f7741e566b646a": 2,
+        "590c678286f77426c9660122": 3
+      }
+    }
+  },
+  {
+    "id": "trap_quest_example_2",
+    "disabled": false,
+    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "name": {
+      "en": "Example quest part 2"
+    },
+    "description": {
+      "en": "Just a minimum quest config"
+    },
+    "success_message": {
+      "fr": "Ca marche!"
+    }
+  },
+  {
+    "id": "trap_quest_example_3",
+    "disabled": false,
+    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "name": {
+      "en": "Example quest part 3"
+    },
+    "description": {
+      "en": "Just a minimum quest config"
+    },
+    "success_message": {
+      "fr": "Ca marche!"
+    }
+  },
+  {
+    "id": "trap_quest_example_4",
+    "disabled": false,
+    "trader_id": "5a7c2eca46aef81a7ca2145d"
+  },
+  {
+    "id": "trap_quest_example_5",
+    "disabled": false,
+    "trader_id": "5a7c2eca46aef81a7ca2145d"
+  },
+  {
+    "id": "trap_quest_example_kill_mission_1",
+    "disabled": false,
+    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "type": "Elimination",
+    "image": "5a29222486f77456f50d09e7",
+    "name": {
+      "en": "Last example quest (kill mission)",
+      "fr": "La derniere quete example"
+    },
+    "level_needed": 1,
+    "locked_by_quests": [],
+    "unlock_on_quest_start": [],
+    "missions": [
+      {
+        "type": "Kill",
+        "target": "Savage",
+        "locations": [
+          "bigmap",
+          "factory4_day",
+          "factory4_night"
+        ],
+        "count": 5,
+        "message": {
+          "en": "Kill 5 scavs on customs or factory"
+        }
+      },
+      {
+        "type": "Kill",
+        "target": "AnyPmc",
+        "count": 5,
+        "message": {
+          "en": "Kill 5 pmcs"
+        }
+      }
+    ],
+    "rewards": {
+      "xp": 100,
+      "items": {
+        "590c661e86f7741e566b646a": 2,
+        "590c678286f77426c9660122": 3
+      }
+    }
+  }
+]
