@@ -15,11 +15,11 @@ class CustomQuests {
         this.questDirectory = path.join(__dirname, config.quest_directory || DEFAULT_QUESTS_DIR);
 
         if (!config.enabled) {
-            Logger.warning(`=> ${mod.name}: disabled from the config file`);
+            Logger.warning(`=> Custom Quests: disabled from the config file`);
             return;
         }
 
-        Logger.info(`Loading: ${mod.name} v${mod.version}`);
+        Logger.info(`Loading: Custom Quests v${mod.version}`);
 
         ModLoader.onLoad[mod.name] = this.onLoad.bind(this);
     }
@@ -27,8 +27,8 @@ class CustomQuests {
 
     onLoad() {
         const questsLoader = new QuestsLoader(this.questDirectory);
-        questsLoader.loadAll();
-        Logger.success('=> CustomQuests: loaded');
+        const nbLoadedQuests = questsLoader.loadAll();
+        Logger.success(`=> Custom Quests: ${nbLoadedQuests} quests loaded`)
     }
 }
 
