@@ -11,6 +11,7 @@ const DEFAULT_PLANT_TIME = 30;
 const QUEST_STATUS_SUCCESS = [QuestHelper.status.Success];
 const QUEST_STATUS_STARTED = [QuestHelper.status.Started, QuestHelper.status.Success];
 
+const SIGNAL_JAMMER_ID = '5ac78a9b86f7741cca0bbd8d';
 const BEACON_ITEM_ID = '5991b51486f77447b112d44f';
 
 const TRADER_ALIASES = {
@@ -69,7 +70,6 @@ function generatePlaceBeaconConditionId(questId, mission) {
     mission.zone_id,
     mission.plant_time,
     mission.should_exit_locations,
-    mission.accepted_items,
   ]));
 }
 
@@ -225,7 +225,7 @@ class ConditionsGenerator {
     }
 
     const id = generatePlaceBeaconConditionId(qid, mission);
-    const accepted_items = mission.accepted_items || [BEACON_ITEM_ID];
+    const accepted_items = mission.type === 'PlaceBeacon' ? [BEACON_ITEM_ID] : [SIGNAL_JAMMER_ID];
 
     const placeBeaconCondition = {
       "_parent": "PlaceBeacon",
@@ -298,20 +298,19 @@ class ConditionsGenerator {
   }
 
   _generateAvailableForFinish() {
-    const missions = this.customQuest.missions || []
-      .map(mission => {
-        if (mission.type === 'Kill') {
-          return this._generateKillCondition(mission);
-        } else if (mission.type === 'GiveItem') {
-          return this._generateGiveItemCondition(mission);
-        } else if (mission.type === 'PlaceBeacon') {
-          return this._generatePlaceBeaconCondition(mission);
-        }
+    const missions = (this.customQuest.missions || []).map(mission => {
+      if (mission.type === 'Kill') {
+        return this._generateKillCondition(mission);
+      } else if (mission.type === 'GiveItem') {
+        return this._generateGiveItemCondition(mission);
+      } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer') {
+        return this._generatePlaceBeaconCondition(mission);
+      }
 
-        Logger.warning(`=> Custom Quests: ignored mission with type '${mission.type}'`)
+      Logger.warning(`=> Custom Quests: ignored mission with type '${mission.type}'`)
 
-        return null;
-      }).filter(item => Boolean(item));
+      return null;
+    }).filter(item => Boolean(item));
 
     // flattens missions array
     const flattenedMissions = [];
@@ -423,7 +422,7 @@ class CustomQuestsTransformer {
       return generateKillConditionId(qid, mission);
     } else if (mission.type === 'GiveItem') {
       return generateGiveItemConditionId(qid, mission);
-    } else if (mission.type === 'PlaceBeacon') {
+    } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer') {
       return generatePlaceBeaconConditionId(qid, mission);
     }
     return null;
@@ -455,6 +454,10 @@ class CustomQuestsTransformer {
         const missionId = this.getMissionId(mission);
         if (missionId) {
           payload.conditions[missionId] = CustomQuestsTransformer.getLocaleValue(mission.message, localeName);
+        }
+
+        if (mission.exit_locations_messages) {
+          payload.conditions[`${missionId}_exit_location`] = CustomQuestsTransformer.getLocaleValue(mission.exit_locations_messages, localeName);
         }
       })
 
