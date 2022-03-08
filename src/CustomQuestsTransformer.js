@@ -73,6 +73,16 @@ function generatePlaceBeaconConditionId(questId, mission) {
   ]));
 }
 
+function generateVisitPlaceConditionId(questId, mission) {
+  return utils.getSHA256(JSON.stringify([
+    questId,
+    mission._id,
+    mission.type,
+    mission.place_id,
+    mission.should_exit_locations,
+  ]));
+}
+
 class ConditionsGenerator {
   constructor(customQuest, dependencyQuest) {
     this.customQuest = customQuest;
@@ -238,7 +248,7 @@ class ConditionsGenerator {
       accepted_items = mission.accepted_items || []
 
       if (!accepted_items.length) {
-        Logger.error(`=> Custom Quests: no accepted_items provided to PlaceItem mission in quest '${qid}'`)
+        Logger.error(`=> in custom quest '${qid}': no accepted_items provided to PlaceItem mission `)
         return null;
       }
     }
@@ -319,6 +329,99 @@ class ConditionsGenerator {
     return placeBeaconCondition;
   }
 
+  _generateVisitPlaceCondition(mission) {
+    const qid = this.customQuest.id;
+
+    if (!mission.place_id) {
+      Logger.warning(`=> Custom Quests: no place_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
+      return null;
+    }
+
+    const id = generateVisitPlaceConditionId(qid, mission);
+
+    const counterVisit = {
+      "_parent": "CounterCreator",
+      "_props": {
+        "counter": {
+          "id": `${id}_counter`,
+          "conditions": [
+            {
+              "_parent": "VisitPlace",
+              "_props": {
+                "target": mission.place_id,
+                "value": "1",
+                "id": `${id}_visit_place`
+              }
+            }
+          ]
+        },
+        "id": id,
+        "parentId": "",
+        "oneSessionOnly": false,
+        "dynamicLocale": false,
+        "type": "Exploration",
+        "doNotResetIfCounterCompleted": false,
+        "value": "1",
+        "visibilityConditions": []
+      },
+      "dynamicLocale": false
+    }
+
+    const locations = mission.should_exit_locations;
+
+    if (!Array.isArray(locations) || !locations.length) {
+      return counterVisit;
+    }
+
+    const counterExit = {
+      "_parent": "CounterCreator",
+      "_props": {
+        "counter": {
+          "id": `${id}_exit_counter`,
+          "conditions": [
+
+            {
+              "_parent": "Location",
+              "_props": {
+                "target": locations,
+                "id": `${id}_condition_location`
+              }
+            },
+            {
+              "_parent": "ExitStatus",
+              "_props": {
+                "status": [
+                  "Survived",
+                  "Runner"
+                ],
+                "id": `${id}_condition_exitstatus`
+              }
+            }
+          ]
+        },
+        "id": `${id}_exit_location`,
+        "parentId": "",
+        "oneSessionOnly": false,
+        "dynamicLocale": false,
+        "type": "Completion",
+        "doNotResetIfCounterCompleted": false,
+        "value": "1",
+        "visibilityConditions": [
+          {
+            "_parent": "CompleteCondition",
+            "_props": {
+              "target": id,
+              "id": `${id}_visibility_condition`
+            }
+          }
+        ]
+      },
+      "dynamicLocale": false
+    }
+
+    return [counterVisit, counterExit];
+  }
+
   _generateAvailableForFinish() {
     const missions = (this.customQuest.missions || []).map(mission => {
       if (mission.type === 'Kill') {
@@ -327,6 +430,8 @@ class ConditionsGenerator {
         return this._generateGiveItemCondition(mission);
       } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer' || mission.type === 'PlaceItem') {
         return this._generatePlaceBeaconCondition(mission);
+      } else if (mission.type === 'VisitPlace') {
+        return this._generateVisitPlaceCondition(mission);
       }
 
       Logger.warning(`=> Custom Quests: ignored mission with type '${mission.type}'`)
@@ -446,6 +551,8 @@ class CustomQuestsTransformer {
       return generateGiveItemConditionId(qid, mission);
     } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer' || mission.type === 'PlaceItem') {
       return generatePlaceBeaconConditionId(qid, mission);
+    } else if (mission.type === 'VisitPlace') {
+      return generateVisitPlaceConditionId(qid, mission);
     }
     return null;
   }
@@ -478,8 +585,8 @@ class CustomQuestsTransformer {
           payload.conditions[missionId] = CustomQuestsTransformer.getLocaleValue(mission.message, localeName);
         }
 
-        if (mission.exit_locations_messages) {
-          payload.conditions[`${missionId}_exit_location`] = CustomQuestsTransformer.getLocaleValue(mission.exit_locations_messages, localeName);
+        if (mission.exit_locations_message) {
+          payload.conditions[`${missionId}_exit_location`] = CustomQuestsTransformer.getLocaleValue(mission.exit_locations_message, localeName);
         }
       })
 
