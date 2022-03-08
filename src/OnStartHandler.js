@@ -13,7 +13,9 @@ class OnStartHandler {
 
     ALL_VANILLA_QUESTS.forEach(questId => {
       delete templates.quests[questId];
-    })
+    });
+
+    // TODO: unlock Jaegger
 
     Logger.info(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
   }
@@ -50,17 +52,37 @@ class OnStartHandler {
           }
         });
 
-        if (questRemoved || backendCounterRemoved) {
+        // 3. wipe condition counters
+        const Counters = pmcData.ConditionCounters.Counters.filter(payload => payload.qid !== questId);
+        const counterRemoved = Counters.length !== pmcData.ConditionCounters.Counters.length;
+
+        pmcData.ConditionCounters.Counters = Counters;
+
+        // 4. wipe DroppedItems
+        let droppedItem = false;
+        if (pmcData.Stats && pmcData.Stats.DroppedItems && pmcData.Stats.DroppedItems.length > 0) {
+          const DroppedItems = pmcData.Stats.DroppedItems.filter(payload => payload.QuestId !== questId);
+
+          if (DroppedItems.length !== pmcData.Stats.DroppedItems.length) {
+            droppedItem = true;
+          }
+
+          pmcData.Stats.DroppedItems = DroppedItems;
+        }
+
+        if (questRemoved || backendCounterRemoved || counterRemoved || droppedItem) {
           nbWiped += 1;
         }
       }
 
-      // 3. wipe dialogues
+      // 5. wipe dialogues
       Object.keys(dialogues).forEach(dialogId => {
         const dialogue = dialogues[dialogId] || {};
         const messages = dialogue.messages || [];
         dialogue.messages = messages.filter(msg => msg.templateId !== `${questId}_description` && msg.templateId !== `${questId}_success_message_text`)
       });
+
+
     });
 
     if (nbWiped > 0) {
