@@ -15,7 +15,7 @@ class OnStartHandler {
       delete templates.quests[questId];
     })
 
-    Logger.warning(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
+    Logger.info(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
   }
 
   _wipeProfilesForQuest(questId) {

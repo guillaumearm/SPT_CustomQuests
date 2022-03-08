@@ -9,12 +9,32 @@ class QuestsLoader {
     }
 
     loadAll() {
+        let loadedQuests = this.loadDir(this.questDirectory);
+
+        VFS.getDirs(this.questDirectory).forEach(subdir => {
+            if (subdir.endsWith('.disabled')) {
+                if (subdir !== 'examples.disabled') {
+                    Logger.warning(`=> Custom Quests: skipped '${subdir.split('.disabled')[0]}' quest directory`);
+                }
+            }
+            else {
+                const loadedSubQuests = this.loadDir(path.join(this.questDirectory, subdir));
+                loadedQuests = [...loadedQuests, ...loadedSubQuests];
+            }
+        });
+
+        return loadedQuests;
+    }
+
+    loadDir(dir) {
         let loadedQuests = [];
 
-        VFS.getFiles(this.questDirectory)
+        VFS.getFiles(dir)
             .forEach(fileName => {
-                const quests = this._loadFile(fileName);
-                loadedQuests = [...loadedQuests, ...quests];
+                if (fileName.endsWith('.json')) {
+                    const quests = this._loadFile(fileName, dir);
+                    loadedQuests = [...loadedQuests, ...quests];
+                }
             });
 
         return loadedQuests;
@@ -51,8 +71,8 @@ class QuestsLoader {
         })
     }
 
-    _loadFile(fileName) {
-        const fullPath = path.join(this.questDirectory, fileName);
+    _loadFile(fileName, dir) {
+        const fullPath = path.join(dir, fileName);
 
         const storyOrQuest = require(fullPath);
         const story = storyOrQuest.id ? [storyOrQuest] : storyOrQuest;
