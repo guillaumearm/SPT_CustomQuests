@@ -40,16 +40,16 @@ const LOCATION_ALIASES = {
 }
 
 function generateKillConditionId(questId, mission) {
-  return utils.getSHA256(JSON.stringify([mission.type, mission.count, mission.target, mission.locations, questId]));
+  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.count, mission.target, mission.locations, questId]));
 }
 
 function generateGiveItemConditionId(questId, mission) {
   const fir = mission.found_in_raid_only || false;
-  return utils.getSHA256(JSON.stringify([mission.type, mission.accepted_items, mission.count, fir, questId]));
+  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.accepted_items, mission.count, fir, questId]));
 }
 
 function generatePlaceBeaconConditionId(questId, mission) {
-  return utils.getSHA256(JSON.stringify([mission.type, mission.zone_id, mission.plant_time, mission.should_exit_locations, questId]));
+  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.zone_id, mission.plant_time, mission.should_exit_locations, questId]));
 }
 
 class ConditionsGenerator {
@@ -205,7 +205,7 @@ class ConditionsGenerator {
 
     const id = generatePlaceBeaconConditionId(qid, mission);
 
-    return {
+    const mission = {
       "_parent": "PlaceBeacon",
       "_props": {
         id,
@@ -221,11 +221,65 @@ class ConditionsGenerator {
       },
       "dynamicLocale": false
     }
+
+    if (Array.isArray(mission.should_exit_locations)) {
+      const locations = mission.should_exit_locations;
+
+      return [
+        mission,
+        {
+          "_parent": "CounterCreator",
+          "_props": {
+            "counter": {
+              "id": `${id}_counter`,
+              "conditions": [
+                {
+                  "_parent": "Location",
+                  "_props": {
+                    "target": locations,
+                    "id": `${id}_condition_location`
+                  }
+                },
+                {
+                  "_parent": "ExitStatus",
+                  "_props": {
+                    "status": [
+                      "Survived",
+                      "Runner"
+                    ],
+                    "id": `${id}_condition_exitstatus`
+                  }
+                }
+              ]
+            },
+            "id": `${id}_exit_location`,
+            "index": 2,
+            "parentId": "",
+            "oneSessionOnly": false,
+            "dynamicLocale": false,
+            "type": "Completion",
+            "doNotResetIfCounterCompleted": false,
+            "value": "1",
+            "visibilityConditions": [
+              {
+                "_parent": "CompleteCondition",
+                "_props": {
+                  "target": id,
+                  "id": `${id}_visibility_condition`
+                }
+              }
+            ]
+          },
+          "dynamicLocale": false
+        }
+      ]
+    }
+
+    return mission;
   }
 
   _generateAvailableForFinish() {
-    const missions = this.customQuest.missions || [];
-    return missions
+    const missions = this.customQuest.missions || []
       .map(mission => {
         if (mission.type === 'Kill') {
           return this._generateKillCondition(mission);
@@ -239,6 +293,20 @@ class ConditionsGenerator {
 
         return null;
       }).filter(item => Boolean(item));
+
+    // flattens missions array
+    const flattenedMissions = [];
+    missions.forEach(mission => {
+      if (Array.isArray(mission)) {
+        mission.forEach(m => {
+          if (m) flattenedMissions.push(m);
+        })
+      } else if (mission) {
+        flattenedMissions.push(m);
+      }
+    })
+
+    return flattenedMissions;
   }
 
   _generateFail() {
