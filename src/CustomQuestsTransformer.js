@@ -225,13 +225,35 @@ class ConditionsGenerator {
     }
 
     const id = generatePlaceBeaconConditionId(qid, mission);
-    const accepted_items = mission.type === 'PlaceBeacon' ? [BEACON_ITEM_ID] : [SIGNAL_JAMMER_ID];
+
+    let accepted_items = [];
+    let _parent = 'PlaceBeacon';
+
+    if (mission.type === 'PlaceBeacon') {
+      accepted_items = [BEACON_ITEM_ID];
+    } else if (mission.type === 'PlaceSignalJammer') {
+      accepted_items = [SIGNAL_JAMMER_ID]
+    } else if (mission.type === 'PlaceItem') {
+      _parent = 'LeaveItemAtLocation'
+      accepted_items = mission.accepted_items || []
+
+      if (!accepted_items.length) {
+        Logger.error(`=> Custom Quests: no accepted_items provided to PlaceItem mission in quest '${qid}'`)
+        return null;
+      }
+    }
+
+
 
     const placeBeaconCondition = {
-      "_parent": "PlaceBeacon",
+      _parent,
       "_props": {
         id,
+        "dogtagLevel": 0,
+        "maxDurability": 100,
+        "minDurability": 0,
         "parentId": "",
+        "onlyFoundInRaid": false,
         "dynamicLocale": false,
         "plantTime": mission.plant_time || DEFAULT_PLANT_TIME,
         "zoneId": mission.zone_id,
@@ -303,7 +325,7 @@ class ConditionsGenerator {
         return this._generateKillCondition(mission);
       } else if (mission.type === 'GiveItem') {
         return this._generateGiveItemCondition(mission);
-      } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer') {
+      } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer' || mission.type === 'PlaceItem') {
         return this._generatePlaceBeaconCondition(mission);
       }
 
@@ -422,7 +444,7 @@ class CustomQuestsTransformer {
       return generateKillConditionId(qid, mission);
     } else if (mission.type === 'GiveItem') {
       return generateGiveItemConditionId(qid, mission);
-    } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer') {
+    } else if (mission.type === 'PlaceBeacon' || mission.type === 'PlaceSignalJammer' || mission.type === 'PlaceItem') {
       return generatePlaceBeaconConditionId(qid, mission);
     }
     return null;
