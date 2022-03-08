@@ -40,16 +40,37 @@ const LOCATION_ALIASES = {
 }
 
 function generateKillConditionId(questId, mission) {
-  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.count, mission.target, mission.locations, questId]));
+  return utils.getSHA256(JSON.stringify([
+    questId,
+    mission._id,
+    mission.type,
+    mission.count,
+    mission.target,
+    mission.locations,
+  ]));
 }
 
 function generateGiveItemConditionId(questId, mission) {
-  const fir = mission.found_in_raid_only || false;
-  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.accepted_items, mission.count, fir, questId]));
+  return utils.getSHA256(JSON.stringify([
+    questId,
+    mission._id,
+    mission.type,
+    mission.accepted_items,
+    mission.count,
+    mission.found_in_raid_only || false,
+  ]));
 }
 
 function generatePlaceBeaconConditionId(questId, mission) {
-  return utils.getSHA256(JSON.stringify([mission._id, mission.type, mission.zone_id, mission.plant_time, mission.should_exit_locations, questId]));
+  return utils.getSHA256(JSON.stringify([
+    questId,
+    mission._id,
+    mission.type,
+    mission.zone_id,
+    mission.plant_time,
+    mission.should_exit_locations,
+    mission.accepted_items,
+  ]));
 }
 
 class ConditionsGenerator {
@@ -204,8 +225,9 @@ class ConditionsGenerator {
     }
 
     const id = generatePlaceBeaconConditionId(qid, mission);
+    const accepted_items = mission.accepted_items || [BEACON_ITEM_ID];
 
-    const mission = {
+    const placeBeaconCondition = {
       "_parent": "PlaceBeacon",
       "_props": {
         id,
@@ -213,9 +235,7 @@ class ConditionsGenerator {
         "dynamicLocale": false,
         "plantTime": mission.plant_time || DEFAULT_PLANT_TIME,
         "zoneId": mission.zone_id,
-        "target": [
-          BEACON_ITEM_ID,
-        ],
+        "target": accepted_items,
         "value": "1",
         "visibilityConditions": []
       },
@@ -226,7 +246,7 @@ class ConditionsGenerator {
       const locations = mission.should_exit_locations;
 
       return [
-        mission,
+        placeBeaconCondition,
         {
           "_parent": "CounterCreator",
           "_props": {
@@ -253,7 +273,6 @@ class ConditionsGenerator {
               ]
             },
             "id": `${id}_exit_location`,
-            "index": 2,
             "parentId": "",
             "oneSessionOnly": false,
             "dynamicLocale": false,
@@ -275,7 +294,7 @@ class ConditionsGenerator {
       ]
     }
 
-    return mission;
+    return placeBeaconCondition;
   }
 
   _generateAvailableForFinish() {
@@ -302,11 +321,11 @@ class ConditionsGenerator {
           if (m) flattenedMissions.push(m);
         })
       } else if (mission) {
-        flattenedMissions.push(m);
+        flattenedMissions.push(mission);
       }
     })
 
-    return flattenedMissions;
+    return ConditionsGenerator.setPropsIndexes(flattenedMissions);
   }
 
   _generateFail() {
@@ -348,7 +367,7 @@ class CustomQuestsTransformer {
 
     const lowerCasedLocation = location.toLowerCase();
     if (LOCATION_ALIASES[lowerCasedLocation]) {
-      return TRADER_ALIASES[lowerCasedLocation];
+      return LOCATION_ALIASES[lowerCasedLocation];
     }
 
     return location;
