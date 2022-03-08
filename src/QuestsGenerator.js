@@ -7,10 +7,13 @@ class QuestsGenerator {
 
   assertValidCustomQuest(customQuest) {
     if (typeof customQuest.id !== 'string') {
-      throw new Error('=> CustomQuests: invalid quest, no id found');
+      throw new Error(`=> Custom Quests: invalid quest, no id found`);
     }
     if (typeof customQuest.trader_id !== 'string') {
-      throw new Error('=> CustomQuests: invalid quest, no trader_id found');
+      throw new Error(`=> Custom Quests: invalid quest '${customQuest.id}', no trader_id found`);
+    }
+    if (customQuest.trader_id === 'ragfair') {
+      throw new Error(`=> Custom Quests: invalid quest '${customQuest.id}', ragfair cannot be used for quests!`);
     }
   }
 

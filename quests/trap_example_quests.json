@@ -1,10 +1,10 @@
 [
   {
     "id": "trap_quest_example_1",
-    "disabled": false,
+    "disabled": true,
     "location": "any",
     "type": "Completion",
-    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "trader_id": "mechanic",
     "image": "5a29222486f77456f50d09e7",
     "name": {
       "en": "Example quest part 1",
@@ -56,7 +56,7 @@
   {
     "id": "trap_quest_example_2",
     "disabled": false,
-    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "trader_id": "mechanic",
     "name": {
       "en": "Example quest part 2"
     },
@@ -70,7 +70,7 @@
   {
     "id": "trap_quest_example_3",
     "disabled": false,
-    "trader_id": "5a7c2eca46aef81a7ca2145d",
+    "trader_id": "mechanic",
     "name": {
       "en": "Example quest part 3"
     },
@@ -83,13 +83,14 @@
   },
   {
     "id": "trap_quest_example_4",
-    "disabled": false,
-    "trader_id": "5a7c2eca46aef81a7ca2145d"
+    "trader_id": "mechanic",
+    "name": "My quest name !!!",
+    "description": "My quest description !!!"
   },
   {
     "id": "trap_quest_example_5",
     "disabled": false,
-    "trader_id": "5a7c2eca46aef81a7ca2145d"
+    "trader_id": "ragman"
   },
   {
     "id": "trap_quest_example_kill_mission_1",

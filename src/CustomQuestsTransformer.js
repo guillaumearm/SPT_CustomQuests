@@ -5,9 +5,36 @@ const FALLBACK_LOCALE = 'en';
 const DEFAULT_IMAGE_ID = '5a27cafa86f77424e20615d6';
 const DEFAULT_LOCATION = 'any';
 const DEFAULT_TYPE = 'Completion';
+const DEFAULT_SUCCESS_MESSAGE = 'Quest successfully completed';
 
 const QUEST_STATUS_SUCCESS = [QuestHelper.status.Success];
 const QUEST_STATUS_STARTED = [QuestHelper.status.Started, QuestHelper.status.Success];
+
+const TRADER_ALIASES = {
+  prapor: '54cb50c76803fa8b248b4571',
+  therapist: '54cb57776803fa99248b456e',
+  fence: '579dc571d53a0658a154fbec',
+  skier: '58330581ace78e27b8b10cee',
+  peacekeeper: '5935c25fb3acc3127c3d8cd9',
+  mechanic: '5a7c2eca46aef81a7ca2145d',
+  ragman: '5ac3b934156ae10c4430e83c',
+  jaeger: '5c0647fdd443bc2504c2d371',
+}
+
+const LOCATION_ALIASES = {
+  bigmap: '56f40101d2720b2a4d8b45d6',
+  customs: '56f40101d2720b2a4d8b45d6',
+  factory: '55f2d3fd4bdc2d5f408b4567',
+  factory4_day: '55f2d3fd4bdc2d5f408b4567',
+  factory4_night: '59fc81d786f774390775787e',
+  interchange: '5714dbc024597771384a510d',
+  laboratory: '5b0fc42d86f7744a585f9105',
+  lighthouse: '5704e4dad2720bb55b8b4567',
+  rezervbase: '5704e5fad2720bc05b8b4567',
+  reserve: '5704e5fad2720bc05b8b4567',
+  shoreline: '5704e554d2720bac5b8b456e',
+  woods: '5704e3c2d2720bac5b8b4567',
+}
 
 class ConditionsGenerator {
   constructor(customQuest, dependencyQuest) {
@@ -178,7 +205,6 @@ class ConditionsGenerator {
   }
 }
 
-
 class CustomQuestsTransformer {
   constructor(customQuest, dependencyQuest) {
     this.customQuest = customQuest;
@@ -188,10 +214,32 @@ class CustomQuestsTransformer {
     this.rewardsGenerator = new RewardsGenerator(customQuest);
   }
 
+  _getTraderId() {
+    const traderId = this.customQuest.trader_id;
+
+    const lowerCasedId = traderId.toLowerCase();
+    if (TRADER_ALIASES[lowerCasedId]) {
+      return TRADER_ALIASES[lowerCasedId];
+    }
+
+    return traderId;
+  }
+
+  _getLocation() {
+    const location = this.customQuest.location || DEFAULT_LOCATION;
+
+    const lowerCasedLocation = location.toLowerCase();
+    if (LOCATION_ALIASES[lowerCasedLocation]) {
+      return TRADER_ALIASES[lowerCasedLocation];
+    }
+
+    return location;
+  }
+
   generateQuest() {
     const q = this.customQuest;
     const questId = q.id;
-    const traderId = q.trader_id;
+    const traderId = this._getTraderId();
     const image = `/files/quest/icon/${q.image || DEFAULT_IMAGE_ID}.jpg`;
     const location = q.location || DEFAULT_LOCATION;
     const type = q.type || DEFAULT_TYPE;
@@ -217,12 +265,16 @@ class CustomQuestsTransformer {
       instantComplete: false,
       secretQuest: false,
       startedMessageText: `${questId} startedMessageText`,
-      successMessageText: `${questId} successMessageText`,
+      successMessageText: q.success_message ? `${questId} successMessageText` : DEFAULT_SUCCESS_MESSAGE,
       templateId: questId,
     };
   }
 
   static getLocaleValue(givenPayload, localeName) {
+    if (typeof givenPayload === 'string') {
+      return givenPayload;
+    }
+
     const payload = givenPayload || {};
     return payload[localeName] || payload[FALLBACK_LOCALE] || '';
   }
@@ -252,7 +304,10 @@ class CustomQuestsTransformer {
 
       payload.name = CustomQuestsTransformer.getLocaleValue(name, localeName);
       payload.description = `${templateId}_description`;
-      payload.successMessageText = `${templateId}_success_message_text`;
+      if (success_message) {
+        payload.successMessageText = `${templateId}_success_message_text`;
+      }
+
       payload.conditions = {};
 
       (missions || []).forEach(mission => {
@@ -270,7 +325,10 @@ class CustomQuestsTransformer {
 
       result[localeName].quest = payload;
       result[localeName].mail[payload.description] = CustomQuestsTransformer.getLocaleValue(description, localeName);
-      result[localeName].mail[payload.successMessageText] = CustomQuestsTransformer.getLocaleValue(success_message, localeName);
+
+      if (success_message) {
+        result[localeName].mail[payload.successMessageText] = CustomQuestsTransformer.getLocaleValue(success_message, localeName);
+      }
     })
 
     return result;
