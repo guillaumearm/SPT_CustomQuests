@@ -6,9 +6,12 @@ const DEFAULT_IMAGE_ID = '5a27cafa86f77424e20615d6';
 const DEFAULT_LOCATION = 'any';
 const DEFAULT_TYPE = 'Completion';
 const DEFAULT_SUCCESS_MESSAGE = 'Quest successfully completed';
+const DEFAULT_PLANT_TIME = 30;
 
 const QUEST_STATUS_SUCCESS = [QuestHelper.status.Success];
 const QUEST_STATUS_STARTED = [QuestHelper.status.Started, QuestHelper.status.Success];
+
+const BEACON_ITEM_ID = '5991b51486f77447b112d44f';
 
 const TRADER_ALIASES = {
   prapor: '54cb50c76803fa8b248b4571',
@@ -34,6 +37,19 @@ const LOCATION_ALIASES = {
   reserve: '5704e5fad2720bc05b8b4567',
   shoreline: '5704e554d2720bac5b8b456e',
   woods: '5704e3c2d2720bac5b8b4567',
+}
+
+function generateKillConditionId(questId, mission) {
+  return utils.getSHA256(JSON.stringify([mission.type, mission.count, mission.target, mission.locations, questId]));
+}
+
+function generateGiveItemConditionId(questId, mission) {
+  const fir = mission.found_in_raid_only || false;
+  return utils.getSHA256(JSON.stringify([mission.type, mission.accepted_items, mission.count, fir, questId]));
+}
+
+function generatePlaceBeaconConditionId(questId, mission) {
+  return utils.getSHA256(JSON.stringify([mission.type, mission.zone_id, mission.plant_time, mission.should_exit_locations, questId]));
 }
 
 class ConditionsGenerator {
@@ -105,25 +121,25 @@ class ConditionsGenerator {
     return ConditionsGenerator.setPropsIndexes([levelCondition, dependencyQuestCondition, ...questSuccessConditions, ...questStartedConditions]);
   }
 
-  // killType = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec
-  _generateKillCondition(count, killType, locations) {
-    const killConditionId = utils.getSHA256(JSON.stringify([count, killType, locations, this.customQuest.id]));
+  _generateKillCondition(mission) {
+    const killConditionId = generateKillConditionId(this.customQuest.id, mission);
 
-    if (count > 0) {
+    if (mission.count > 0) {
       const conditions = [
         {
           "_parent": "Kills",
           "_props": {
-            "target": killType,
+            // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec
+            "target": mission.target,
             "compareMethod": ">=",
             "value": "1",
             "id": `${killConditionId}_kill`
           }
         },
-        locations && locations !== 'any' ? {
+        mission.locations && mission.locations !== 'any' ? {
           "_parent": "Location",
           "_props": {
-            "target": locations,
+            "target": mission.locations,
             "id": `${killConditionId}_location`
           }
         } : null,
@@ -142,7 +158,7 @@ class ConditionsGenerator {
           "dynamicLocale": false,
           "type": "Elimination",
           "doNotResetIfCounterCompleted": false,
-          "value": String(count),
+          "value": String(mission.count),
           "visibilityConditions": []
         },
         "dynamicLocale": false
@@ -150,12 +166,16 @@ class ConditionsGenerator {
     }
   }
 
-  _generateGiveItemCondition(items, count, fir = false) {
+  _generateGiveItemCondition(mission) {
+    const items = mission.accepted_items;
+    const count = mission.count;
+    const fir = mission.found_in_raid_only || false;
+
     if (!items || !items.length || count <= 0) {
       return null;
     }
 
-    const id = utils.getSHA256(JSON.stringify([items, count, fir, this.customQuest.id]));
+    const id = generateGiveItemConditionId(this.customQuest.id, mission);
 
     return {
       "_parent": "HandoverItem",
@@ -175,14 +195,44 @@ class ConditionsGenerator {
     }
   }
 
+  _generatePlaceBeaconCondition(mission) {
+    const qid = this.customQuest.id;
+
+    if (!mission.zone_id) {
+      Logger.warning(`=> Custom Quests: no zone_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
+      return null;
+    }
+
+    const id = generatePlaceBeaconConditionId(qid, mission);
+
+    return {
+      "_parent": "PlaceBeacon",
+      "_props": {
+        id,
+        "parentId": "",
+        "dynamicLocale": false,
+        "plantTime": mission.plant_time || DEFAULT_PLANT_TIME,
+        "zoneId": mission.zone_id,
+        "target": [
+          BEACON_ITEM_ID,
+        ],
+        "value": "1",
+        "visibilityConditions": []
+      },
+      "dynamicLocale": false
+    }
+  }
+
   _generateAvailableForFinish() {
     const missions = this.customQuest.missions || [];
     return missions
       .map(mission => {
         if (mission.type === 'Kill') {
-          return this._generateKillCondition(mission.count, mission.target, mission.locations);
+          return this._generateKillCondition(mission);
         } else if (mission.type === 'GiveItem') {
-          return this._generateGiveItemCondition(mission.accepted_items, mission.count, mission.found_in_raid_only);
+          return this._generateGiveItemCondition(mission);
+        } else if (mission.type === 'PlaceBeacon') {
+          return this._generatePlaceBeaconCondition(mission);
         }
 
         Logger.warning(`=> Custom Quests: ignored mission with type '${mission.type}'`)
@@ -280,10 +330,14 @@ class CustomQuestsTransformer {
   }
 
   getMissionId(mission) {
+    const qid = this.customQuest.id;
+
     if (mission.type === 'Kill') {
-      return utils.getSHA256(JSON.stringify([mission.count, mission.target, mission.locations, this.customQuest.id]));
+      return generateKillConditionId(qid, mission);
     } else if (mission.type === 'GiveItem') {
-      return utils.getSHA256(JSON.stringify([mission.accepted_items, mission.count, mission.found_in_raid_only, this.customQuest.id]));
+      return generateGiveItemConditionId(qid, mission);
+    } else if (mission.type === 'PlaceBeacon') {
+      return generatePlaceBeaconConditionId(qid, mission);
     }
     return null;
   }
@@ -314,8 +368,6 @@ class CustomQuestsTransformer {
         const missionId = this.getMissionId(mission);
         if (missionId) {
           payload.conditions[missionId] = CustomQuestsTransformer.getLocaleValue(mission.message, localeName);
-        } else {
-          Logger.warning(`=> Custom Quests: unkown mission type '${mission.type}'`)
         }
       })
 
