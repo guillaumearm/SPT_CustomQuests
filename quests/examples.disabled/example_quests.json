@@ -2,7 +2,7 @@
   {
     "id": "trap_quest_example_1",
     "disabled": false,
-    "location": "any",
+    "descriptive_location": "any",
     "type": "Completion",
     "trader_id": "mechanic",
     "image": "5a29222486f77456f50d09e7",

@@ -275,8 +275,8 @@ class CustomQuestsTransformer {
     return traderId;
   }
 
-  _getLocation() {
-    const location = this.customQuest.location || DEFAULT_LOCATION;
+  _getDescriptiveLocation() {
+    const location = this.customQuest.descriptive_location || DEFAULT_LOCATION;
 
     const lowerCasedLocation = location.toLowerCase();
     if (LOCATION_ALIASES[lowerCasedLocation]) {
@@ -291,7 +291,7 @@ class CustomQuestsTransformer {
     const questId = q.id;
     const traderId = this._getTraderId();
     const image = `/files/quest/icon/${q.image || DEFAULT_IMAGE_ID}.jpg`;
-    const location = q.location || DEFAULT_LOCATION;
+    const location = this._getDescriptiveLocation();
     const type = q.type || DEFAULT_TYPE;
     const conditions = this.conditionsGenerator.generateConditions();
     const rewards = this.rewardsGenerator.generateRewards();
