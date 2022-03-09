@@ -47,6 +47,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - Rewards on start: give items/xp when start a quest
 - new mission type: `SurviveRaid`
 - More rewards: trader reputation, unlock traders, unlock barters
+- More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Repeatable quests (not daily quests)
 - Custom quest image
