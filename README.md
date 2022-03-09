@@ -16,6 +16,7 @@ Please read the tutorial and/or take a look to the examples directory for more d
 - Rewards: xp and items on quest success
 - Compatible with modded traders
 - Multilingual
+- Options to wipe custom quests progression from profile (useful during the development)
 
 ## Usage
 Place your json files in the `quests` directory.
