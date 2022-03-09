@@ -59,6 +59,8 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
 - Mission restriction: only on night
 - New mission type: `WeaponAssembly` (allow to create gunsmith missions)
+- New mission type: `TraderLoyalty`
+- New mission type: `Skill`
 
 If you have some ideas to improve the mod, you can create an issue on github (or comment on the hub) ;-)
 
