@@ -242,7 +242,7 @@ class ConditionsGenerator {
 
   _generateGiveItemCondition(mission) {
     const items = mission.accepted_items;
-    const count = mission.count;
+    const count = mission.count === undefined ? 1 : mission.count;
     const fir = mission.found_in_raid_only || false;
 
     if (!items || !items.length || count <= 0) {
