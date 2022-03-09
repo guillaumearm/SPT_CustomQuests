@@ -1,5 +1,7 @@
 const ALL_VANILLA_QUESTS = require('./allVanillaQuestIds');
 
+const JAEGER_ID = '5c0647fdd443bc2504c2d371';
+
 class OnStartHandler {
   constructor(config) {
     this.config = config
@@ -15,9 +17,12 @@ class OnStartHandler {
       delete templates.quests[questId];
     });
 
-    // TODO: unlock Jaegger
-
     Logger.info(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
+  }
+
+  _unlockJaegger() {
+    DatabaseServer.tables.traders[JAEGER_ID].base.unlockedByDefault = true;
+    Logger.info(`=> Custom Quests: Jaeger trader unlocked by default`);
   }
 
   _wipeProfilesForQuest(questId) {
@@ -93,6 +98,7 @@ class OnStartHandler {
   beforeCustomQuestsLoaded() {
     if (this.onStartConfig.disable_all_vanilla_quests) {
       this._disableVanillaQuests();
+      this._unlockJaegger();
     }
   }
 
