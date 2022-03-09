@@ -1,6 +1,8 @@
 # Custom Quests
 Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
 
+[Documentation and examples](./docs/USAGE_MANUAL.md)
+
 ## Description
 This mod allow to add your own quests easily with a single json file (per quest).
 
@@ -25,6 +27,8 @@ So these are valid:
 - quests/my_quests/my_first_quest.json
 
 Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests.
+
+[This quest example](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/example_chained_quests.json) can help too.
 
 You can rename the folder `examples.disabled` in `examples` to try out the examples ;-)
 

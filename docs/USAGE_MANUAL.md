@@ -1,6 +1,9 @@
 # Custom Quests - How to create quests
 
-## Minimal example
+## A complete example
+[This quest example](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/example_chained_quests.json) can help too.
+
+## A minimal example
 ```json
 {
   "id": "trap_quest_example_1",
@@ -23,7 +26,7 @@
 
 Modded traders are supported too.
 
-## Minimal example (recommended)
+## A minimal example (recommended)
 ```json
 {
   "id": "trap_quest_example_1_bis",
@@ -142,9 +145,9 @@ You can found all quests images in `Aki_Data/Server/images/quests/` directory.
 }
 ```
 
-To be able to see this quest, your pmc should be at least level 10 and the `trap_quest_example_1_bis` should have been completed.
+To be able to see this quest, your pmc should be at least level 10, the `trap_quest_example_1` and `trap_quest_example_1_bis` quests should have been completed.
 
-Also, you can use the `unlock_on_quest_start` array to specify which quests should be started (not completed this time).
+Also, you can use the `unlock_on_quest_start` array to specify which quests has to been started to unlock this quest.
 
 ## Automatic chained quests
 No need to use the `locked_by_quests` option if you want to create a simple chain of quests, you can specify an array of quests in your json files and these quests will be automatically chained.
