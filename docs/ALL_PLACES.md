@@ -1,6 +1,8 @@
+# All Places
+
 Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account to see the maps, sorry for that.
 
-# Customs
+## Customs
 - [`dead_posylni`](https://mapgenie.io/tarkov/maps/customs?locationIds=116481) = Messenger's body in the bush next to RUAF Roadblock
 - [`vremyan_case`](https://mapgenie.io/tarkov/maps/customs?locationIds=30169) = Unknown cabin next to warehouse 4
 - [`room206_water`](https://mapgenie.io/tarkov/maps/customs?locationIds=30291) = 2-way Dorms room 206 (locked)
@@ -11,14 +13,14 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_SADOVOD_03`](https://mapgenie.io/tarkov/maps/customs?locationIds=30053) = Big red office
 - [`gazel`](https://mapgenie.io/tarkov/maps/customs?locationIds=37428) = Back of depot the van
 
-# Woods
+## Woods
 - [`bunker2`](https://mapgenie.io/tarkov/maps/woods?locationIds=86413) = ZB-014 bunker
 - [`ter_015_area_1`](https://mapgenie.io/tarkov/maps/woods?locationIds=36935) = Minivan car crash next to the peninsula
 - [`huntsman_001`](https://mapgenie.io/tarkov/maps/woods?locationIds=36933) = Jaeger's message at wooden lookout post next to the plane crash
 - [`pr_scout_col`](https://mapgenie.io/tarkov/maps/woods?locationIds=65210) = Prapor's convoy
 - [`pr_scout_base`](https://mapgenie.io/tarkov/maps/woods?locationIds=65211) = USEC Temporary Camp
 
-# Shoreline
+## Shoreline
 - [`place_peacemaker_007_1_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27880) = Prist's house
 - [`place_peacemaker_010_3`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=26343) = Artyom's car
 - [`place_peacemaker_004_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27864) = Drone 1 next to north bunker
@@ -42,14 +44,14 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`ter_023_area_3_1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=47969) = At the corner of the office building next to the main pier entrance
 - [`ter_023_area_2_1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=47970) = At cottage, In front of the ambulance next to the eastern wall
 
-# Interchange
+## Interchange
 - [`place_SALE_03_AVOKADO`](https://mapgenie.io/tarkov/maps/interchange?locationIds=42403) = Avokado store (1st floor mall)
 - [`place_SALE_03_KOSTIN`](https://mapgenie.io/tarkov/maps/interchange?locationIds=42405) = Kostin store (1st floor mall)
 - [`place_SALE_03_TREND`](https://mapgenie.io/tarkov/maps/interchange?locationIds=42404) = Trend store (1st floor mall)
 - [`place_SALE_03_DINO`](https://mapgenie.io/tarkov/maps/interchange?locationIds=42402) = Dino Clothes store (1st floor mall)
 - [`place_SALE_03_TOPBRAND`](https://mapgenie.io/tarkov/maps/interchange?locationIds=42401) = Top Brand store (1st floor mall)
 
-# Factory
+## Factory
 - [`pumproom`](https://mapgenie.io/tarkov/maps/factory?locationIds=30432) = Pumping station room (locked)
 - [`place_pacemaker_SCOUT_01`](https://mapgenie.io/tarkov/maps/factory?locationIds=25059) = Cellars exfil (not sure of this one) ???
 - [`place_pacemaker_SCOUT_02`](https://mapgenie.io/tarkov/maps/factory?locationIds=25057) = Gate 0 exfil (not sure of this one) ???
@@ -64,7 +66,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`qlight_find_crushed_heli`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153641) = Helicopter crash
 - [`qlight_find_scav_group1`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=152789) = Tennis Courts at Chalet
 
-# Reserve
+## Reserve
 - [`huntsman_029`](https://mapgenie.io/tarkov/maps/reserve?locationIds=40913) = food storage location in underground bunker
 - [`prapor_024_area_2`](https://mapgenie.io/tarkov/maps/reserve?locationIds=63852) = The central underground bunker
 - [`prapor_024_area_1`](https://mapgenie.io/tarkov/maps/reserve?locationIds=63852) = The central underground bunker control room
@@ -88,5 +90,5 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`baraholshik_arsenal_area_5`](https://mapgenie.io/tarkov/maps/reserve?locationIds=86377) = Duty Room (Black Pawn) (locked) ???
 
 
-# Laboratory
+## Laboratory
 - [`peace_027_area`](https://mapgenie.io/tarkov/maps/lab?locationIds=46254) = sanitar's room in the green zone (locked by key card with a blue marking)

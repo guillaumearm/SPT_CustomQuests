@@ -1,3 +1,5 @@
+# All Zones
+
 Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account to see the maps, sorry for that.
 
 # Customs
