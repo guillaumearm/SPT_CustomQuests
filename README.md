@@ -1,7 +1,7 @@
 # Custom Quests
 Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
 
-[Documentation and examples](./docs/USAGE_MANUAL.md)
+[Documentation - How to create quests](./docs/USAGE_MANUAL.md)
 
 ## Description
 This mod allow to add your own quests easily with a single json file (per quest).
@@ -27,7 +27,7 @@ So these are valid:
 - quests/my_first_quest.json
 - quests/my_quests/my_first_quest.json
 
-Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests.
+Please read [the usage manual](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md) to get more infos on how to create your own quests.
 
 [This quest example](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/example_chained_quests.json) can help too.
 
@@ -41,8 +41,8 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all disabled custom quests from all profiles
 
 ## Resources
-- [All zones](./docs/ALL_ZONES.md)
-- [All places](./docs/ALL_PLACES.md)
+- [All zones](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_ZONES.md)
+- [All places](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_PLACES.md)
 
 ## Planned features
 - Rewards on start: give items/xp when start a quest
