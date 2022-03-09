@@ -57,3 +57,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - Mission restriction: only on night
 
 If you have some ideas to improve the mod, you can create an issue on github (or comment on the hub) ;-)
+
+## The original README
+
+[the original readme file](https://github.com/guillaumearm/aki_CustomQuests/blob/master/README.md) is available on github.
