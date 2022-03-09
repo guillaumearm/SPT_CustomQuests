@@ -1,3 +1,5 @@
+Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account to see the maps, sorry for that.
+
 # Customs
 - [`gazel`](https://mapgenie.io/tarkov/maps/customs?locationIds=37428) = Back of depot the van
 - [`place_peacemaker_007_N1`](https://mapgenie.io/tarkov/maps/customs?locationIds=37425) = 3-way dorm room 316
