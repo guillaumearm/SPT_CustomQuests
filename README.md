@@ -16,14 +16,24 @@ Please read the tutorial and/or take a look to the examples directory for more d
 - Multilingual
 
 ## Usage
-Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests ;-)
+Place your json files in the `quests` directory.
+
+Sub-directories can be used to organize your quest files.
+
+So these are valid:
+- quests/my_first_quest.json
+- quests/my_quests/my_first_quest.json
+
+Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests.
+
+You can rename the folder `examples.disabled` in `examples` to try out the examples ;-)
 
 ## Global configuration
 - `enabled`: allow to enable or not CustomQuests mod
 - `quest_directory`: The directory with custom quests
-- `at_start.disable_all_vanilla_quests`: Disable all vanilla quests and unlock Jaeger
-- `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all enabled custom quests for all profiles
-- `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all disabled custom quests for all profiles
+- `at_start.disable_all_vanilla_quests`: Disable all vanilla quests (this will unlock Jaeger but without editing your profile)
+- `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all enabled custom quests from all profiles
+- `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all disabled custom quests from all profiles
 
 ## Resources
 - [All zones](./docs/ALL_ZONES.md)
@@ -31,6 +41,7 @@ Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how 
 
 ## Planned features
 - Rewards on start: give items/xp when start a quest
+- new mission type: `SurviveRaid`
 - More rewards: trader reputation, unlock traders, unlock barters
 - Failure quests: this allow to create several path in your story
 - Repeatable quests (not daily quests)
