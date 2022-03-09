@@ -1,0 +1,16 @@
+{
+  "id": "trap_quest_example_2",
+  "trader_id": "mechanic",
+  "name": {
+    "en": "My second quest",
+    "fr": "Ma seconde quete"
+  },
+  "description": {
+    "en": "My quest description",
+    "fr": "Ma description de quete"
+  },
+  "success_message": {
+    "en": "My success message",
+    "fr": "Mon message de succes"
+  }
+}

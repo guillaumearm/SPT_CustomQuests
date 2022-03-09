@@ -1,0 +1,25 @@
+{
+  "id": "trap_quest_example_6",
+  "trader_id": "mechanic",
+  "name": "First mission",
+  "description": "Kill 5 scavs on custom and I will make you rich",
+  "success_message": "Bravo!",
+  "missions": [
+    {
+      "type": "Kill",
+      "target": "Savage",
+      "locations": [
+        "customs"
+      ],
+      "count": 5,
+      "message": {
+        "en": "Kill 5 scavs on customs or factory"
+      }
+    }
+  ],
+  "rewards": {
+    "items": {
+      "5449016a4bdc2d6f028b456f": 1000000
+    }
+  }
+}

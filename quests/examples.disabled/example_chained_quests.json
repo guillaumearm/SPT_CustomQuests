@@ -1,10 +1,10 @@
 [
   {
     "id": "trap_quest_example_1",
+    "trader_id": "mechanic",
     "disabled": false,
     "descriptive_location": "any",
     "type": "Completion",
-    "trader_id": "mechanic",
     "image": "5a29222486f77456f50d09e7",
     "name": {
       "en": "Example quest part 1",

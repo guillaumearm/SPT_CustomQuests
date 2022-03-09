@@ -1,0 +1,10 @@
+{
+  "id": "trap_quest_example_3",
+  "trader_id": "mechanic",
+  "name": "My third quest",
+  "description": "My third quest description",
+  "success_message": "My success message",
+  "descriptive_location": "interchange",
+  "type": "Completion",
+  "image": "5a29222486f77456f50d09e7"
+}

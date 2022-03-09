@@ -1,0 +1,7 @@
+{
+  "id": "trap_quest_example_1_bis",
+  "trader_id": "mechanic",
+  "name": "My first quest",
+  "description": "My first quest description",
+  "success_message": "My success message"
+}

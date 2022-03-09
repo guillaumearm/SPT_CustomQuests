@@ -1,0 +1,13 @@
+{
+  "id": "trap_quest_example_4",
+  "trader_id": "mechanic",
+  "name": "My fourth quest",
+  "description": "My fourth quest description",
+  "success_message": "My success message",
+  "level_needed": 10,
+  "locked_by_quests": [
+    "trap_quest_example_1",
+    "trap_quest_example_1_bis"
+  ],
+  "unlock_on_quest_start": []
+}
