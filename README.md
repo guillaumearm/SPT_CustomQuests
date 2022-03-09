@@ -1,5 +1,5 @@
 # Custom Quests
-Easy quests creation tool
+Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
 
 ## Description
 This mod allow to add your own quests easily with a single json file (per quest).
@@ -15,8 +15,8 @@ Please read the tutorial and/or take a look to the examples directory for more d
 - Compatible with modded traders
 - Multilingual
 
-## Tutorial
-TODO
+## Full documentation
+Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests ;-)
 
 ## Global configuration
 - `enabled`: allow to enable or not CustomQuests mod
@@ -26,8 +26,8 @@ TODO
 - `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all disabled custom quests for all profiles
 
 ## Resources
-- [All zones](./ALL_ZONES.md)
-- [All places](./ALL_PLACES.md)
+- [All zones](./docs/ALL_ZONES.md)
+- [All places](./docs/ALL_PLACES.md)
 
 ## Planned features
 - Rewards on start: give items/xp when start a quest
