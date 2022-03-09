@@ -25,19 +25,41 @@ const TRADER_ALIASES = {
   jaeger: '5c0647fdd443bc2504c2d371',
 }
 
-const LOCATION_ALIASES = {
+const DESCRIPTIVE_LOCATION_ALIASES = {
   bigmap: '56f40101d2720b2a4d8b45d6',
   customs: '56f40101d2720b2a4d8b45d6',
   factory: '55f2d3fd4bdc2d5f408b4567',
-  factory4_day: '55f2d3fd4bdc2d5f408b4567',
-  factory4_night: '59fc81d786f774390775787e',
   interchange: '5714dbc024597771384a510d',
   laboratory: '5b0fc42d86f7744a585f9105',
+  labs: '5b0fc42d86f7744a585f9105',
   lighthouse: '5704e4dad2720bb55b8b4567',
   rezervbase: '5704e5fad2720bc05b8b4567',
   reserve: '5704e5fad2720bc05b8b4567',
   shoreline: '5704e554d2720bac5b8b456e',
   woods: '5704e3c2d2720bac5b8b4567',
+}
+
+const LOCATION_ALIASES = {
+  'factory': ['factory4_day', 'factory4_night'],
+  'customs': ['bigmap'],
+  'reserv': ['rezervbase'],
+  'labs': ['laboratory']
+}
+
+const getTargetFromLocations = (locations) => {
+  const result = [];
+
+  locations.forEach(location => {
+    if (LOCATION_ALIASES[location]) {
+      LOCATION_ALIASES[location].forEach(l => {
+        result.push(l);
+      });
+    } else {
+      result.push(location);
+    }
+  })
+
+  return result;
 }
 
 function generateKillConditionId(questId, mission) {
@@ -167,10 +189,10 @@ class ConditionsGenerator {
             "id": `${killConditionId}_kill`
           }
         },
-        mission.locations && mission.locations !== 'any' ? {
+        mission.locations && mission.locations !== 'any' && mission.locations[0] !== 'any' ? {
           "_parent": "Location",
           "_props": {
-            "target": mission.locations,
+            "target": getTargetFromLocations(mission.locations),
             "id": `${killConditionId}_location`
           }
         } : null,
@@ -492,8 +514,8 @@ class CustomQuestsTransformer {
     const location = this.customQuest.descriptive_location || DEFAULT_LOCATION;
 
     const lowerCasedLocation = location.toLowerCase();
-    if (LOCATION_ALIASES[lowerCasedLocation]) {
-      return LOCATION_ALIASES[lowerCasedLocation];
+    if (DESCRIPTIVE_LOCATION_ALIASES[lowerCasedLocation]) {
+      return DESCRIPTIVE_LOCATION_ALIASES[lowerCasedLocation];
     }
 
     return location;
