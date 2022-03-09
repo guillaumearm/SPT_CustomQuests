@@ -1,7 +1,6 @@
 Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account to see the maps, sorry for that.
 
 # Customs
-- [`gazel`](https://mapgenie.io/tarkov/maps/customs?locationIds=37428) = Back of depot the van
 - [`dead_posylni`](https://mapgenie.io/tarkov/maps/customs?locationIds=116481) = Messenger's body in the bush next to RUAF Roadblock
 - [`vremyan_case`](https://mapgenie.io/tarkov/maps/customs?locationIds=30169) = Unknown cabin next to warehouse 4
 - [`room206_water`](https://mapgenie.io/tarkov/maps/customs?locationIds=30291) = 2-way Dorms room 206 (locked)
@@ -10,6 +9,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`room214`](https://mapgenie.io/tarkov/maps/customs?locationIds=30267) = Dorms 3-way room 214 (locked)
 - [`bomj_place`](https://mapgenie.io/tarkov/maps/customs?locationIds=30129) = Train car next to warehouse 7
 - [`place_SADOVOD_03`](https://mapgenie.io/tarkov/maps/customs?locationIds=30053) = Big red office
+- [`gazel`](https://mapgenie.io/tarkov/maps/customs?locationIds=37428) = Back of depot the van
 
 # Woods
 - [`bunker2`](https://mapgenie.io/tarkov/maps/woods?locationIds=86413) = ZB-014 bunker
