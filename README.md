@@ -50,6 +50,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - More rewards: trader reputation, unlock traders, unlock barters
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
+- Rewards on fail
 - Repeatable quests (not daily quests)
 - Custom quest image
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
