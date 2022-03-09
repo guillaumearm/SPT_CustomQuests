@@ -1,6 +1,23 @@
 const utils = require('./utils');
 const RewardsGenerator = require('./RewardsGenerator');
 
+const ALL_ZONES_BY_MAP = require('./allZonesByMap');
+const ZONES = {};
+Object.keys(ALL_ZONES_BY_MAP).forEach(mapName => {
+  ALL_ZONES_BY_MAP[mapName].forEach(zoneId => {
+    ZONES[zoneId] = mapName;
+  });
+})
+
+const ALL_PLACES_BY_MAP = require('./allPlacesByMap');
+const PLACES = {};
+Object.keys(ALL_PLACES_BY_MAP).forEach(mapName => {
+  ALL_PLACES_BY_MAP[mapName].forEach(zoneId => {
+    PLACES[zoneId] = mapName;
+  });
+})
+
+
 const FALLBACK_LOCALE = 'en';
 const DEFAULT_IMAGE_ID = '5a27cafa86f77424e20615d6';
 const DEFAULT_LOCATION = 'any';
@@ -42,7 +59,7 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
 const LOCATION_ALIASES = {
   'factory': ['factory4_day', 'factory4_night'],
   'customs': ['bigmap'],
-  'reserv': ['rezervbase'],
+  'reserve': ['rezervbase'],
   'labs': ['laboratory']
 }
 
@@ -60,6 +77,10 @@ const getTargetFromLocations = (locations) => {
   })
 
   return result;
+}
+
+const getNeedSurviveTargetFromLocation = (location) => {
+  return location === 'factory' ? ['factory4_day', 'factory4_night'] : [location];
 }
 
 function generateKillConditionId(questId, mission) {
@@ -91,7 +112,7 @@ function generatePlaceBeaconConditionId(questId, mission) {
     mission.type,
     mission.zone_id,
     mission.plant_time,
-    mission.should_exit_locations,
+    mission.need_survive,
   ]));
 }
 
@@ -101,7 +122,7 @@ function generateVisitPlaceConditionId(questId, mission) {
     mission._id,
     mission.type,
     mission.place_id,
-    mission.should_exit_locations,
+    mission.need_survive,
   ]));
 }
 
@@ -251,8 +272,8 @@ class ConditionsGenerator {
   _generatePlaceBeaconCondition(mission) {
     const qid = this.customQuest.id;
 
-    if (!mission.zone_id) {
-      Logger.warning(`=> Custom Quests: no zone_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
+    if (!ZONES[mission.zone_id]) {
+      Logger.error(`=> Custom Quests: no valid zone_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
       return null;
     }
 
@@ -270,7 +291,7 @@ class ConditionsGenerator {
       accepted_items = mission.accepted_items || []
 
       if (!accepted_items.length) {
-        Logger.error(`=> in custom quest '${qid}': no accepted_items provided to PlaceItem mission `)
+        Logger.error(`=> in custom quest '${qid}': no accepted_items provided for a PlaceItem mission `)
         return null;
       }
     }
@@ -296,8 +317,8 @@ class ConditionsGenerator {
       "dynamicLocale": false
     }
 
-    if (Array.isArray(mission.should_exit_locations)) {
-      const locations = mission.should_exit_locations;
+    if (mission.need_survive) {
+      const target = getNeedSurviveTargetFromLocation(ZONES[mission.zone_id]);
 
       return [
         placeBeaconCondition,
@@ -310,7 +331,7 @@ class ConditionsGenerator {
                 {
                   "_parent": "Location",
                   "_props": {
-                    "target": locations,
+                    "target": target,
                     "id": `${id}_condition_location`
                   }
                 },
@@ -354,8 +375,8 @@ class ConditionsGenerator {
   _generateVisitPlaceCondition(mission) {
     const qid = this.customQuest.id;
 
-    if (!mission.place_id) {
-      Logger.warning(`=> Custom Quests: no place_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
+    if (!PLACES[mission.place_id]) {
+      Logger.error(`=> Custom Quests: no valid place_id provided for mission of type '${mission.type}' (concerned quest: ${qid})`)
       return null;
     }
 
@@ -389,11 +410,12 @@ class ConditionsGenerator {
       "dynamicLocale": false
     }
 
-    const locations = mission.should_exit_locations;
 
-    if (!Array.isArray(locations) || !locations.length) {
+    if (!mission.need_survive) {
       return counterVisit;
     }
+
+    const target = getNeedSurviveTargetFromLocation(PLACES[mission.place_id]);
 
     const counterExit = {
       "_parent": "CounterCreator",
@@ -405,7 +427,7 @@ class ConditionsGenerator {
             {
               "_parent": "Location",
               "_props": {
-                "target": locations,
+                "target": target,
                 "id": `${id}_condition_location`
               }
             },
@@ -607,8 +629,8 @@ class CustomQuestsTransformer {
           payload.conditions[missionId] = CustomQuestsTransformer.getLocaleValue(mission.message, localeName);
         }
 
-        if (mission.exit_locations_message) {
-          payload.conditions[`${missionId}_exit_location`] = CustomQuestsTransformer.getLocaleValue(mission.exit_locations_message, localeName);
+        if (mission.need_survive) {
+          payload.conditions[`${missionId}_exit_location`] = CustomQuestsTransformer.getLocaleValue(mission.need_survive, localeName);
         }
       })
 
