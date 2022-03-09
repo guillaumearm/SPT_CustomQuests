@@ -197,47 +197,50 @@ class ConditionsGenerator {
 
   _generateKillCondition(mission) {
     const killConditionId = generateKillConditionId(this.customQuest.id, mission);
+    const count = mission.count === undefined ? 1 : mission.count;
 
-    if (mission.count > 0) {
-      const conditions = [
-        {
-          "_parent": "Kills",
-          "_props": {
-            // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec
-            "target": mission.target,
-            "compareMethod": ">=",
-            "value": "1",
-            "id": `${killConditionId}_kill`
-          }
-        },
-        mission.locations && mission.locations !== 'any' && mission.locations[0] !== 'any' ? {
-          "_parent": "Location",
-          "_props": {
-            "target": getTargetFromLocations(mission.locations),
-            "id": `${killConditionId}_location`
-          }
-        } : null,
-      ].filter(c => Boolean(c));
-
-      return {
-        "_parent": "CounterCreator",
-        "_props": {
-          "counter": {
-            "id": `${killConditionId}_counter`,
-            "conditions": conditions
-          },
-          "id": killConditionId,
-          "parentId": "",
-          "oneSessionOnly": false,
-          "dynamicLocale": false,
-          "type": "Elimination",
-          "doNotResetIfCounterCompleted": false,
-          "value": String(mission.count),
-          "visibilityConditions": []
-        },
-        "dynamicLocale": false
-      };
+    if (count <= 0) {
+      return null;
     }
+
+    const conditions = [
+      {
+        "_parent": "Kills",
+        "_props": {
+          // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec
+          "target": mission.target,
+          "compareMethod": ">=",
+          "value": "1",
+          "id": `${killConditionId}_kill`
+        }
+      },
+      mission.locations && mission.locations !== 'any' && mission.locations[0] !== 'any' ? {
+        "_parent": "Location",
+        "_props": {
+          "target": getTargetFromLocations(mission.locations),
+          "id": `${killConditionId}_location`
+        }
+      } : null,
+    ].filter(c => Boolean(c));
+
+    return {
+      "_parent": "CounterCreator",
+      "_props": {
+        "counter": {
+          "id": `${killConditionId}_counter`,
+          "conditions": conditions
+        },
+        "id": killConditionId,
+        "parentId": "",
+        "oneSessionOnly": false,
+        "dynamicLocale": false,
+        "type": "Elimination",
+        "doNotResetIfCounterCompleted": false,
+        "value": String(count),
+        "visibilityConditions": []
+      },
+      "dynamicLocale": false
+    };
   }
 
   _generateGiveItemCondition(mission) {
