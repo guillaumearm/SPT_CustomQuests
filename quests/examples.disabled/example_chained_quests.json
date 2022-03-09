@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_quest_example_1",
+    "id": "trap_chained_1",
     "trader_id": "mechanic",
     "disabled": false,
     "descriptive_location": "any",
@@ -54,7 +54,7 @@
     }
   },
   {
-    "id": "trap_quest_example_2",
+    "id": "trap_chained_2",
     "disabled": false,
     "trader_id": "mechanic",
     "name": {
@@ -68,7 +68,7 @@
     }
   },
   {
-    "id": "trap_quest_example_3",
+    "id": "trap_chained_3",
     "disabled": false,
     "trader_id": "mechanic",
     "name": {
@@ -82,18 +82,18 @@
     }
   },
   {
-    "id": "trap_quest_example_4",
+    "id": "trap_chained_4",
     "trader_id": "mechanic",
     "name": "My quest name !!!",
     "description": "My quest description !!!"
   },
   {
-    "id": "trap_quest_example_5",
+    "id": "trap_chained_5",
     "disabled": false,
     "trader_id": "ragman"
   },
   {
-    "id": "trap_quest_example_kill_mission_1",
+    "id": "trap_chained_6",
     "disabled": false,
     "trader_id": "5a7c2eca46aef81a7ca2145d",
     "type": "Elimination",
