@@ -43,6 +43,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 ## Resources
 - [All zones](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_ZONES.md)
 - [All places](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_PLACES.md)
+- [All quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
 
 ## Planned features
 - New mission type: `FindItem` (allow to spawn quests items, keys included)
