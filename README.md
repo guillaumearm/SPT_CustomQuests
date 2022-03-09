@@ -53,6 +53,8 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - Rewards on fail
 - Repeatable quests (not daily quests)
 - Custom quest image
+- Quest items spawn
+- Quest keys spawn
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
 - Mission restriction: only on night
 
