@@ -2,7 +2,7 @@
 
 Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account to see the maps, sorry for that.
 
-# Customs
+## Customs
 - [`gazel`](https://mapgenie.io/tarkov/maps/customs?locationIds=37428) = Back of depot the van
 - [`place_peacemaker_007_N1`](https://mapgenie.io/tarkov/maps/customs?locationIds=37425) = 3-way dorm room 316
 - [`place_peacemaker_002_N1`](https://mapgenie.io/tarkov/maps/customs?locationIds=29990) = Tigr LAV 1
@@ -17,7 +17,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_skier_11_3`](https://mapgenie.io/tarkov/maps/customs?locationIds=45867) = in the bush behind the blue container at sniper roadblock
 - [`Q019_3`](https://mapgenie.io/tarkov/maps/customs?locationIds=50462) = Trash pile in 3rd floor of dorms
 
-# Woods
+## Woods
 - [`place_peacemaker_007_2_N2`](https://mapgenie.io/tarkov/maps/woods?locationIds=37426) = First ritual spot
 - [`place_peacemaker_007_2_N2_1`](https://mapgenie.io/tarkov/maps/woods?locationIds=65212) = Second ritual spot
 - [`place_THX_15`](https://mapgenie.io/tarkov/maps/woods?locationIds=45980) = On the jetty at the sawmill
@@ -29,7 +29,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`huntsman_005_1`](https://mapgenie.io/tarkov/maps/woods?locationIds=86413) = ZB-014 stash
 - [`huntsman_005_2`](https://mapgenie.io/tarkov/maps/woods?locationIds=86414) = ZB-016 stash
 
-# Shoreline
+## Shoreline
 - [`place_peacemaker_007_2_N3`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=28154) = room 321 (west wing)
 - [`place_peacemaker_008_2_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=26375) = Helicopter
 - [`place_peacemaker_008_2_N2`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=26387) = Safe road
@@ -53,7 +53,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`prapor_022_area_2`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=41575) = Medical trading post 2 at cottage (next to the medical container 2)
 - [`prapor_022_area_3`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=41576) = Medical trading post 3 on the pier (next to the medical container 3)
 
-# Interchange
+## Interchange
 - [`place_WARBLOOD_04_1`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28351) = Fuel Tanker 1 at east on the road (behind goshan)
 - [`place_WARBLOOD_04_2`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28412) = Fuel Tanker 2 at scav camp extract
 - [`place_WARBLOOD_04_3`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28411) = Fuel Tanker 3 at power station
@@ -65,13 +65,13 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_merch_020_1`](https://mapgenie.io/tarkov/maps/interchange?locationIds=37022) = in garbage pile inside the Avokado store
 - [`place_merch_020_2](https://mapgenie.io/tarkov/maps/interchange?locationIds=37040) = in garbage pile next to the stage
 
-# Factory
+## Factory
 - [`place_SADOVOD_01_1`](https://mapgenie.io/tarkov/maps/factory?locationIds=33740) = Control Board 1 in glass hall
 - [`place_SADOVOD_01_2`](https://mapgenie.io/tarkov/maps/factory?locationIds=33741) = Control Board 2 in Forklifts
 - [`case_extraction`](https://mapgenie.io/tarkov/maps/factory?locationIds=41543) = first floor, in the break room.
 - [`ter_017_area_1`](https://mapgenie.io/tarkov/maps/factory?locationIds=118057) = Breach room/Secretary's office
 
-# Lighthouse
+## Lighthouse
 - [`qlight_pr1_heli1_mark`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153638) = Helicopter at the water treatment plant
 - [`qlight_mark_vech1`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153647) = First BRDM at the water treatment plant
 - [`qlight_mark_vech2`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153646) = Second BRDM at the water treatment plant
@@ -83,7 +83,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`qlight_fuel_blood_bezovoz3`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153311) = Third tanker truck, south of the water treatment plant, near of the bridge
 - [`qlight16_peace_terra`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153644) = TerraGroup cargo on the beach
 
-# Reserve
+## Reserve
 - [`tadeush_bmp2_area_mark_2`](https://mapgenie.io/tarkov/maps/reserve?locationIds=89745) = First bmp2 not far from scav lands
 - [`tadeush_bmp2_area_mark_11`](https://mapgenie.io/tarkov/maps/reserve?locationIds=89742) = Second bmp2 in White Knight floor 1
 - [`tadeush_bmp2_area_mark_12`](https://mapgenie.io/tarkov/maps/reserve?locationIds=89741) = Third bpm2 in Knight garage A (need RB-ST key)
