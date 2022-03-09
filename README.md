@@ -15,7 +15,7 @@ Please read the tutorial and/or take a look to the examples directory for more d
 - Compatible with modded traders
 - Multilingual
 
-## Full documentation
+## Usage
 Please read [the usage manual](./docs/USAGE_MANUAL.md) to get more infos on how to create your own quests ;-)
 
 ## Global configuration
