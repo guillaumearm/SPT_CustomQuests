@@ -1,7 +1,7 @@
 # Custom Quests
 Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
 
-[Documentation - How to create quests](./docs/USAGE_MANUAL.md)
+[Documentation - How to create quests](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md)
 
 ## Description
 This mod allow to add your own quests easily with a single json file (per quest).
