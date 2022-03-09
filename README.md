@@ -45,16 +45,16 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - [All places](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_PLACES.md)
 
 ## Planned features
+- New mission type: `FindItem` (allow to spawn quests items, keys included)
+- A list of all quest items and their locations (ALL_QUEST_ITEMS.md)
+- New mission type: `SurviveRaid`
 - Rewards on start: give items/xp when start a quest
-- new mission type: `SurviveRaid`
 - More rewards: trader reputation, unlock traders, unlock barters
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
 - Repeatable quests (not daily quests)
 - Custom quest image
-- Quest items spawn
-- Quest keys spawn
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
 - Mission restriction: only on night
 
