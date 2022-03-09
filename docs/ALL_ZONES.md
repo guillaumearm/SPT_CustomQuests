@@ -63,7 +63,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_merch_21_2`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28771) = Minibus 2 at garage C escalators
 - [`place_merch_21_3`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28772) = Minibus 3 between garage B and C
 - [`place_merch_020_1`](https://mapgenie.io/tarkov/maps/interchange?locationIds=37022) = in garbage pile inside the Avokado store
-- [`place_merch_020_2](https://mapgenie.io/tarkov/maps/interchange?locationIds=37040) = in garbage pile next to the stage
+- [`place_merch_020_2`](https://mapgenie.io/tarkov/maps/interchange?locationIds=37040) = in garbage pile next to the stage
 
 ## Factory
 - [`place_SADOVOD_01_1`](https://mapgenie.io/tarkov/maps/factory?locationIds=33740) = Control Board 1 in glass hall

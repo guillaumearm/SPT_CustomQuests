@@ -25,7 +25,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_peacemaker_010_3`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=26343) = Artyom's car
 - [`place_peacemaker_004_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27864) = Drone 1 next to north bunker
 - [`place_peacemaker_004_N2`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27819) = Drone 2 at sunken house next to the Radio tower
-- [`place_peacemaker_009_2`])(https://mapgenie.io/tarkov/maps/shoreline?locationIds=27981) = Room 108 (east wing)
+- [`place_peacemaker_009_2`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27981) = Room 108 (east wing)
 - [`place_peacemaker_009_3_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=51677) = Hidden terragroup cargo in the west wing basement (thermal station)
 - [`place_peacemaker_005_N1`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=26361) = UN Truck 1 at the thermal station
 - [`place_peacemaker_005_N2`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=27814) = UN Truck 2 at the crane
