@@ -47,7 +47,6 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 
 ## Planned features
 - New mission type: `FindItem` (allow to spawn quests items, keys included)
-- A list of all quest items and their locations (ALL_QUEST_ITEMS.md)
 - New mission type: `SurviveRaid`
 - Rewards on start: give items/xp when start a quest
 - More rewards: trader reputation, unlock traders, unlock barters
