@@ -1,8 +1,14 @@
 {
   "id": "trap_quest_example_6",
   "trader_id": "mechanic",
-  "name": "First mission",
-  "description": "Kill 5 scavs on custom and I will make you rich",
+  "name": {
+    "en": "My killer quest",
+    "fr": "Ma quete de tueur"
+  },
+  "description": {
+    "en": "Kill 5 scavs on customs and I will make you rich",
+    "fr": "Tues 5 scavs aux douanes and je te rendrais riche"
+  },
   "success_message": "Bravo!",
   "missions": [
     {
