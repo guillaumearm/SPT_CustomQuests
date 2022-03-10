@@ -208,7 +208,7 @@ class ConditionsGenerator {
         "_parent": "Kills",
         "_props": {
           // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec
-          "target": mission.target,
+          "target": mission.target || 'Savage',
           "compareMethod": ">=",
           "value": "1",
           "id": `${killConditionId}_kill`
