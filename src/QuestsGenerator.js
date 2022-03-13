@@ -9,11 +9,18 @@ class QuestsGenerator {
     if (typeof customQuest.id !== 'string') {
       throw new Error(`=> Custom Quests: invalid quest, no id found`);
     }
+    if (customQuest.id == '') {
+      throw new Error(`=> Custom Quests: invalid quest, empty id found`);
+    }
     if (typeof customQuest.trader_id !== 'string') {
-      throw new Error(`=> Custom Quests: invalid quest '${customQuest.id}', no trader_id found`);
+      throw new Error(
+        `=> Custom Quests: invalid quest '${customQuest.id}', no trader_id found`
+      );
     }
     if (customQuest.trader_id === 'ragfair') {
-      throw new Error(`=> Custom Quests: invalid quest '${customQuest.id}', ragfair cannot be used for quests!`);
+      throw new Error(
+        `=> Custom Quests: invalid quest '${customQuest.id}', ragfair cannot be used for quests!`
+      );
     }
   }
 
@@ -21,15 +28,23 @@ class QuestsGenerator {
     const result = [];
     let previousQuestId = null;
 
-    this.story.forEach(customQuest => {
+    this.story.forEach((customQuest) => {
       if (customQuest.disabled) {
-        Logger.warning(`=> Custom Quests: quest '${customQuest.id}' is disabled`)
+        Logger.warning(
+          `=> Custom Quests: quest '${customQuest.id}' is disabled`
+        );
       } else {
         this.assertValidCustomQuest(customQuest);
-        const transformer = new CustomQuestsTransformer(customQuest, previousQuestId);
+        const transformer = new CustomQuestsTransformer(
+          customQuest,
+          previousQuestId
+        );
 
-        const generatedQuest = transformer.generateQuest()
-        const payload = [generatedQuest, transformer.generateLocales(generatedQuest)];
+        const generatedQuest = transformer.generateQuest();
+        const payload = [
+          generatedQuest,
+          transformer.generateLocales(generatedQuest),
+        ];
         result.push(payload);
 
         previousQuestId = customQuest.id;
@@ -40,4 +55,4 @@ class QuestsGenerator {
   }
 }
 
-module.exports = QuestsGenerator
+module.exports = QuestsGenerator;
