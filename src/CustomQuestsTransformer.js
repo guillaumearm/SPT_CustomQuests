@@ -243,7 +243,7 @@ class ConditionsGenerator {
       },
       mission.locations &&
       mission.locations !== 'any' &&
-      mission.locations[0] !== 'any'
+      !mission.locations.includes('any')
         ? {
             _parent: 'Location',
             _props: {
