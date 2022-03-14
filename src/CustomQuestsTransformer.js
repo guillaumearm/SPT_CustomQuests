@@ -139,9 +139,8 @@ function generateVisitPlaceConditionId(questId, mission) {
 }
 
 class ConditionsGenerator {
-  constructor(customQuest, dependencyQuest) {
+  constructor(customQuest) {
     this.customQuest = customQuest;
-    this.dependencyQuest = dependencyQuest;
   }
 
   static setPropsIndexes(conditions) {
@@ -200,10 +199,6 @@ class ConditionsGenerator {
 
     const levelCondition = this._generateLevelCondition();
 
-    const dependencyQuestCondition = this._generateQuestCondition(
-      this.dependencyQuest,
-      QUEST_STATUS_SUCCESS
-    );
     const questSuccessConditions = locked_by_quests.map((questId) =>
       this._generateQuestCondition(questId, QUEST_STATUS_SUCCESS)
     );
@@ -213,7 +208,6 @@ class ConditionsGenerator {
 
     return ConditionsGenerator.setPropsIndexes([
       levelCondition,
-      dependencyQuestCondition,
       ...questSuccessConditions,
       ...questStartedConditions,
     ]);
@@ -551,14 +545,10 @@ class ConditionsGenerator {
 }
 
 class CustomQuestsTransformer {
-  constructor(customQuest, dependencyQuest) {
+  constructor(customQuest) {
     this.customQuest = customQuest;
-    this.dependencyQuest = dependencyQuest;
 
-    this.conditionsGenerator = new ConditionsGenerator(
-      customQuest,
-      dependencyQuest
-    );
+    this.conditionsGenerator = new ConditionsGenerator(customQuest);
     this.rewardsGenerator = new RewardsGenerator(customQuest);
   }
 

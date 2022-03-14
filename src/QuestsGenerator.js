@@ -26,7 +26,6 @@ class QuestsGenerator {
 
   generateWithLocales() {
     const result = [];
-    let previousQuestId = null;
 
     this.story.forEach((customQuest) => {
       if (customQuest.disabled) {
@@ -35,10 +34,7 @@ class QuestsGenerator {
         );
       } else {
         this.assertValidCustomQuest(customQuest);
-        const transformer = new CustomQuestsTransformer(
-          customQuest,
-          previousQuestId
-        );
+        const transformer = new CustomQuestsTransformer(customQuest);
 
         const generatedQuest = transformer.generateQuest();
         const payload = [
@@ -46,8 +42,6 @@ class QuestsGenerator {
           transformer.generateLocales(generatedQuest),
         ];
         result.push(payload);
-
-        previousQuestId = customQuest.id;
       }
     });
 
