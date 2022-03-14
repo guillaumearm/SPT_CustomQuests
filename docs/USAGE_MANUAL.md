@@ -1,7 +1,4 @@
-# Custom Quests - How to create quests
-
-## A complete example
-[This quest example](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/example_chained_quests.json) can help too.
+# Custom Quests API - How to create quests
 
 ## A minimal example
 ```json

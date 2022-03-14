@@ -1,15 +1,15 @@
 # Custom Quests
 Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
 
-[Documentation - How to create quests](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md)
+Using [Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/) will help you A LOT to create and edit json quests files.
+
+[API Documentation - How to create quests](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md) (manually)
 
 ## Description
 This mod allow to add your own quests easily with a single json file (per quest).
 
-Also, there is a chaining feature that allow you to create a chain of quest in a single json file.
-Please read the tutorial and/or take a look to the examples directory for more details.
-
 ## Features
+- [Online App: Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/)
 - Create a custom quest with a single json file
 - Quest chaining
 - Several mission types available: `Kill`, `GiveItem`, `PlaceItem`, `PlaceBeacon`, `PlaceSignalJammer`, `VisitPlace`
@@ -29,7 +29,7 @@ So these are valid:
 
 Please read [the usage manual](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md) to get more infos on how to create your own quests.
 
-[This quest example](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/example_chained_quests.json) can help too.
+Check [the examples](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/EXAMPLES.md) can help too.
 
 You can rename the folder `examples.disabled` in `examples` to try out the examples ;-)
 
