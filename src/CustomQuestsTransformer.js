@@ -61,8 +61,12 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
 const LOCATION_ALIASES = {
   factory: ['factory4_day', 'factory4_night'],
   customs: ['bigmap'],
-  reserve: ['rezervbase'],
+  reserve: ['RezervBase'],
   labs: ['laboratory'],
+  woods: ['Woods'],
+  shoreline: ['Shoreline'],
+  interchange: ['Interchange'],
+  lighthouse: ['Lighthouse']
 };
 
 const getTargetFromLocations = (locations) => {
@@ -236,15 +240,15 @@ class ConditionsGenerator {
         },
       },
       mission.locations &&
-      mission.locations !== 'any' &&
-      !mission.locations.includes('any')
+        mission.locations !== 'any' &&
+        !mission.locations.includes('any')
         ? {
-            _parent: 'Location',
-            _props: {
-              target: getTargetFromLocations(mission.locations),
-              id: `${killConditionId}_location`,
-            },
-          }
+          _parent: 'Location',
+          _props: {
+            target: getTargetFromLocations(mission.locations),
+            id: `${killConditionId}_location`,
+          },
+        }
         : null,
     ].filter((c) => Boolean(c));
 
