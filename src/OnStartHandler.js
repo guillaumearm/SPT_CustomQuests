@@ -34,7 +34,7 @@ class OnStartHandler {
       const pmcData = profile && profile.characters && profile.characters.pmc
       const dialogues = profile.dialogues || {};
 
-      if (pmcData) {
+      if (pmcData && pmcData.Quests) {
         // 1. wipe quests
         const Quests = pmcData.Quests.filter(q => q.qid !== questId);
         const questRemoved = Quests.length !== pmcData.Quests.length;
