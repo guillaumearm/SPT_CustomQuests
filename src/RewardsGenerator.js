@@ -14,17 +14,17 @@ class RewardsGenerator {
       });
   }
 
-  _generateXpReward(xp) {
+  _generateXpReward(xp, idPrefix = '') {
     return {
-      id: `${this.customQuest.id}_xp_reward`,
+      id: `${idPrefix}${this.customQuest.id}_xp_reward`,
       value: String(xp),
       type: 'Experience',
     }
   }
 
-  _generateItemReward(itemId, nb) {
+  _generateItemReward(itemId, nb, idPrefix = '') {
     const idReward = `${this.customQuest.id}_item_reward_${itemId}`;
-    const targetId = `TARGET_${idReward}`;
+    const targetId = `${idPrefix}TARGET_${idReward}`;
 
     return {
       value: String(nb),
@@ -43,14 +43,9 @@ class RewardsGenerator {
     }
   }
 
-  _generateStarted() {
-    // TODO
-    return [];
-  }
-
-  _generateSuccess() {
+  _generateRewards(getRewards, idPrefix = '') {
     const result = [];
-    const rewards = this.customQuest.rewards;
+    const rewards = getRewards();
 
     if (!rewards) {
       return result;
@@ -61,14 +56,14 @@ class RewardsGenerator {
     const rewardItems = Object.keys(items || {});
 
     if (xp > 0) {
-      result.push(this._generateXpReward(xp));
+      result.push(this._generateXpReward(xp, idPrefix));
     }
 
     if (rewardItems.length > 0) {
       rewardItems.forEach(itemId => {
         const nb = items[itemId];
         if (typeof nb === 'number' && nb > 0) {
-          result.push(this._generateItemReward(itemId, nb))
+          result.push(this._generateItemReward(itemId, nb, idPrefix))
         }
       })
     }
@@ -77,16 +72,11 @@ class RewardsGenerator {
     return result;
   }
 
-  _generateFail() {
-    // TODO
-    return [];
-  }
-
   generateRewards() {
     return {
-      Started: this._generateStarted(),
-      Success: this._generateSuccess(),
-      Fail: this._generateFail(),
+      Started: this._generateRewards(() => this.customQuest.start_rewards, 'at_start_'),
+      Success: this._generateRewards(() => this.customQuest.rewards, 'success_'),
+      Fail: [], // TODO
     }
   }
 }

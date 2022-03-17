@@ -195,6 +195,25 @@ This quest will give you +5000 xp, 2 ai-2 kits and 1 car first aid kit.
 
 pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
 
+## Rewards on mission start
+This quest give you +100 xp and 1 car first aid kit.
+```json
+{
+  "id": "trap_quest_example_5_start_rewards",
+  "trader_id": "mechanic",
+  "name": "My rewards quest",
+  "description": "Complete this quest and I will give you something",
+  "success_message": "Bravo!",
+  "start_rewards": {
+    "xp": 5000,
+    "items": {
+      "5755356824597772cb798962": 2,
+      "590c661e86f7741e566b646a": 1
+    }
+  }
+}
+```
+
 ## Missions
 A quest can have several missions.
 
