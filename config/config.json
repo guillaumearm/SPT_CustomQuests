@@ -3,7 +3,7 @@
   "quest_directory": "quests",
   "at_start": {
     "disable_all_vanilla_quests": true,
-    "wipe_enabled_custom_quests_state_from_all_profiles": true,
-    "wipe_disabled_custom_quests_state_from_all_profiles": true
+    "wipe_enabled_custom_quests_state_from_all_profiles": false,
+    "wipe_disabled_custom_quests_state_from_all_profiles": false
   }
 }
