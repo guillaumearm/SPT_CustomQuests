@@ -56,6 +56,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - Repeatable quests (not daily quests)
 - Custom quest image
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
+- Mission type `Kill` improvements: range restrictions, physical effects restrictions
 - Mission restriction: only on night
 - New mission type: `WeaponAssembly` (allow to create gunsmith missions)
 - New mission type: `TraderLoyalty`
