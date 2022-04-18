@@ -1,3 +1,4 @@
+/config/config.dev.json
 /quests/dev*
 /quests/trap/
 /CustomQuests*
