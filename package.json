@@ -1,8 +1,37 @@
 {
-  "name": "CustomQuests",
-  "author": "trap",
-  "version": "1.2.0",
-  "akiVersion": "2.2.* || 2.3.*",
+  "name": "custom-quests",
+  "displayName": "Custom Quests",
+  "fullName": "Trap-CustomQuests",
+  "version": "3.0.0-beta",
+  "main": "src/mod.js",
   "license": "MIT",
-  "main": "package.js"
+  "author": "Trap",
+  "akiVersion": ">=3.0.0",
+  "scripts": {
+    "zip:files": "node scripts/create-zip.js",
+    "copy:files": "mkdir -p ./dist && cp package.json ./dist && cp README.md ./dist && cp LICENSE ./dist && cp -R config ./dist",
+    "build:release": "npm run rebuild && npm run copy:files && npm run zip:files",
+    "clean": "rimraf mod.zip dist tmp 'src/**/*.js' Trap-CustomQuests*",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "lint": "eslint --ignore-pattern '*.js' .",
+    "lint:all": "npm run prettier:check && npm run lint",
+    "rebuild": "npm run clean && npm run build",
+    "build": "tsc",
+    "test:all": "npm run lint:all && npm run build:release",
+    "test": "tsc --noEmit && npm run lint:all"
+  },
+  "devDependencies": {
+    "@types/node": "^14.15.3",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "bestzip": "2.2.1",
+    "eslint": "7.26.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tsyringe": "4.6.0",
+    "typescript": "4.6.4",
+    "winston": "^3.7.2"
+  }
 }
