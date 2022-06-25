@@ -1,36 +1,51 @@
-const ALL_VANILLA_QUESTS = require("./allVanillaQuestIds");
+import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import type { SaveServer } from "@spt-aki/servers/SaveServer";
+
+import { ALL_VANILLA_QUESTS } from "./allVanillaQuestIds";
+import { Config, ConfigAtStart } from "./config";
 
 const JAEGER_ID = "5c0647fdd443bc2504c2d371";
 
-class OnStartHandler {
-  constructor(config) {
-    this.config = config;
+export class OnStartHandler {
+  private onStartConfig: ConfigAtStart;
+
+  constructor(
+    private db: DatabaseServer,
+    private saveServer: SaveServer,
+    private logger: ILogger,
+    config: Config
+  ) {
     this.onStartConfig = config.at_start || {};
   }
 
-  _disableVanillaQuests() {
+  private disableVanillaQuests(): void {
     const nbQuests = ALL_VANILLA_QUESTS.length;
+    const templates = this.db.getTables().templates;
 
-    const templates = DatabaseServer.tables.templates;
+    if (templates) {
+      ALL_VANILLA_QUESTS.forEach((questId) => {
+        delete templates.quests[questId];
+      });
 
-    ALL_VANILLA_QUESTS.forEach((questId) => {
-      delete templates.quests[questId];
-    });
-
-    Logger.info(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
+      this.logger.info(`=> Custom Quests: ${nbQuests} vanilla quests removed`);
+    }
   }
 
-  _unlockJaegger() {
-    DatabaseServer.tables.traders[JAEGER_ID].base.unlockedByDefault = true;
-    Logger.info(`=> Custom Quests: Jaeger trader unlocked by default`);
+  private unlockJaegger(): void {
+    const jaeger = this.db.getTables().traders[JAEGER_ID];
+
+    jaeger.base.unlockedByDefault = true;
+    this.logger.info(`=> Custom Quests: Jaeger trader unlocked by default`);
   }
 
-  _wipeProfilesForQuest(questId) {
+  private wipeProfilesForQuest(questId: string): void {
     let nbWiped = 0;
-    const profileIds = Object.keys(SaveServer.profiles);
+    const profileIds = Object.keys(this.saveServer.getProfiles());
 
     profileIds.forEach((profileId) => {
-      const profile = SaveServer.profiles[profileId];
+      const profile = this.saveServer.getProfile(profileId);
       const pmcData = profile && profile.characters && profile.characters.pmc;
       const dialogues = profile.dialogues || {};
 
@@ -107,7 +122,7 @@ class OnStartHandler {
     });
 
     if (nbWiped > 0) {
-      Logger.info(
+      this.logger.info(
         `=> Custom Quests: wiped ${nbWiped} profile${
           nbWiped > 1 ? "s" : ""
         } for quest '${questId}'`
@@ -115,33 +130,26 @@ class OnStartHandler {
     }
   }
 
-  beforeCustomQuestsLoaded() {
+  beforeCustomQuestsLoaded(): void {
     if (this.onStartConfig.disable_all_vanilla_quests) {
-      this._disableVanillaQuests();
-      this._unlockJaegger();
+      this.disableVanillaQuests();
+      this.unlockJaegger();
     }
   }
 
-  afterCustomQuestsLoaded(loadedQuests) {
-    SaveServer.load();
+  afterCustomQuestsLoaded(loadedQuests: IQuest[]): void {
+    if (
+      !this.onStartConfig.wipe_enabled_custom_quests_state_from_all_profiles
+    ) {
+      return;
+    }
+
+    this.saveServer.load();
 
     loadedQuests.forEach((quest) => {
-      if (
-        this.onStartConfig.wipe_enabled_custom_quests_state_from_all_profiles &&
-        !quest.disabled
-      ) {
-        this._wipeProfilesForQuest(quest._id);
-      } else if (
-        this.onStartConfig
-          .wipe_disabled_custom_quests_state_from_all_profiles &&
-        quest.disabled
-      ) {
-        this._wipeProfilesForQuest(quest._id);
-      }
+      this.wipeProfilesForQuest(quest._id);
     });
 
-    SaveServer.save();
+    this.saveServer.save();
   }
 }
-
-module.exports = OnStartHandler;

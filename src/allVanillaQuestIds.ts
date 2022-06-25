@@ -1,4 +1,4 @@
-module.exports = [
+export const ALL_VANILLA_QUESTS = [
   "5a27b9de86f77464e5044585",
   "59c512ad86f7741f0d09de9b",
   "59675d6c86f7740a842fc482",

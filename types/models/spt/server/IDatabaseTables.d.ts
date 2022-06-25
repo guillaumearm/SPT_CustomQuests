@@ -19,22 +19,22 @@ import { ILocations } from "./ILocations";
 import { IServerBase } from "./IServerBase";
 import { ISettingsBase } from "./ISettingsBase";
 export interface IDatabaseTables {
-    bots?: {
+    bots: {
         types: Record<string, IBotType>;
         base: IBotBase;
         core: IBotCore;
     };
-    hideout?: {
+    hideout: {
         areas: IHideoutArea[];
         production: IHideoutProduction[];
         scavcase: IHideoutScavCase[];
         settings: IHideoutSettingsBase;
     };
-    locales?: ILocaleBase;
-    locations?: ILocations;
-    loot?: ILootBase;
-    match?: IMatch;
-    templates?: {
+    locales: ILocaleBase;
+    locations: ILocations;
+    loot: ILootBase;
+    match: IMatch;
+    templates: {
         character: string[];
         items: Record<string, ITemplateItem>;
         quests: Record<string, IQuest>;
@@ -45,8 +45,8 @@ export interface IDatabaseTables {
         profiles: any;
         prices: Record<string, number>;
     };
-    traders?: Record<string, ITrader>;
-    globals?: IGlobals;
-    server?: IServerBase;
-    settings?: ISettingsBase;
+    traders: Record<string, ITrader>;
+    globals: IGlobals;
+    server: IServerBase;
+    settings: ISettingsBase;
 }

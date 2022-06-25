@@ -1,5 +1,6 @@
 /config/config.dev.json
 /quests/dev*
 /quests/trap/
-/CustomQuests*
+/Trap-CustomQuests*
 /dist/
+/src/*.js

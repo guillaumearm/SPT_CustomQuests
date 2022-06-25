@@ -38,7 +38,6 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - `quest_directory`: The directory with custom quests
 - `at_start.disable_all_vanilla_quests`: Disable all vanilla quests (this will unlock Jaeger but without editing your profile)
 - `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all enabled custom quests from all profiles
-- `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all disabled custom quests from all profiles
 
 ## Resources
 - [All zones](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_ZONES.md)

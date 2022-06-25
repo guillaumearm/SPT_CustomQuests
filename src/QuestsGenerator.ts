@@ -1,11 +1,23 @@
-const CustomQuestsTransformer = require("./CustomQuestsTransformer");
+import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 
-class QuestsGenerator {
-  constructor(story) {
-    this.story = story;
-  }
+import { CustomQuest } from "./customQuests";
+import {
+  CustomQuestsTransformer,
+  GeneratedLocales,
+} from "./CustomQuestsTransformer";
 
-  assertValidCustomQuest(customQuest) {
+export class QuestsGenerator {
+  constructor(
+    private story: CustomQuest[],
+    private db: DatabaseServer,
+    private logger: ILogger
+  ) {}
+
+  private static assertValidCustomQuest(
+    customQuest: CustomQuest
+  ): asserts customQuest is CustomQuest {
     if (typeof customQuest.id !== "string") {
       throw new Error(`=> Custom Quests: invalid quest, no id found`);
     }
@@ -24,23 +36,27 @@ class QuestsGenerator {
     }
   }
 
-  generateWithLocales() {
-    const result = [];
+  generateWithLocales(): (readonly [IQuest, GeneratedLocales])[] {
+    const result: (readonly [IQuest, GeneratedLocales])[] = [];
 
     this.story.forEach((customQuest) => {
       if (customQuest.disabled) {
-        Logger.warning(
+        this.logger.warning(
           `=> Custom Quests: quest '${customQuest.id}' is disabled`
         );
       } else {
-        this.assertValidCustomQuest(customQuest);
-        const transformer = new CustomQuestsTransformer(customQuest);
+        QuestsGenerator.assertValidCustomQuest(customQuest);
+        const transformer = new CustomQuestsTransformer(
+          customQuest,
+          this.db,
+          this.logger
+        );
 
         const generatedQuest = transformer.generateQuest();
         const payload = [
           generatedQuest,
           transformer.generateLocales(generatedQuest),
-        ];
+        ] as const;
         result.push(payload);
       }
     });
@@ -48,5 +64,3 @@ class QuestsGenerator {
     return result;
   }
 }
-
-module.exports = QuestsGenerator;

@@ -1,6 +1,7 @@
 /types/
 /tmp/
 /dist/
-/Trap-CustomQuests-*
+/Trap-CustomQuests*
+/src/*.js
 *.md
 package-lock.json

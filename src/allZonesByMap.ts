@@ -1,4 +1,4 @@
-module.exports = {
+export const ALL_ZONES_BY_MAP = {
   bigmap: [
     "place_peacemaker_007_N1",
     "place_peacemaker_002_N1",

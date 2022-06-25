@@ -1,4 +1,4 @@
-module.exports = {
+export const ALL_PLACES_BY_MAP = {
   bigmap: [
     "gazel",
     "dead_posylni",

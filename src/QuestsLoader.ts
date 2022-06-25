@@ -1,29 +1,39 @@
-const path = require("path");
+import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import type { VFS } from "@spt-aki/utils/VFS";
 
-const utils = require("./utils");
-const QuestsGenerator = require("./QuestsGenerator");
+import { join } from "path";
 
-class QuestsLoader {
-  constructor(questDirectory) {
+import { CustomQuest } from "./customQuests";
+import { GeneratedLocales } from "./CustomQuestsTransformer";
+import { QuestsGenerator } from "./QuestsGenerator";
+import { getAllLocales, readJsonFile } from "./utils";
+
+export class QuestsLoader {
+  constructor(
+    private questDirectory: string,
+    private db: DatabaseServer,
+    private vfs: VFS,
+    private logger: ILogger
+  ) {
     this.questDirectory = questDirectory;
   }
 
-  loadAll() {
+  loadAll(): IQuest[] {
     let loadedQuests = this.loadDir(this.questDirectory);
 
-    VFS.getDirs(this.questDirectory).forEach((subdir) => {
+    this.vfs.getDirs(this.questDirectory).forEach((subdir) => {
       if (subdir.endsWith(".disabled")) {
         if (subdir !== "examples.disabled") {
-          Logger.warning(
+          this.logger.warning(
             `=> Custom Quests: skipped '${
               subdir.split(".disabled")[0]
             }' quest directory`
           );
         }
       } else {
-        const loadedSubQuests = this.loadDir(
-          path.join(this.questDirectory, subdir)
-        );
+        const loadedSubQuests = this.loadDir(join(this.questDirectory, subdir));
         loadedQuests = [...loadedQuests, ...loadedSubQuests];
       }
     });
@@ -31,10 +41,10 @@ class QuestsLoader {
     return loadedQuests;
   }
 
-  loadDir(dir) {
-    let loadedQuests = [];
+  loadDir(dir: string): IQuest[] {
+    let loadedQuests: IQuest[] = [];
 
-    VFS.getFiles(dir).forEach((fileName) => {
+    this.vfs.getFiles(dir).forEach((fileName) => {
       if (fileName.endsWith(".json")) {
         const quests = this._loadFile(fileName, dir);
         loadedQuests = [...loadedQuests, ...quests];
@@ -44,11 +54,11 @@ class QuestsLoader {
     return loadedQuests;
   }
 
-  _loadQuest(quest) {
-    const quests = DatabaseServer.tables.templates.quests;
+  _loadQuest(quest: IQuest): void {
+    const quests = this.db.getTables().templates.quests;
 
     if (quests[quest._id]) {
-      Logger.error(
+      this.logger.error(
         `=> Custom Quests: already registered questId '${quest._id}'`
       );
     } else {
@@ -56,14 +66,16 @@ class QuestsLoader {
     }
   }
 
-  _loadLocales(questId, localesPayloads) {
-    utils.ALL_LOCALES.forEach((localeName) => {
+  _loadLocales(questId: string, localesPayloads: GeneratedLocales): void {
+    const locales = this.db.getTables().locales;
+
+    getAllLocales(this.db).forEach((localeName) => {
       const payload = localesPayloads[localeName];
-      const globalLocales = DatabaseServer.tables.locales.global[localeName];
+      const globalLocales = locales.global[localeName];
 
       if (globalLocales.quest[questId]) {
-        Logger.error(
-          `=> Custom Quests: already registered locales for questId '${quest._id}'`
+        this.logger.error(
+          `=> Custom Quests: already registered locales for questId '${questId}'`
         );
       } else {
         globalLocales.quest[questId] = payload.quest;
@@ -71,8 +83,8 @@ class QuestsLoader {
 
       Object.keys(payload.mail).forEach((mailId) => {
         if (globalLocales.mail[mailId]) {
-          Logger.error(
-            `=> Custom Quests: already registered mail '${mailId}' for questId '${quest._id}'`
+          this.logger.error(
+            `=> Custom Quests: already registered mail '${mailId}' for questId '${questId}'`
           );
         } else {
           globalLocales.mail[mailId] = payload.mail[mailId];
@@ -81,13 +93,13 @@ class QuestsLoader {
     });
   }
 
-  _loadFile(fileName, dir) {
-    const fullPath = path.join(dir, fileName);
+  _loadFile(fileName: string, dir: string): IQuest[] {
+    const fullPath = join(dir, fileName);
 
-    const storyOrQuest = require(fullPath);
-    const story = storyOrQuest.id ? [storyOrQuest] : storyOrQuest;
+    const storyOrQuest = readJsonFile<CustomQuest | CustomQuest[]>(fullPath);
+    const story = "length" in storyOrQuest ? storyOrQuest : [storyOrQuest];
 
-    const questGen = new QuestsGenerator(story);
+    const questGen = new QuestsGenerator(story, this.db, this.logger);
 
     // array of tuple [quest, questLocales]
     const questsPayloads = questGen.generateWithLocales();
@@ -100,5 +112,3 @@ class QuestsLoader {
     });
   }
 }
-
-module.exports = QuestsLoader;
