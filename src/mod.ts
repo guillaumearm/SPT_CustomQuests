@@ -17,7 +17,7 @@ import {
 } from "./config";
 import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
-import { readJsonFile } from "./utils";
+import { getModDisplayName, readJsonFile } from "./utils";
 
 class CustomQuests implements IMod {
   private packageJson: PackageJson;
@@ -71,6 +71,10 @@ class CustomQuests implements IMod {
 
     this.logger.success(
       `=> Custom Quests: ${loadedQuests.length} quests loaded`
+    );
+
+    this.logger.success(
+      `===> Successfully loaded ${getModDisplayName(this.packageJson, true)}`
     );
   }
 }
