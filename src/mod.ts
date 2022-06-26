@@ -42,6 +42,10 @@ class CustomQuests implements IMod {
   }
 
   public delayedLoad(container: DependencyContainer): void {
+    if (!this.config.enabled) {
+      return;
+    }
+
     const db = container.resolve<DatabaseServer>("DatabaseServer");
     const saveServer = container.resolve<SaveServer>("SaveServer");
     const vfs = container.resolve<VFS>("VFS");
