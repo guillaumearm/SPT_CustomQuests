@@ -615,8 +615,6 @@ class ConditionsGenerator {
       AvailableForStart: this._generateAvailableForStart(),
       AvailableForFinish: this._generateAvailableForFinish(),
       Fail: this._generateFail(),
-      Started: [],
-      Success: [],
     };
   }
 }

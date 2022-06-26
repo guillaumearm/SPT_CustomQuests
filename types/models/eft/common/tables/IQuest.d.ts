@@ -25,11 +25,11 @@ export interface IQuest {
     changeQuestMessageText?: string;
 }
 export interface Conditions {
-    Started: AvailableForConditions[];
-    AvailableForFinish: AvailableForConditions[];
-    AvailableForStart: AvailableForConditions[];
-    Success: AvailableForConditions[];
-    Fail: AvailableForConditions[];
+    Started?: AvailableForConditions[];
+    AvailableForFinish?: AvailableForConditions[];
+    AvailableForStart?: AvailableForConditions[];
+    Success?: AvailableForConditions[];
+    Fail?: AvailableForConditions[];
 }
 export interface AvailableForConditions {
     _parent: string;
@@ -93,13 +93,13 @@ export interface VisibilityCondition {
     };
 }
 export interface Rewards {
-    AvailableForStart: Reward[];
-    AvailableForFinish: Reward[];
-    Started: Reward[];
-    Success: Reward[];
-    Fail: Reward[];
-    FailRestartable: Reward[];
-    Expired: Reward[];
+    AvailableForStart?: Reward[];
+    AvailableForFinish?: Reward[];
+    Started?: Reward[];
+    Success?: Reward[];
+    Fail?: Reward[];
+    FailRestartable?: Reward[];
+    Expired?: Reward[];
 }
 export interface Reward {
     value?: string;

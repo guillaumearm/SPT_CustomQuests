@@ -90,10 +90,6 @@ export class RewardsGenerator {
       ),
       Success: this.generateRewards(() => this.customQuest.rewards, "success_"),
       Fail: [], // TODO
-      AvailableForStart: [],
-      AvailableForFinish: [],
-      FailRestartable: [],
-      Expired: [],
     };
   }
 }
