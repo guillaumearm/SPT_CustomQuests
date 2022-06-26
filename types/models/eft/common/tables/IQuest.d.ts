@@ -20,9 +20,9 @@ export interface IQuest {
     successMessageText: string;
     templateId: string;
     rewards: Rewards;
-    status: string;
-    KeyQuest: boolean;
-    changeQuestMessageText: string;
+    status?: string;
+    KeyQuest?: boolean;
+    changeQuestMessageText?: string;
 }
 export interface Conditions {
     Started: AvailableForConditions[];

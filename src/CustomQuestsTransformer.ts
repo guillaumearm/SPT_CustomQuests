@@ -700,9 +700,6 @@ export class CustomQuestsTransformer {
         ? `${questId} successMessageText`
         : DEFAULT_SUCCESS_MESSAGE,
       templateId: questId,
-      changeQuestMessageText: "",
-      KeyQuest: false,
-      status: "",
     };
   }
 
