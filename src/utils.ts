@@ -18,6 +18,10 @@ export const isNotUndefined = <T>(value: T | undefined): value is T => {
   return value !== undefined;
 };
 
+export const isNotNil = <T>(value: T | undefined | null): value is T => {
+  return value !== undefined && value !== null;
+};
+
 export const getModDisplayName = (
   packageJson: PackageJson,
   withVersion = false
@@ -27,3 +31,22 @@ export const getModDisplayName = (
   }
   return `${packageJson.displayName}`;
 };
+
+export function noop(): void {}
+
+export function indexBy<S extends keyof T, T extends Record<S, string>>(
+  key: S,
+  elements: T[]
+): Record<string, T> {
+  const result: Record<string, T> = {};
+
+  for (const element of elements) {
+    result[element[key]] = element;
+  }
+
+  return result;
+}
+
+export function flatten<T>(arr: T[][]): T[] {
+  return ([] as T[]).concat(...arr);
+}

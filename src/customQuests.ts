@@ -139,3 +139,38 @@ export type CustomQuest = {
   rewards?: QuestRewards;
   start_rewards?: QuestRewards;
 };
+
+export type StoryItemBuildBase = {
+  item: string; // item template id
+  attachments?: Record<string, StoryItemBuildBase>; // indexed by slotId
+};
+
+export type StoryItemBuild = StoryItemBuildBase & {
+  type: "@build";
+  id: string; // can be used for rewards
+};
+
+export type StoryAcceptedItemGroup = {
+  type: "@group";
+  id: string; // can be used for accepted_items
+  items: string[]; // list of item template ids
+};
+
+export type StoryItem = CustomQuest | StoryItemBuild | StoryAcceptedItemGroup;
+
+/**
+ * Story helpers
+ */
+export const isStoryItemBuild = (item: StoryItem): item is StoryItemBuild => {
+  return item.type === "@build";
+};
+
+export const isStoryAcceptedItemGroup = (
+  item: StoryItem
+): item is StoryAcceptedItemGroup => {
+  return item.type === "@group";
+};
+
+export const isStoryCustomQuest = (item: StoryItem): item is CustomQuest => {
+  return !isStoryItemBuild(item) && !isStoryAcceptedItemGroup(item);
+};

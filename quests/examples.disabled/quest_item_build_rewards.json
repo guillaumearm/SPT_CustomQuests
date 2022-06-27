@@ -1,0 +1,61 @@
+[
+  {
+    "type": "@build",
+    "id": "my_first_colt_build",
+    "item": "5447a9cd4bdc2dbd208b4567",
+    "attachments": {
+      "mod_reciever": {
+        "item": "5c0e2f26d174af02a9625114",
+        "attachments": {
+          "mod_scope": {
+            "item": "57ac965c24597706be5f975c"
+          },
+          "mod_barrel": {
+            "item": "55d35ee94bdc2d61338b4568",
+            "attachments": {
+              "mod_gas_block": {
+                "item": "5d00ec68d7ad1a04a067e5be"
+              }
+            }
+          },
+          "mod_handguard": {
+            "item": "5b2cfa535acfc432ff4db7a0"
+          }
+        }
+      },
+      "mod_pistol_grip": {
+        "item": "55d4b9964bdc2d1d4e8b456e"
+      },
+      "mod_stock": {
+        "item": "5a33ca0fc4a282000d72292f",
+        "attachments": {
+          "mod_stock": {
+            "item": "5a33cae9c4a28232980eb086"
+          }
+        }
+      },
+      "mod_charge": {
+        "item": "5c0faf68d174af02a96260b8"
+      }
+    }
+  },
+  {
+    "id": "trap_example_quest_item_build_rewards",
+    "trader_id": "fence",
+    "name": {
+      "en": "2 new weapons!"
+    },
+    "description": {
+      "en": "Complete the quest to get 2 colts"
+    },
+    "success_message": {
+      "en": "Bravo!"
+    },
+    "rewards": {
+      "xp": 500,
+      "items": {
+        "my_first_colt_build": 2
+      }
+    }
+  }
+]

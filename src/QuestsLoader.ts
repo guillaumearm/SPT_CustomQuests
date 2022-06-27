@@ -5,7 +5,13 @@ import type { VFS } from "@spt-aki/utils/VFS";
 
 import { join } from "path";
 
-import { CustomQuest } from "./customQuests";
+import {
+  CustomQuest,
+  isStoryAcceptedItemGroup,
+  isStoryCustomQuest,
+  isStoryItemBuild,
+  StoryItem,
+} from "./customQuests";
 import { GeneratedLocales } from "./CustomQuestsTransformer";
 import { QuestsGenerator } from "./QuestsGenerator";
 import { getAllLocales, readJsonFile } from "./utils";
@@ -15,7 +21,8 @@ export class QuestsLoader {
     private questDirectory: string,
     private db: DatabaseServer,
     private vfs: VFS,
-    private logger: ILogger
+    private logger: ILogger,
+    private debug: (data: string) => void
   ) {
     this.questDirectory = questDirectory;
   }
@@ -41,12 +48,12 @@ export class QuestsLoader {
     return loadedQuests;
   }
 
-  loadDir(dir: string): IQuest[] {
+  private loadDir(dir: string): IQuest[] {
     let loadedQuests: IQuest[] = [];
 
     this.vfs.getFiles(dir).forEach((fileName) => {
       if (fileName.endsWith(".json")) {
-        const quests = this._loadFile(fileName, dir);
+        const quests = this.loadFile(fileName, dir);
         loadedQuests = [...loadedQuests, ...quests];
       }
     });
@@ -54,7 +61,7 @@ export class QuestsLoader {
     return loadedQuests;
   }
 
-  _loadQuest(quest: IQuest): void {
+  private loadQuest(quest: IQuest): void {
     const quests = this.db.getTables().templates.quests;
 
     if (quests[quest._id]) {
@@ -66,7 +73,10 @@ export class QuestsLoader {
     }
   }
 
-  _loadLocales(questId: string, localesPayloads: GeneratedLocales): void {
+  private loadLocales(
+    questId: string,
+    localesPayloads: GeneratedLocales
+  ): void {
     const locales = this.db.getTables().locales;
 
     getAllLocales(this.db).forEach((localeName) => {
@@ -93,20 +103,42 @@ export class QuestsLoader {
     });
   }
 
-  _loadFile(fileName: string, dir: string): IQuest[] {
+  private loadFile(fileName: string, dir: string): IQuest[] {
     const fullPath = join(dir, fileName);
 
-    const storyOrQuest = readJsonFile<CustomQuest | CustomQuest[]>(fullPath);
+    const storyOrQuest = readJsonFile<StoryItem | StoryItem[]>(fullPath);
     const story = "length" in storyOrQuest ? storyOrQuest : [storyOrQuest];
 
-    const questGen = new QuestsGenerator(story, this.db, this.logger);
+    const quests: CustomQuest[] = story.filter(isStoryCustomQuest);
+    const itemBuilds = story.filter(isStoryItemBuild);
+    const itemGroups = story.filter(isStoryAcceptedItemGroup);
+
+    if (itemBuilds.length) {
+      this.debug(
+        `${itemBuilds.length} item build template(s) detected in '${fileName}'`
+      );
+    }
+
+    if (itemGroups.length) {
+      this.debug(
+        `${itemGroups.length} item group(s) detected in '${fileName}'`
+      );
+    }
+
+    const questGen = new QuestsGenerator(
+      quests,
+      itemBuilds,
+      itemGroups,
+      this.db,
+      this.logger
+    );
 
     // array of tuple [quest, questLocales]
     const questsPayloads = questGen.generateWithLocales();
 
     return questsPayloads.map(([quest, questLocales]) => {
-      this._loadQuest(quest);
-      this._loadLocales(quest._id, questLocales);
+      this.loadQuest(quest);
+      this.loadLocales(quest._id, questLocales);
 
       return quest;
     });

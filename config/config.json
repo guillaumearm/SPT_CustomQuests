@@ -1,5 +1,6 @@
 {
   "enabled": true,
+  "debug": true,
   "quest_directory": "quests",
   "at_start": {
     "disable_all_vanilla_quests": false,

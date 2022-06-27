@@ -2,18 +2,34 @@ import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
 import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 
-import { CustomQuest } from "./customQuests";
+import {
+  CustomQuest,
+  StoryAcceptedItemGroup,
+  StoryItemBuild,
+} from "./customQuests";
 import {
   CustomQuestsTransformer,
   GeneratedLocales,
 } from "./CustomQuestsTransformer";
+import { indexBy } from "./utils";
 
 export class QuestsGenerator {
+  // indexed by build id
+  private builds: Record<string, StoryItemBuild>;
+
+  // indexed by group id
+  private groups: Record<string, StoryAcceptedItemGroup>;
+
   constructor(
-    private story: CustomQuest[],
+    private quests: CustomQuest[],
+    itemBuilds: StoryItemBuild[],
+    itemGroups: StoryAcceptedItemGroup[],
     private db: DatabaseServer,
     private logger: ILogger
-  ) {}
+  ) {
+    this.builds = indexBy("id", itemBuilds);
+    this.groups = indexBy("id", itemGroups);
+  }
 
   private static assertValidCustomQuest(
     customQuest: CustomQuest
@@ -39,7 +55,7 @@ export class QuestsGenerator {
   generateWithLocales(): (readonly [IQuest, GeneratedLocales])[] {
     const result: (readonly [IQuest, GeneratedLocales])[] = [];
 
-    this.story.forEach((customQuest) => {
+    this.quests.forEach((customQuest) => {
       if (customQuest.disabled) {
         this.logger.warning(
           `=> Custom Quests: quest '${customQuest.id}' is disabled`
@@ -48,6 +64,8 @@ export class QuestsGenerator {
         QuestsGenerator.assertValidCustomQuest(customQuest);
         const transformer = new CustomQuestsTransformer(
           customQuest,
+          this.builds,
+          this.groups,
           this.db,
           this.logger
         );

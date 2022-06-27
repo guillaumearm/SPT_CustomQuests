@@ -389,3 +389,137 @@ Warning: [Places](./ALL_PLACES.md) are not [Zones](./ALL_ZONES.md).
 `need_survive`: if set, the player has to survive the raid to complete the mission, the message is displayed in the interface conditionally (when the place has been discovered)
 
 `message` is the usual mission message.
+
+## Special commands
+There exists special commands in CustomQuests to simplify a quest definition.
+
+Currently, there is 2 commands: `@group` and `@build`
+
+#### use @group to simplify `accepted_item` fields
+With `@group`, you can define a group of items with a special id you can re-use in all `accepted_items` field.
+
+For example:
+
+```json
+[
+  {
+    "type": "@group",
+    "id": "meds",
+    "items": [
+      "5755356824597772cb798962",
+      "5b4335ba86f7744d2837a264",
+      "5d1b3a5d86f774252167ba22",
+      "619cc01e0a7c3a1a2731940c",
+      "544fb45d4bdc2dee738b4568",
+      "590c678286f77426c9660122",
+      "60098ad7c2240c0fe85c570a",
+      "590c661e86f7741e566b646a",
+      "544fb37f4bdc2dee738b4567",
+      "590c695186f7741e566b64a2",
+      "5af0548586f7743a532b7e99",
+      "544fb25a4bdc2dfb738b4567",
+      "5751a25924597722c463c472",
+      "544fb3364bdc2d34748b456a",
+      "5af0454c86f7746bf20992e8",
+      "5751a89d24597722aa0e8db0",
+      "5755383e24597772cb798966",
+      "5e831507ea0a7c419c2f9bd9",
+      "60098af40accd37ef2175f27",
+      "5d02778e86f774203e7dedbe",
+      "5e8488fa988a8701445df1e4",
+      "590c657e86f77412b013051d",
+      "544fb3f34bdc2d03748b456a",
+      "5c10c8fd86f7743d7d706df3"
+    ]
+  },
+  {
+    "id": "trap_therapist_meds_1",
+    "trader_id": "therapist",
+    "name": {
+      "en": "More meds part 1"
+    },
+    "success_message": {
+      "en": "Congrats, here is your reward"
+    },
+    "description": {
+      "en": "We need meds"
+    },
+    "type": "PickUp",
+    "missions": [
+      {
+        "type": "GiveItem",
+        "accepted_items": ["meds"],
+        "found_in_raid_only": false,
+        "count": 1,
+        "message": {
+          "en": "Give me any meds"
+        }
+      }
+    ]
+  },
+]
+```
+
+#### use @build to create complex item rewards
+With `@build` you can simply define a weapon build
+
+For example: (TODO)
+
+```json
+[
+  {
+    "type": "@build",
+    "id": "my_first_colt_build",
+    "item": "5447a9cd4bdc2dbd208b4567",
+    "attachments": {
+      "mod_reciever": {
+        "item": "5c0e2f26d174af02a9625114",
+        "attachments": {
+          "mod_scope": {
+            "item": "57ac965c24597706be5f975c"
+          },
+          "mod_barrel": {
+            "item": "55d35ee94bdc2d61338b4568",
+            "attachments": {
+              "mod_gas_block": {
+                "item": "5ae30e795acfc408fb139a0b"
+              }
+            }
+          },
+          "mod_handguard": {
+            "item": "5c0e2f5cd174af02a012cfc9"
+          }
+        }
+      },
+      "mod_pistol_grip": {
+        "item": "5c0e2ff6d174af02a1659d4a"
+      },
+      "mod_stock": {
+        "item": "5a33ca0fc4a282000d72292f"
+      },
+      "mod_charge": {
+        "item": "5c0faf68d174af02a96260b8"
+      }
+    }
+  },
+  {
+    "id": "trap_example_quest_item_build_rewards",
+    "trader_id": "fence",
+    "name": {
+      "en": "2 new weapons!"
+    },
+    "description": {
+      "en": "Complete the quest to get 2 colts"
+    },
+    "success_message": {
+      "en": "Bravo!"
+    },
+    "rewards": {
+      "xp": 500,
+      "items": {
+        "my_first_colt_build": 2
+      }
+    }
+  }
+]
+```

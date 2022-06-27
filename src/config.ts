@@ -19,6 +19,7 @@ export type ConfigAtStart = {
  */
 export type Config = {
   enabled?: boolean;
+  debug?: boolean;
   quest_directory?: string;
   at_start?: ConfigAtStart;
 };

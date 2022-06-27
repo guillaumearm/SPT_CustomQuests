@@ -17,7 +17,7 @@ import {
 } from "./config";
 import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
-import { getModDisplayName, readJsonFile } from "./utils";
+import { getModDisplayName, noop, readJsonFile } from "./utils";
 
 class CustomQuests implements IMod {
   private packageJson: PackageJson;
@@ -25,11 +25,16 @@ class CustomQuests implements IMod {
   private questDirectory: string;
 
   private logger: ILogger;
+  private debug: (data: string) => void;
 
-  public load(container: DependencyContainer): void {
+  load(container: DependencyContainer): void {
     this.packageJson = readJsonFile<PackageJson>(PACKAGE_JSON_PATH);
     this.config = readJsonFile<Config>(CONFIG_PATH);
     this.logger = container.resolve<ILogger>("WinstonLogger");
+
+    this.debug = this.config.debug
+      ? (data: string) => this.logger.debug(`Custom Quests: ${data}`, true)
+      : noop;
 
     this.questDirectory = getQuestsDirectory(this.config);
 
@@ -38,10 +43,10 @@ class CustomQuests implements IMod {
       return;
     }
 
-    this.logger.info(`Loading: Custom Quests v${this.packageJson.version}`);
+    this.logger.info(`===> Loading Custom Quests v${this.packageJson.version}`);
   }
 
-  public delayedLoad(container: DependencyContainer): void {
+  delayedLoad(container: DependencyContainer): void {
     if (!this.config.enabled) {
       return;
     }
@@ -63,7 +68,8 @@ class CustomQuests implements IMod {
       this.questDirectory,
       db,
       vfs,
-      this.logger
+      this.logger,
+      this.debug
     );
     const loadedQuests = questsLoader.loadAll();
 
