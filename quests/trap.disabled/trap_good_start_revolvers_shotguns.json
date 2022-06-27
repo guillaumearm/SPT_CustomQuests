@@ -1,0 +1,89 @@
+[
+  {
+    "type": "@build",
+    "id": "trap_revolver_357",
+    "item": "61a4c8884f95bc3b2c5dc96f",
+    "attachments": {
+      "mod_magazine": {
+        "item": "619f54a1d25cbd424731fb99"
+      },
+      "mod_sight_front": {
+        "item": "619f52454c58466fe122843b"
+      },
+      "mod_sight_rear": {
+        "item": "619f4f8c4c58466fe1228439"
+      },
+      "mod_pistol_grip": {
+        "item": "619f4bffd25cbd424731fb97"
+      },
+      "mod_tactical": {
+        "item": "56def37dd2720bec348b456a"
+      }
+    }
+  },
+  {
+    "type": "@build",
+    "id": "trap_double_barrel_shotgun",
+    "item": "5580223e4bdc2d1c128b457f",
+    "attachments": {
+      "mod_stock": {
+        "item": "611a31ce5b7ffe001b4649d1"
+      },
+      "mod_barrel": {
+        "item": "5580169d4bdc2d9d138b4585"
+      }
+    }
+  },
+  {
+    "type": "@build",
+    "id": "trap_revolver_shotgun",
+    "item": "60db29ce99594040e04c4a27",
+    "attachments": {
+      "mod_magazine": {
+        "item": "60dc519adf4c47305f6d410d"
+      },
+      "mod_barrel": {
+        "item": "612368f58b401f4f51239b33",
+        "attachments": {
+          "mod_muzzle": {
+            "item": "619d36da53b4d42ee724fae4"
+          },
+          "mod_mount": {
+            "item": "609b9e31506cf869cf3eaf41"
+          }
+        }
+      },
+      "mod_stock": {
+        "item": "612781056f3d944a17348d60"
+      },
+      "mod_handguard": {
+        "item": "6123649463849f3d843da7c4"
+      }
+    }
+  },
+  {
+    "id": "trap_good_start_revolvers_shotguns_1",
+    "trader_id": "prapor",
+    "name": {
+      "en": "Starting stuff"
+    },
+    "description": {
+      "en": "Complete the quest to get some stuff"
+    },
+    "success_message": {
+      "en": "Bravo!"
+    },
+    "rewards": {
+      "xp": 0,
+      "items": {
+        "61a4cda622af7f4f6a3ce617": 24,
+        "62330b3ed4dc74626d570b95": 1000,
+        "5d6e6911a4b9361bd5780d52": 500,
+        "5d6e68a8a4b9360b6c0d54e2": 500,
+        "trap_revolver_357": 12,
+        "trap_double_barrel_shotgun": 10,
+        "trap_revolver_shotgun": 2
+      }
+    }
+  }
+]
