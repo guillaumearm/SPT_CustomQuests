@@ -13,7 +13,8 @@ This mod allow to add your own quests easily with a single json file (per quest)
 - Create a custom quest with a single json file
 - Quest chaining
 - Several mission types available: `Kill`, `GiveItem`, `PlaceItem`, `PlaceBeacon`, `PlaceSignalJammer`, `VisitPlace`
-- Rewards: xp and items on quest success
+- Rewards: xp and items (with attachements using `@build` directive) on quest success or quest start
+- Group items ids using `@group` directive (valable for `accepted_items` fields only)
 - Compatible with modded traders
 - Multilingual
 - Options to wipe custom quests progression from profile (useful during the development)
@@ -48,7 +49,6 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 ## Planned features
 - New mission type: `FindItem` (allow to spawn quests items, keys included)
 - New mission type: `SurviveRaid`
-- Rewards on start: give items/xp when start a quest
 - More rewards: trader reputation, unlock traders, unlock barters
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
