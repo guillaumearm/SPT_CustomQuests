@@ -390,10 +390,12 @@ Warning: [Places](./ALL_PLACES.md) are not [Zones](./ALL_ZONES.md).
 
 `message` is the usual mission message.
 
-## Special commands
-There exists special commands in CustomQuests to simplify a quest definition.
+## Special directives
+There exists special commands called `directives` in CustomQuests to help with qwuest creation.
 
-Currently, there is 2 commands: `@group` and `@build`
+Currently, there is 2 commands: `@group` and `@build`.
+
+A directive is a special payload with `type` field (can only be `@group` or `@build` for now), it lives with the quests and do not need to respect any order.
 
 #### use @group to simplify `accepted_item` fields
 With `@group`, you can define a group of items with a special id you can re-use in all `accepted_items` field.
