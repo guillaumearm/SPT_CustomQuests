@@ -65,18 +65,20 @@
     "id": "trap_good_start_revolvers_shotguns_1",
     "trader_id": "prapor",
     "name": {
-      "en": "Starting stuff"
+      "en": "Starting stuff: Revolvers and shootguns",
+      "fr": "Matériel de départ: Revolvers et fusils de chasse"
     },
     "description": {
-      "en": "Complete the quest to get some stuff"
+      "en": "Here is some free weapons and ammunitions to help you starting this game.",
+      "fr": "Voici quelques armes et munitions gratuites pour t'aider à démarrer cette partie."
     },
     "success_message": {
-      "en": "Bravo!"
+      "en": "Make good use of this.",
+      "fr": "Fais en bon usage."
     },
     "rewards": {
       "xp": 0,
       "items": {
-        "61a4cda622af7f4f6a3ce617": 24,
         "62330b3ed4dc74626d570b95": 1000,
         "5d6e6911a4b9361bd5780d52": 500,
         "5d6e68a8a4b9360b6c0d54e2": 500,
