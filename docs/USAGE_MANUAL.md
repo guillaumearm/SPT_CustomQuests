@@ -308,7 +308,7 @@ A `GiveItem` mission payload example:
 pro-tips:
   - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
   - [Quest items](./ALL_QUEST_ITEMS.md) can be used
-  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
+  - You can use a [`@group`](#group-directive) id on `accepted_items` fields.
 
 `count` is the number of item you have to provide to complete the mission (default to 1).
 
@@ -335,7 +335,7 @@ A `FindItem` mission payload example:
 pro-tips:
   - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
   - [Quest items](./ALL_QUEST_ITEMS.md) can be used
-  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
+  - You can use a [`@group`](#group-directive) id on `accepted_items` fields.
 
 `count` is the number of item you have to provide to complete the mission (default to 1).
 
@@ -367,7 +367,7 @@ The player has to place an item at a specific place during the raid.
 pro-tips:
   - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
   - [Quest items](./ALL_QUEST_ITEMS.md) can be used
-  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
+  - You can use a [`@group`](#group-directive) id on `accepted_items` fields.
 
 `plant_time` is the time in second the player has to press the `f` key to place the item.
 
