@@ -427,7 +427,7 @@ class ConditionsGenerator {
         maxDurability: 100,
         minDurability: 0,
         parentId: "",
-        onlyFoundInRaid: false,
+        onlyFoundInRaid: true,
         dynamicLocale: false,
         target: allItems,
         value: String(count),
