@@ -1,0 +1,21 @@
+[
+  {
+    "id": "trap_example_mission_find_questitem",
+    "trader_id": "prapor",
+    "name": "FindItem mission",
+    "description": "Give me the sealed letter found on the dead scav in factory",
+    "success_message": "Excellent!",
+    "missions": [
+      {
+        "type": "FindItem",
+        "accepted_items": ["591093bb86f7747caa7bb2ee"],
+        "message": "Find the sealed letter"
+      },
+      {
+        "type": "GiveItem",
+        "accepted_items": ["591093bb86f7747caa7bb2ee"],
+        "message": "Give me the sealed letter"
+      }
+    ]
+  }
+]

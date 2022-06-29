@@ -21,3 +21,8 @@ These examples are shipped with the mod, just rename the `examples.disabled` dir
 
 #### [VisitPlace mission](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/mission_visitplace.json)
 
+#### [FindItem mission](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/mission_find_various_items.json)
+
+#### [FindItem mission (quest item) + GiveItem mission](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/mission_find_questitem.json)
+
+#### [FindItem mission (quest item) + PlaceItem mission](https://github.com/guillaumearm/aki_CustomQuests/blob/master/quests/examples.disabled/mission_find_and_place_questitem.json)

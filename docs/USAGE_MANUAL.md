@@ -1,5 +1,23 @@
 # Custom Quests API - How to create quests
 
+## Summary
+- [A minimal example](#a-minimal-example)
+- [A minimal example (recommended)](#a-minimal-example-recommended)
+- [Multilingual support](#multilingual-support)
+- [Decoration only](#decoration-only)
+- [Chained quests](#chained-quests)
+- [Quests rewards](#rewards)
+- [Rewards on quest start](#rewards-on-quest-start)
+- [Missions](#missions)
+  - [Kill](#kill)
+  - [GiveItem](#giveitem)
+  - [FindItem](#finditem)
+  - [PlaceItem](#placeitem)
+  - [PlaceBeacon / PlaceSignalJammer](#placebeacon-and-placesignaljammer)
+  - [VisitPlace](#visitplace)
+- [Special directives](#special-directives)
+  - [@group](#group-directive)
+  - [@build](#build-directive)
 ## A minimal example
 ```json
 {
@@ -124,7 +142,9 @@ These are just for decoration purpose, please read above for more infos about Mi
 #### all images
 You can found all quests images in `Aki_Data/Server/images/quests/` directory.
 
-## Quest visibility conditions
+## Chained quests
+
+#### Quest visibility conditions
 
 ```json
 {
@@ -142,34 +162,9 @@ You can found all quests images in `Aki_Data/Server/images/quests/` directory.
 }
 ```
 
-To be able to see this quest, your pmc should be at least level 10, the `trap_quest_example_1` and `trap_quest_example_1_bis` quests should have been completed.
+To be able to see this quest, your pmc should be at least level 10 + the `trap_quest_example_1` and `trap_quest_example_1_bis` quests should have been completed.
 
 Also, you can use the `unlock_on_quest_start` array to specify which quests has to been started to unlock this quest.
-
-## Automatic chained quests
-No need to use the `locked_by_quests` option if you want to create a simple chain of quests, you can specify an array of quests in your json files and these quests will be automatically chained.
-
-```json
-[
-  {
-    "id": "my_quest_1",
-    "disabled": false,
-    "trader_id": "mechanic",
-    "name": "My quest name",
-    "description": "My quest description",
-    "success_message": "My success message"
-  },
-  {
-    "id": "my_quest_2",
-    "disabled": false,
-    "trader_id": "therapist",
-    "name": "My quest name",
-    "description": "My quest description",
-    "success_message": "My success message"
-  }
-]
-```
-
 
 ## Rewards
 This quest will give you +5000 xp, 2 ai-2 kits and 1 car first aid kit.
@@ -195,7 +190,7 @@ This quest will give you +5000 xp, 2 ai-2 kits and 1 car first aid kit.
 
 pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
 
-## Rewards on mission start
+## Rewards on quest start
 This quest give you +100 xp and 1 car first aid kit.
 ```json
 {
@@ -249,7 +244,7 @@ Completing this quest will give you 1 000 000 roubles ;-)
 ```
 
 ## Type of missions
-#### Kill
+### Kill
 The player has to kill bots
 
 A `Kill` mission payload example: 
@@ -284,12 +279,13 @@ The `locations` array possible values are:
 - `shoreline`
 - `woods`
 
-The `count` is the number of kills needed to complete the mission.
+The `count` is the number of kills needed to complete the mission (default to 1).
 
 The `message` is the message quest, it's available on all type of missions and support multilingual format.
 
-#### GiveItem
-The player has to give specific item to a trader (not necessary a quest item)
+### GiveItem
+The player has to give specific item to a trader.
+This mission type is compatible with [quest items](./ALL_QUEST_ITEMS.md) for `accepted_items`
 
 A `GiveItem` mission payload example:
 ```json
@@ -308,15 +304,43 @@ A `GiveItem` mission payload example:
 
 `accepted_items` is an array of item ids accepted for the quest.
 
-pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
+pro-tips:
+  - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
+  - [Quest items](./ALL_QUEST_ITEMS.md) can be used
+  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
 
-`count` is the number of item you have to provide to complete the mission.
+`count` is the number of item you have to provide to complete the mission (default to 1).
 
 `found_in_raid_only` is false by default and means the item you give should be marked as FIR (found in raid).
 
 `message` is the usual mission message.
 
-#### PlaceItem
+### FindItem
+The player has to find a specific item during the raid.
+
+This mission type is compatible with [quest items](./ALL_QUEST_ITEMS.md) for `accepted_items`
+
+A `FindItem` mission payload example:
+```json
+{
+  "type": "FindItem",
+  "accepted_items": ["591093bb86f7747caa7bb2ee"],
+  "message": "Give me 2 car first aid kits"
+}
+```
+
+`accepted_items` is an array of item ids accepted for the quest.
+
+pro-tips:
+  - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
+  - [Quest items](./ALL_QUEST_ITEMS.md) can be used
+  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
+
+`count` is the number of item you have to provide to complete the mission (default to 1).
+
+`message` is the usual mission message.
+
+### PlaceItem
 The player has to place an item at a specific place during the raid.
 ```json
 {
@@ -339,7 +363,10 @@ The player has to place an item at a specific place during the raid.
 
 `accepted_items` is an array of item ids accepted for the quest.
 
-pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
+pro-tips:
+  - You can use [this tool](https://db.sp-tarkov.com/search) to find item ids.
+  - [Quest items](./ALL_QUEST_ITEMS.md) can be used
+  - You can use a [`@group id`](#group-directive) on `accepted_items` fields.
 
 `plant_time` is the time in second the player has to press the `f` key to place the item.
 
@@ -347,7 +374,7 @@ pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item i
 
 `message` is the usual mission message.
 
-#### PlaceBeacon / PlaceSignalJammer
+### PlaceBeacon and PlaceSignalJammer
 The player has to place a beacon (or a signal jammer) at a specific place during the raid.
 ```json
 {
@@ -367,7 +394,7 @@ Same properties as `PlaceItem` except there is no `accepted_items` field here.
 
 Please note you can change the `type` to be `PlaceSignalJammer` instead.
 
-#### VisitPlace
+### VisitPlace
 The player has to visit a place during the raid.
 
 
@@ -397,8 +424,10 @@ Currently, there is 2 commands: `@group` and `@build`.
 
 A directive is a special payload with `type` field (can only be `@group` or `@build` for now), it lives with the quests and do not need to respect any order.
 
-#### use @group to simplify `accepted_item` fields
-With `@group`, you can define a group of items with a special id you can re-use in all `accepted_items` field.
+### group directive
+With the `@group` directive, you can define a group of items with a special id you can re-use in all `accepted_items` field.
+
+This simply the quest workflow creation when having a lot of `accepted_items`.
 
 For example:
 
@@ -462,8 +491,8 @@ For example:
 ]
 ```
 
-#### use @build to create complex item rewards
-With `@build` you can simply define a weapon build
+### build directive
+With the `@build` directive, you can simply define a weapon build (or any item with attachments)
 
 For example: (TODO)
 
