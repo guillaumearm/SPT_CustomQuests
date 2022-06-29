@@ -62,7 +62,7 @@ export type QuestType =
   | "Discover";
 export type QuestString = string | LocalizedString;
 
-export type KillTarget = "Savage" | "AnyPmc" | "Usec" | "Bear";
+export type KillTarget = "Savage" | "AnyPmc" | "Usec" | "Bear" | "Any";
 
 export type MissionKill = {
   type: "Kill";

@@ -262,10 +262,11 @@ A `Kill` mission payload example:
 ```
 
 The `target` field:
-- `Savage` (for scav kills)
-- `AnyPmc` (bear or usec kills)
-- `Usec` (usec kills)
-- `Bear` (bear kills)
+- `Any` for any kills (default value)
+- `Savage` for scav kills
+- `AnyPmc` for bear or usec kills
+- `Usec` for usec kills
+- `Bear` for bear kills
 
 The `locations` array possible values are:
 - `customs` (or `bigmap`)
