@@ -34,9 +34,7 @@ export class QuestsLoader {
       if (subdir.endsWith(".disabled")) {
         if (subdir !== "examples.disabled") {
           this.logger.warning(
-            `=> Custom Quests: skipped '${
-              subdir.split(".disabled")[0]
-            }' quest directory`
+            `=> Custom Quests: skipped '${subdir}' quest directory`
           );
         }
       } else {

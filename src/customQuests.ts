@@ -80,6 +80,13 @@ export type MissionGiveItem = {
   message?: QuestString;
 };
 
+export type MissionFindItem = {
+  type: "FindItem";
+  accepted_items: string[];
+  count?: number;
+  message?: QuestString;
+};
+
 type CommonPlaceX = {
   zone_id: string; // TODO list all zone ids;
   plant_time?: number;
@@ -110,6 +117,7 @@ export type MissionVisitPlace = {
 export type QuestMission =
   | MissionKill
   | MissionGiveItem
+  | MissionFindItem
   | MissionPlaceItem
   | MissionPlaceBeacon
   | MissionPlaceSignalJammer

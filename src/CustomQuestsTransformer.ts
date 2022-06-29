@@ -13,6 +13,7 @@ import { ALL_ZONES_BY_MAP } from "./allZonesByMap";
 import {
   CustomQuest,
   LocaleName,
+  MissionFindItem,
   MissionGiveItem,
   MissionKill,
   MissionPlaceBeacon,
@@ -163,6 +164,21 @@ function generateGiveItemConditionId(
       mission.accepted_items,
       mission.count,
       mission.found_in_raid_only || false,
+    ])
+  );
+}
+
+function generateFindItemConditionId(
+  questId: string,
+  mission: MissionFindItem
+): string {
+  return getSHA256(
+    JSON.stringify([
+      questId,
+      // mission._id,
+      mission.type,
+      mission.accepted_items,
+      mission.count,
     ])
   );
 }
@@ -389,6 +405,38 @@ class ConditionsGenerator {
     };
   }
 
+  private generateFindItemCondition(
+    mission: MissionFindItem
+  ): AvailableForConditions | null {
+    const items = mission.accepted_items;
+    const count = mission.count === undefined ? 1 : mission.count;
+
+    if (!items || !items.length || count <= 0) {
+      return null;
+    }
+
+    const allItems = this.getItemIdsFromAcceptedItems(items);
+    const id = generateFindItemConditionId(this.customQuest.id, mission);
+
+    return {
+      _parent: "FindItem",
+      _props: {
+        index: 0,
+        id,
+        dogtagLevel: 0,
+        maxDurability: 100,
+        minDurability: 0,
+        parentId: "",
+        onlyFoundInRaid: false,
+        dynamicLocale: false,
+        target: allItems,
+        value: String(count),
+        visibilityConditions: [],
+      },
+      dynamicLocale: false,
+    };
+  }
+
   private generatePlaceBeaconCondition(
     mission: MissionPlaceBeacon | MissionPlaceSignalJammer | MissionPlaceItem
   ): AvailableForConditions | AvailableForConditions[] | null {
@@ -601,6 +649,8 @@ class ConditionsGenerator {
           return this.generateKillCondition(mission);
         } else if (mission.type === "GiveItem") {
           return this.generateGiveItemCondition(mission);
+        } else if (mission.type === "FindItem") {
+          return this.generateFindItemCondition(mission);
         } else if (
           mission.type === "PlaceBeacon" ||
           mission.type === "PlaceSignalJammer" ||
@@ -752,6 +802,8 @@ export class CustomQuestsTransformer {
       return generateKillConditionId(qid, mission);
     } else if (mission.type === "GiveItem") {
       return generateGiveItemConditionId(qid, mission);
+    } else if (mission.type === "FindItem") {
+      return generateFindItemConditionId(qid, mission);
     } else if (
       mission.type === "PlaceBeacon" ||
       mission.type === "PlaceSignalJammer" ||
