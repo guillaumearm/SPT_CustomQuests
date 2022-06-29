@@ -20,6 +20,7 @@ import {
   MissionPlaceItem,
   MissionPlaceSignalJammer,
   MissionVisitPlace,
+  PossibleLocation,
   QuestMission,
   QuestString,
   StoryAcceptedItemGroup,
@@ -214,6 +215,31 @@ function generateVisitPlaceConditionId(
   );
 }
 
+function generateLocationCondition(
+  prefixId: string,
+  givenLocations?: PossibleLocation[] | PossibleLocation
+): CounterCondition | undefined {
+  if (!givenLocations || givenLocations === "any") {
+    return undefined;
+  }
+
+  const locations = Array.isArray(givenLocations)
+    ? givenLocations
+    : [givenLocations];
+
+  if (locations.includes("any")) {
+    return undefined;
+  }
+
+  return {
+    _parent: "Location",
+    _props: {
+      target: getTargetFromLocations(locations),
+      id: `${prefixId}_location`,
+    },
+  };
+}
+
 class ConditionsGenerator {
   constructor(
     private customQuest: CustomQuest,
@@ -313,6 +339,8 @@ class ConditionsGenerator {
       return null;
     }
 
+    const counterId = `${killConditionId}_counter`;
+
     const conditions: CounterCondition[] = [
       {
         _parent: "Kills",
@@ -321,20 +349,10 @@ class ConditionsGenerator {
           target: mission.target || "Any",
           compareMethod: ">=",
           value: "1",
-          id: `${killConditionId}_kill`,
+          id: `${counterId}_kill`,
         },
       },
-      mission.locations &&
-      (mission.locations as unknown as string) !== "any" &&
-      !mission.locations.includes("any")
-        ? {
-            _parent: "Location",
-            _props: {
-              target: getTargetFromLocations(mission.locations),
-              id: `${killConditionId}_location`,
-            },
-          }
-        : undefined,
+      generateLocationCondition(killConditionId, mission.locations),
     ].filter(isNotUndefined);
 
     return {
@@ -342,7 +360,7 @@ class ConditionsGenerator {
       _props: {
         index: 0,
         counter: {
-          id: `${killConditionId}_counter`,
+          id: counterId,
           conditions: conditions,
         },
         id: killConditionId,

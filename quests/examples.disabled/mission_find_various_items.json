@@ -167,7 +167,8 @@
         "type": "FindItem",
         "accepted_items": ["various-items"],
         "count": 5,
-        "message": "Find 5 various items"
+        "message": "Find 5 various items",
+        "locations": ["factory"]
       }
     ]
   }

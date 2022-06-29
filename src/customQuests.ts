@@ -67,7 +67,7 @@ export type KillTarget = "Savage" | "AnyPmc" | "Usec" | "Bear" | "Any";
 export type MissionKill = {
   type: "Kill";
   target?: KillTarget;
-  locations?: PossibleLocation[];
+  locations?: PossibleLocation[] | PossibleLocation;
   count?: number;
   message?: QuestString;
 };
