@@ -12,7 +12,8 @@ This mod allow to add your own quests easily with a single json file (per quest)
 - [Online App: Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/)
 - Create a custom quest with a single json file
 - Quest chaining
-- Several mission types available: `Kill`, `GiveItem`, `PlaceItem`, `PlaceBeacon`, `PlaceSignalJammer`, `VisitPlace`
+- Several mission types available: `Kill`, `GiveItem`, `FindItem`, `PlaceItem`, `PlaceBeacon`, `PlaceSignalJammer`, `VisitPlace`
+- `GiveItem`, `FindItem` and `PlaceItem` missions are compatible with [quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
 - Rewards: xp and items (with attachements using `@build` directive) on quest success or quest start
 - Group items ids using `@group` directive (valable for `accepted_items` fields only)
 - Compatible with modded traders
@@ -47,18 +48,17 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - [All quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
 
 ## Planned features
-- New mission type: `FindItem` (allow to spawn quests items, keys included)
 - New mission type: `SurviveRaid`
 - More rewards: trader reputation, unlock traders, unlock barters
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
 - Repeatable quests (not daily quests)
-- Custom quest image
+- Custom quest images
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
 - Mission type `Kill` improvements: range restrictions, physical effects restrictions
 - Mission restriction: only on night
-- New mission type: `WeaponAssembly` (allow to create gunsmith missions)
+- New mission type: `GunSmith`
 - New mission type: `TraderLoyalty`
 - New mission type: `Skill`
 
