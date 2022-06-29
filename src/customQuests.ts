@@ -68,6 +68,7 @@ export type MissionKill = {
   type: "Kill";
   target?: KillTarget;
   locations?: PossibleLocation[] | PossibleLocation;
+  one_session_only?: boolean;
   count?: number;
   message?: QuestString;
 };
@@ -91,6 +92,7 @@ type CommonPlaceX = {
   zone_id: string; // TODO list all zone ids;
   plant_time?: number;
   need_survive?: QuestString;
+  one_session_only?: boolean;
   message?: QuestString;
 };
 
@@ -111,6 +113,7 @@ export type MissionVisitPlace = {
   type: "VisitPlace";
   place_id: string; // TODO: list all place ids
   need_survive?: QuestString;
+  one_session_only?: boolean;
   message?: QuestString;
 };
 

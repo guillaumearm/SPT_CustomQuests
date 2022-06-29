@@ -257,7 +257,8 @@ A `Kill` mission payload example:
     "factory"
   ],
   "count": 5,
-  "message": "Kill 5 scavs on customs or factory"
+  "message": "Kill 5 scavs on customs or factory (in one raid)",
+  "one_session_only": true
 }
 ```
 
@@ -283,6 +284,8 @@ The `locations` array possible values are:
 The `count` is the number of kills needed to complete the mission (default to 1).
 
 The `message` is the message quest, it's available on all type of missions and support multilingual format.
+
+The `one_session_only` means the kill counter will be reset at the end of the raid. (`false` by default)
 
 ### GiveItem
 The player has to give specific item to a trader.
@@ -375,6 +378,8 @@ pro-tips:
 
 `message` is the usual mission message.
 
+`one_session_only` means the counter will be reset at the end of the raid. (`false` by default)
+
 ### PlaceBeacon and PlaceSignalJammer
 The player has to place a beacon (or a signal jammer) at a specific place during the raid.
 ```json
@@ -417,6 +422,8 @@ Warning: [Places](./ALL_PLACES.md) are not [Zones](./ALL_ZONES.md).
 `need_survive`: if set, the player has to survive the raid to complete the mission, the message is displayed in the interface conditionally (when the place has been discovered)
 
 `message` is the usual mission message.
+
+`one_session_only` means the counter will be reset at the end of the raid. (`false` by default)
 
 ## Special directives
 There exists special commands called `directives` in CustomQuests to help with qwuest creation.
