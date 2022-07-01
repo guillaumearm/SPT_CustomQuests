@@ -8,7 +8,7 @@
     "id": "trap_extraquests_boogeyman_1",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 1",
-    "description": "I need a Boogeyman.\nThe factory is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe factory is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
     "missions": [
@@ -31,9 +31,10 @@
     "id": "trap_extraquests_boogeyman_2",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 2",
-    "description": "I need a Boogeyman.\nThe customs is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe customs is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_1"],
     "missions": [
       {
         "type": "Kill",
@@ -54,9 +55,10 @@
     "id": "trap_extraquests_boogeyman_3",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 3",
-    "description": "I need a Boogeyman.\nThe interchange is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe interchange is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_2"],
     "missions": [
       {
         "type": "Kill",
@@ -77,9 +79,10 @@
     "id": "trap_extraquests_boogeyman_4",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 4",
-    "description": "I need a Boogeyman.\nThe military reserve is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe military reserve is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_3"],
     "missions": [
       {
         "type": "Kill",
@@ -100,9 +103,10 @@
     "id": "trap_extraquests_boogeyman_5",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 5",
-    "description": "I need a Boogeyman.\nThe woods is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe woods is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_4"],
     "missions": [
       {
         "type": "Kill",
@@ -123,9 +127,10 @@
     "id": "trap_extraquests_boogeyman_6",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 6",
-    "description": "I need a Boogeyman.\nThe Shoreline is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe Shoreline is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_5"],
     "missions": [
       {
         "type": "Kill",
@@ -146,9 +151,10 @@
     "id": "trap_extraquests_boogeyman_7",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 7",
-    "description": "I need a Boogeyman.\nThe Lighthouse is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe Lighthouse is infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_6"],
     "missions": [
       {
         "type": "Kill",
@@ -169,9 +175,10 @@
     "id": "trap_extraquests_boogeyman_8",
     "trader_id": "fence",
     "name": "I Need a Boogeyman part 8",
-    "description": "I need a Boogeyman.\nThe Labs are infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "description": "I need you.\nThe Labs are infested by scavs and pmcs.\nCan you clean a bit for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_7"],
     "missions": [
       {
         "type": "Kill",
@@ -195,6 +202,7 @@
     "description": "I need more than a simple Boogeyman.\nScavs and PMCs are everywhere, can you kill a bunch of them in all tarkov for me ?",
     "type": "Elimination",
     "success_message": "Excellent! thanks for your help, here is 6.4 millions roubles for you",
+    "locked_by_quests": ["trap_extraquests_boogeyman_8"],
     "missions": [
       {
         "type": "Kill",
