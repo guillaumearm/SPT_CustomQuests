@@ -1,0 +1,22 @@
+[
+  {
+    "id": "trap_example_simple_repeatable_quest",
+    "repeatable": true,
+    "trader_id": "fence",
+    "name": {
+      "en": "My first quest"
+    },
+    "description": {
+      "en": "My description"
+    },
+    "success_message": {
+      "en": "It works!"
+    },
+    "rewards": {
+      "xp": 10,
+      "items": {
+        "5449016a4bdc2d6f028b456f": 100
+      }
+    }
+  }
+]

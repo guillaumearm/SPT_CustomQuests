@@ -135,6 +135,7 @@ export type QuestRewards = {
 
 export type CustomQuest = {
   id: string;
+  repeatable?: boolean;
   trader_id: string;
   disabled?: boolean;
   descriptive_location?: DescriptiveLocation;

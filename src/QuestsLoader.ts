@@ -4,6 +4,7 @@ import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { VFS } from "@spt-aki/utils/VFS";
 
 import { join } from "path";
+import { Config, getLimitRepeatedQuest } from "./config";
 
 import {
   CustomQuest,
@@ -14,17 +15,46 @@ import {
 } from "./customQuests";
 import { GeneratedLocales } from "./CustomQuestsTransformer";
 import { QuestsGenerator } from "./QuestsGenerator";
-import { getAllLocales, readJsonFile } from "./utils";
+import { flatten, getAllLocales, readJsonFile } from "./utils";
+
+const repeatQuest = (
+  quest: CustomQuest,
+  limitRepeatedQuest: number
+): CustomQuest[] => {
+  let previousId = quest.id;
+
+  const additionalQuests: CustomQuest[] = Array.from(
+    Array(Math.abs(limitRepeatedQuest)).keys()
+  ).map((id) => {
+    const newQuest = { ...quest };
+    const lockedByQuests = newQuest.locked_by_quests ?? [];
+
+    newQuest.id = `${newQuest.id}_repeated_${id}`;
+    newQuest.locked_by_quests = [...lockedByQuests, previousId];
+
+    previousId = newQuest.id;
+    return newQuest;
+  });
+
+  return [quest, ...additionalQuests];
+};
 
 export class QuestsLoader {
+  private repeatableQuestIds: Record<string, boolean> = {};
+
   constructor(
     private questDirectory: string,
     private db: DatabaseServer,
     private vfs: VFS,
+    private config: Config,
     private logger: ILogger,
     private debug: (data: string) => void
   ) {
     this.questDirectory = questDirectory;
+  }
+
+  getRepeatableQuestIds(): Record<string, boolean> {
+    return this.repeatableQuestIds;
   }
 
   loadAll(): IQuest[] {
@@ -101,6 +131,28 @@ export class QuestsLoader {
     });
   }
 
+  private expandRepeatableQuests(quests: CustomQuest[]): CustomQuest[] {
+    const resultQuests: CustomQuest[][] = [];
+
+    const limitRepeatedQuest = getLimitRepeatedQuest(this.config);
+
+    quests.forEach((q) => {
+      if (q.repeatable) {
+        const repeatableQuests = repeatQuest(q, limitRepeatedQuest);
+
+        repeatableQuests.forEach((rq) => {
+          this.repeatableQuestIds[rq.id] = true;
+        });
+
+        resultQuests.push(repeatableQuests);
+      } else {
+        resultQuests.push([q]);
+      }
+    });
+
+    return flatten(resultQuests);
+  }
+
   public injectStory(
     story: StoryItem[],
     fileName = "@api-quest-loader"
@@ -121,8 +173,10 @@ export class QuestsLoader {
       );
     }
 
+    const expandedQuests = this.expandRepeatableQuests(quests);
+
     const questGen = new QuestsGenerator(
-      quests,
+      expandedQuests,
       itemBuilds,
       itemGroups,
       this.db,

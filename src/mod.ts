@@ -1,8 +1,10 @@
 "use strict";
 
+import { GameCallbacks } from "@spt-aki/callbacks/GameCallbacks";
+import { Quest } from "@spt-aki/models/eft/common/IPmcData";
 import type { IMod } from "@spt-aki/models/external/mod";
 import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { SaveServer } from "@spt-aki/servers/SaveServer";
 import type { VFS } from "@spt-aki/utils/VFS";
 
@@ -30,6 +32,39 @@ const setCustomQuestsAPI = (api: CustomQuestsAPI): string => {
   (globalThis as any)[apiName] = api;
 
   return apiName;
+};
+
+const eraseRepeatableQuestsOnGameStart = (
+  container: DependencyContainer,
+  saveServer: SaveServer,
+  getRepeatableQuestIds: () => Record<string, boolean>
+) => {
+  const isSuccessRepeatableQuest = (q: Quest): boolean => {
+    return getRepeatableQuestIds()[q.qid] && q.status === "Success";
+  };
+
+  container.afterResolution<GameCallbacks>(
+    "GameCallbacks",
+    (_t, controllers) => {
+      const controller = Array.isArray(controllers)
+        ? controllers[0]
+        : controllers;
+
+      const gameStart = controller.gameStart.bind(controller);
+
+      controller.gameStart = (url, info, sessionId) => {
+        console.log(`=> game started for profile '${sessionId}'`);
+        const response = gameStart(url, info, sessionId);
+
+        const profile = saveServer.getProfile(sessionId);
+        const pmc = profile.characters.pmc;
+
+        pmc.Quests = pmc.Quests.filter((q) => !isSuccessRepeatableQuest(q));
+
+        return response;
+      };
+    }
+  );
 };
 
 class CustomQuests implements IMod {
@@ -101,8 +136,15 @@ class CustomQuests implements IMod {
       this.questDirectory,
       db,
       vfs,
+      this.config,
       this.logger,
       this.debug
+    );
+
+    eraseRepeatableQuestsOnGameStart(
+      container,
+      saveServer,
+      this.questsLoader.getRepeatableQuestIds.bind(this.questsLoader)
     );
 
     const loadedQuests = this.questsLoader.loadAll();

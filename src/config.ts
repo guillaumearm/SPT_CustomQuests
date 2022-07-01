@@ -1,6 +1,11 @@
 import { resolve } from "path";
 
 /**
+ * Default values
+ */
+const DEFAULT_LIMIT_REPEATED_QUEST = 10;
+
+/**
  * package.json
  */
 export type PackageJson = {
@@ -21,6 +26,7 @@ export type Config = {
   enabled?: boolean;
   debug?: boolean;
   quest_directory?: string;
+  limit_repeated_quest?: number;
   at_start?: ConfigAtStart;
 };
 
@@ -31,4 +37,8 @@ export const DEFAULT_QUESTS_DIR = "quests";
 
 export const getQuestsDirectory = (config: Config): string => {
   return resolve(__dirname, "..", config.quest_directory || DEFAULT_QUESTS_DIR);
+};
+
+export const getLimitRepeatedQuest = (config: Config): number => {
+  return config.limit_repeated_quest ?? DEFAULT_LIMIT_REPEATED_QUEST;
 };
