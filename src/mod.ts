@@ -15,14 +15,30 @@ import {
   PackageJson,
   PACKAGE_JSON_PATH,
 } from "./config";
+import { StoryItem } from "./customQuests";
 import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
 import { getModDisplayName, noop, readJsonFile } from "./utils";
+
+type CustomQuestsAPI = {
+  load: (quests: StoryItem[]) => void;
+};
+
+const setCustomQuestsAPI = (api: CustomQuestsAPI): string => {
+  const apiName = "CustomQuestsAPI";
+
+  (globalThis as any)[apiName] = api;
+
+  return apiName;
+};
 
 class CustomQuests implements IMod {
   private packageJson: PackageJson;
   private config: Config;
   private questDirectory: string;
+
+  private questsLoader: QuestsLoader | null = null; // used by api
+  private pendingItems: StoryItem[] = []; // used by api
 
   private logger: ILogger;
   private debug: (data: string) => void;
@@ -43,7 +59,24 @@ class CustomQuests implements IMod {
       return;
     }
 
+    const api: CustomQuestsAPI = {
+      load: (story: StoryItem[]) => {
+        if (this.questsLoader) {
+          const quests = this.questsLoader.injectStory(story);
+
+          this.logger.success(
+            `=> Custom Quests API: ${quests.length} quests loaded`
+          );
+        } else {
+          this.pendingItems = [...this.pendingItems, ...story];
+        }
+      },
+    };
+
     this.logger.info(`===> Loading Custom Quests v${this.packageJson.version}`);
+
+    const apiName = setCustomQuestsAPI(api);
+    this.debug(`api exposed under 'globalThis.${apiName}'`);
   }
 
   delayedLoad(container: DependencyContainer): void {
@@ -64,20 +97,33 @@ class CustomQuests implements IMod {
 
     onStart.beforeCustomQuestsLoaded();
 
-    const questsLoader = new QuestsLoader(
+    this.questsLoader = new QuestsLoader(
       this.questDirectory,
       db,
       vfs,
       this.logger,
       this.debug
     );
-    const loadedQuests = questsLoader.loadAll();
+
+    const loadedQuests = this.questsLoader.loadAll();
+    const apiQuests = this.questsLoader.injectStory(this.pendingItems);
+    this.pendingItems = [];
 
     onStart.afterCustomQuestsLoaded(loadedQuests);
 
     this.logger.success(
-      `=> Custom Quests: ${loadedQuests.length} quests loaded`
+      `=> Custom Quests: ${loadedQuests.length} quest${
+        loadedQuests.length > 1 ? "s" : ""
+      } loaded`
     );
+
+    if (apiQuests.length) {
+      this.logger.success(
+        `=> Custom Quests API: ${apiQuests.length} quest${
+          apiQuests.length > 1 ? "s" : ""
+        } loaded`
+      );
+    }
 
     this.logger.success(
       `===> Successfully loaded ${getModDisplayName(this.packageJson, true)}`

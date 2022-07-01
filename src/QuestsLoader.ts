@@ -101,12 +101,10 @@ export class QuestsLoader {
     });
   }
 
-  private loadFile(fileName: string, dir: string): IQuest[] {
-    const fullPath = join(dir, fileName);
-
-    const storyOrQuest = readJsonFile<StoryItem | StoryItem[]>(fullPath);
-    const story = "length" in storyOrQuest ? storyOrQuest : [storyOrQuest];
-
+  public injectStory(
+    story: StoryItem[],
+    fileName = "@api-quest-loader"
+  ): IQuest[] {
     const quests: CustomQuest[] = story.filter(isStoryCustomQuest);
     const itemBuilds = story.filter(isStoryItemBuild);
     const itemGroups = story.filter(isStoryAcceptedItemGroup);
@@ -140,5 +138,14 @@ export class QuestsLoader {
 
       return quest;
     });
+  }
+
+  private loadFile(fileName: string, dir: string): IQuest[] {
+    const fullPath = join(dir, fileName);
+
+    const storyOrQuest = readJsonFile<StoryItem | StoryItem[]>(fullPath);
+    const story = "length" in storyOrQuest ? storyOrQuest : [storyOrQuest];
+
+    return this.injectStory(story, fileName);
   }
 }
