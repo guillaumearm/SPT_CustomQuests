@@ -1,0 +1,263 @@
+[
+  {
+    "type": "@group",
+    "id": "roubles",
+    "items": ["5449016a4bdc2d6f028b456f"]
+  },
+  {
+    "id": "trap_extraquests_boogeyman_1",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 1",
+    "description": "I need a Boogeyman.\nThe factory is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys inside the factory",
+        "locations": ["factory"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_2",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 2",
+    "description": "I need a Boogeyman.\nThe customs is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys at customs",
+        "locations": ["customs"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_3",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 3",
+    "description": "I need a Boogeyman.\nThe interchange is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys at the interchange",
+        "locations": ["interchange"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_4",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 4",
+    "description": "I need a Boogeyman.\nThe military reserve is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys at the military reserve",
+        "locations": ["reserve"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_5",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 5",
+    "description": "I need a Boogeyman.\nThe woods is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys in the woods",
+        "locations": ["woods"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_6",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 6",
+    "description": "I need a Boogeyman.\nThe Shoreline is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys on the shoreline",
+        "locations": ["shoreline"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_7",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 7",
+    "description": "I need a Boogeyman.\nThe Lighthouse is infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys around lighthouse",
+        "locations": ["lighthouse"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_boogeyman_8",
+    "trader_id": "fence",
+    "name": "I Need a Boogeyman part 8",
+    "description": "I need a Boogeyman.\nThe Labs are infested by scavs and pmcs.\nCan you clean a bit for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 200k roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 21,
+        "target": "Any",
+        "message": "Kill 21 guys at labs",
+        "locations": ["labs"]
+      }
+    ],
+    "rewards": {
+      "xp": 42000,
+      "items": {
+        "rouble": 200000
+      }
+    }
+  },
+  {
+    "id": "trap_extraquests_babayaga",
+    "trader_id": "fence",
+    "name": "Baba yaga !",
+    "description": "I need more than a simple Boogeyman.\nScavs and PMCs are everywhere, can you kill a bunch of them in all tarkov for me ?",
+    "type": "Elimination",
+    "success_message": "Excellent! thanks for your help, here is 6.4 millions roubles for you",
+    "missions": [
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys inside the factory",
+        "locations": ["factory"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys at customs",
+        "locations": ["customs"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys at the interchange",
+        "locations": ["interchange"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys at the military reserve",
+        "locations": ["reserve"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys in the woods",
+        "locations": ["woods"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys on the shoreline",
+        "locations": ["shoreline"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys around lighthouse",
+        "locations": ["lighthouse"]
+      },
+      {
+        "type": "Kill",
+        "count": 42,
+        "target": "Any",
+        "message": "Kill 42 guys at labs",
+        "locations": ["labs"]
+      }
+    ],
+    "rewards": {
+      "xp": 350000,
+      "items": {
+        "rouble": 6400000
+      }
+    }
+  }
+]
