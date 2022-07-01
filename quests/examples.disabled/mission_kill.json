@@ -9,8 +9,9 @@
     "missions": [
       {
         "type": "Kill",
-        "count": 5,
         "message": "Kill 5 scavs on factory",
+        "target": "Scav",
+        "count": 5,
         "locations": ["factory"]
       },
       {
