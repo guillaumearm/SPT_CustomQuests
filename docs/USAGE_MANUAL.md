@@ -8,6 +8,7 @@
 - [Chained quests](#chained-quests)
 - [Quests rewards](#rewards)
 - [Rewards on quest start](#rewards-on-quest-start)
+- [Repeatable quests]()
 - [Missions](#missions)
   - [Kill](#kill)
   - [GiveItem](#giveitem)
@@ -208,6 +209,34 @@ This quest give you +100 xp and 1 car first aid kit.
   }
 }
 ```
+
+## Repeatable quests
+You can setup "infinite" repeatable quests like so:
+
+```json
+  {
+    "id": "trap_example_simple_repeatable_quest",
+    "repeatable": true,
+    "trader_id": "fence",
+    "name": {
+      "en": "My first quest"
+    },
+    "description": {
+      "en": "My description"
+    },
+    "success_message": {
+      "en": "It works!"
+    },
+    "rewards": {
+      "xp": 10,
+      "items": {
+        "5449016a4bdc2d6f028b456f": 100
+      }
+    }
+  }
+```
+
+Limitation: you can repeat the same quest 1000 times per game, this means you have to restart the game once you repeated too much time the same quest (1000 seems enough for me but you can change this in the config)
 
 ## Missions
 A quest can have several missions.

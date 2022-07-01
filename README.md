@@ -14,6 +14,7 @@ This mod allow to add your own quests easily with a single json file (per quest)
 - Quest chaining
 - Several mission types available: `Kill`, `GiveItem`, `FindItem`, `PlaceItem`, `PlaceBeacon`, `PlaceSignalJammer`, `VisitPlace`
 - `GiveItem`, `FindItem` and `PlaceItem` missions are compatible with [quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
+- Repeatable quests (it's not vanilla daily quests)
 - Rewards: xp and items (with attachements using `@build` directive) on quest success or quest start
 - Group items ids using `@group` directive (valable for `accepted_items` fields only)
 - Compatible with modded traders
@@ -84,7 +85,6 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
-- Repeatable quests (not daily quests)
 - Custom quest images
 - Mission type `Kill` improvements: weapon restrictions, equipment restrictions
 - Mission type `Kill` improvements: range restrictions, physical effects restrictions
