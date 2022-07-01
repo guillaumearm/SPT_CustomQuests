@@ -28,6 +28,11 @@ export const resetRepeatableQuestsOnGameStart = (
         const profile = saveServer.getProfile(sessionId);
         const pmc = profile.characters.pmc;
 
+        if (!pmc || !pmc.Quests) {
+          // avoid crash on first game start (fresh profile)
+          pmc.Quests = [];
+        }
+
         // 1. filter all success repeatable quests
         pmc.Quests = pmc.Quests.filter((q) => !isSuccessRepeatableQuest(q));
 
