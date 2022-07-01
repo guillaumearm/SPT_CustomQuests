@@ -52,7 +52,7 @@ Since 2.2.0, you can inject custom quests dynamically from other mods.
 
 In the `delayedLoad` method:
 
-```js
+```ts
 const myExampleQuest = {
   id: "trap_quest_example_1_with_api",
   trader_id: "mechanic",
@@ -62,13 +62,13 @@ const myExampleQuest = {
 };
 
 // call this in `delayedLoad` method
-const injectQuests = () => {
+const injectQuests = (logger: ILogger) => {
   if (!globalThis.CustomQuestsAPI) {
-    Logger.error(`CustomQuestsAPI not found, are you sure a version of CustomQuests >= 2.2.0 is installed ?`);
+    logger.error(`CustomQuestsAPI not found, are you sure a version of CustomQuests >= 2.2.0 is installed ?`);
     return;
   }
 
-  globalThis.CustomQuestsAPI.load([myExampleQuests]);
+  globalThis.CustomQuestsAPI.load([myExampleQuest]);
 }
 ```
 
