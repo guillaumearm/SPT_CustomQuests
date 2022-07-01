@@ -4,16 +4,18 @@ import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { VFS } from "@spt-aki/utils/VFS";
 
 import { join } from "path";
-import { Config, getLimitRepeatedQuest } from "./config";
+import type { Config } from "./config";
+import { getLimitRepeatedQuest } from "./config";
+
+import type { CustomQuest, StoryItem } from "./customQuests";
 
 import {
-  CustomQuest,
   isStoryAcceptedItemGroup,
   isStoryCustomQuest,
   isStoryItemBuild,
-  StoryItem,
 } from "./customQuests";
-import { GeneratedLocales } from "./CustomQuestsTransformer";
+
+import type { GeneratedLocales } from "./CustomQuestsTransformer";
 import { QuestsGenerator } from "./QuestsGenerator";
 import { createRepeatedQuestId } from "./RepeatableQuests";
 import { flatten, getAllLocales, readJsonFile } from "./utils";

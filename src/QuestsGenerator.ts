@@ -2,15 +2,15 @@ import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
 import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 
-import {
+import type {
   CustomQuest,
   StoryAcceptedItemGroup,
   StoryItemBuild,
 } from "./customQuests";
-import {
-  CustomQuestsTransformer,
-  GeneratedLocales,
-} from "./CustomQuestsTransformer";
+
+import type { GeneratedLocales } from "./CustomQuestsTransformer";
+import { CustomQuestsTransformer } from "./CustomQuestsTransformer";
+
 import { indexBy } from "./utils";
 
 export class QuestsGenerator {

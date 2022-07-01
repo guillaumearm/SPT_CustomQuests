@@ -2,20 +2,16 @@
 
 import type { IMod } from "@spt-aki/models/external/mod";
 import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { SaveServer } from "@spt-aki/servers/SaveServer";
 import type { VFS } from "@spt-aki/utils/VFS";
 
-import { DependencyContainer } from "tsyringe";
+import type { DependencyContainer } from "tsyringe";
 
-import {
-  Config,
-  CONFIG_PATH,
-  getQuestsDirectory,
-  PackageJson,
-  PACKAGE_JSON_PATH,
-} from "./config";
-import { StoryItem } from "./customQuests";
+import type { Config, PackageJson } from "./config";
+import { PACKAGE_JSON_PATH, getQuestsDirectory, CONFIG_PATH } from "./config";
+
+import type { StoryItem } from "./customQuests";
 import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
 import { resetRepeatableQuestsOnGameStart } from "./RepeatableQuests";

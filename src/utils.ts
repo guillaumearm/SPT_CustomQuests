@@ -1,7 +1,7 @@
 import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import crypto from "crypto";
 import { readFileSync } from "fs";
-import { PackageJson } from "./config";
+import type { PackageJson } from "./config";
 
 export const getSHA256 = (input: string): string => {
   return crypto.createHash("sha256").update(input).digest("hex");

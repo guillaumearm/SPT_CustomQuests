@@ -4,7 +4,7 @@ import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { SaveServer } from "@spt-aki/servers/SaveServer";
 
 import { ALL_VANILLA_QUESTS } from "./allVanillaQuestIds";
-import { Config, ConfigAtStart } from "./config";
+import type { Config, ConfigAtStart } from "./config";
 
 const JAEGER_ID = "5c0647fdd443bc2504c2d371";
 

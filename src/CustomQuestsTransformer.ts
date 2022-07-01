@@ -10,7 +10,7 @@ import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 
 import { ALL_PLACES_BY_MAP } from "./allPlacesByMap";
 import { ALL_ZONES_BY_MAP } from "./allZonesByMap";
-import {
+import type {
   CustomQuest,
   LocaleName,
   MissionFindItem,

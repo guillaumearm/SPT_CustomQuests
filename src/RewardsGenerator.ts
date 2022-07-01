@@ -1,7 +1,7 @@
-import { Item } from "@spt-aki/models/eft/common/tables/IItem";
+import type { Item } from "@spt-aki/models/eft/common/tables/IItem";
 import type { Reward, Rewards } from "@spt-aki/models/eft/common/tables/IQuest";
 
-import {
+import type {
   CustomQuest,
   QuestRewards,
   StoryItemBuild,

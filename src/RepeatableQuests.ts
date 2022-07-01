@@ -1,7 +1,7 @@
-import { GameCallbacks } from "@spt-aki/callbacks/GameCallbacks";
-import { Quest } from "@spt-aki/models/eft/common/IPmcData";
-import { SaveServer } from "@spt-aki/servers/SaveServer";
-import { DependencyContainer } from "tsyringe";
+import type { GameCallbacks } from "@spt-aki/callbacks/GameCallbacks";
+import type { Quest } from "@spt-aki/models/eft/common/IPmcData";
+import type { SaveServer } from "@spt-aki/servers/SaveServer";
+import type { DependencyContainer } from "tsyringe";
 
 export const resetRepeatableQuestsOnGameStart = (
   container: DependencyContainer,
