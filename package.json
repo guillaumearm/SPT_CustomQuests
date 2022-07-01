@@ -9,7 +9,8 @@
   "akiVersion": ">=3.0.0",
   "scripts": {
     "zip:files": "node scripts/create-zip.js",
-    "copy:files": "mkdir -p ./dist && cp package.json ./dist && cp README.md ./dist && cp LICENSE ./dist && cp -R config ./dist && cp -R docs ./dist && cp -R quests ./dist",
+    "clean:distquests": "node scripts/clean-dist-quests.js",
+    "copy:files": "mkdir -p ./dist && cp package.json ./dist && cp README.md ./dist && cp LICENSE ./dist && cp -R config ./dist && cp -R docs ./dist && cp -R quests ./dist && npm run clean:distquests",
     "check:dist": "node scripts/check-dist-quests.js",
     "build:release": "npm run rebuild && npm run copy:files && npm run check:dist && npm run zip:files",
     "clean": "rimraf dist tmp 'src/**/*.js' Trap-CustomQuests*",
