@@ -15,6 +15,7 @@ import {
 } from "./customQuests";
 import { GeneratedLocales } from "./CustomQuestsTransformer";
 import { QuestsGenerator } from "./QuestsGenerator";
+import { createRepeatedQuestId } from "./RepeatableQuests";
 import { flatten, getAllLocales, readJsonFile } from "./utils";
 
 const repeatQuest = (
@@ -25,11 +26,11 @@ const repeatQuest = (
 
   const additionalQuests: CustomQuest[] = Array.from(
     Array(Math.abs(limitRepeatedQuest)).keys()
-  ).map((id) => {
+  ).map((index) => {
     const newQuest = { ...quest };
     const lockedByQuests = newQuest.locked_by_quests ?? [];
 
-    newQuest.id = `${newQuest.id}_repeated_${id}`;
+    newQuest.id = createRepeatedQuestId(newQuest.id, index);
     newQuest.locked_by_quests = [...lockedByQuests, previousId];
 
     previousId = newQuest.id;
