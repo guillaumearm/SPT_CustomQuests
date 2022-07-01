@@ -48,7 +48,7 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - [All quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
 
 ## Modding API
-You can inject custom quests dynamically from other mods.
+Since 2.2.0, you can inject custom quests dynamically from other mods.
 
 In the `delayedLoad` method:
 
