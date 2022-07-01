@@ -8,7 +8,7 @@
 - [Chained quests](#chained-quests)
 - [Quests rewards](#rewards)
 - [Rewards on quest start](#rewards-on-quest-start)
-- [Repeatable quests]()
+- [Repeatable quests](#repeatable-quests)
 - [Missions](#missions)
   - [Kill](#kill)
   - [GiveItem](#giveitem)
