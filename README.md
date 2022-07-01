@@ -40,7 +40,8 @@ You can rename the folder `examples.disabled` in `examples` to try out the examp
 - `enabled`: allow to enable or not CustomQuests mod
 - `debug`: more verbose console
 - `quest_directory`: The directory with custom quests
-- `at_start.disable_all_vanilla_quests`: Disable all vanilla quests (this will unlock Jaeger but without editing your profile)
+- `limit_repeated_quest`: The maximum number of time you can repeat a quest during the same game session (default to 1000). Please see API manual for more details
+- `at_start.disable_all_vanilla_quests`: Disable all vanilla quests (this will unlock Jaeger without editing your profile)
 - `at_start.wipe_enabled_custom_quests_state_from_all_profiles`: wipe all enabled custom quests from all profiles
 
 ## Resources
