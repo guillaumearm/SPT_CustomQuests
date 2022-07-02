@@ -103,11 +103,7 @@ class CustomQuests implements IMod {
       this.debug
     );
 
-    resetRepeatableQuestsOnGameStart(
-      container,
-      saveServer,
-      this.questsLoader.getRepeatableQuestIds.bind(this.questsLoader)
-    );
+    resetRepeatableQuestsOnGameStart(container, saveServer, this.debug, db);
 
     const loadedQuests = this.questsLoader.loadAll();
     const apiQuests = this.questsLoader.injectStory(this.pendingItems);

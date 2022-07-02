@@ -704,6 +704,7 @@ class ConditionsGenerator {
     return [];
   }
 
+  // if adding values here, getConditionsIdsMappingFromTemplate should be impacted
   generateConditions(): Conditions {
     return {
       AvailableForStart: this.generateAvailableForStart(),

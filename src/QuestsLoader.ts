@@ -43,8 +43,6 @@ const repeatQuest = (
 };
 
 export class QuestsLoader {
-  private repeatableQuestIds: Record<string, boolean> = {};
-
   constructor(
     private questDirectory: string,
     private db: DatabaseServer,
@@ -54,10 +52,6 @@ export class QuestsLoader {
     private debug: (data: string) => void
   ) {
     this.questDirectory = questDirectory;
-  }
-
-  getRepeatableQuestIds(): Record<string, boolean> {
-    return this.repeatableQuestIds;
   }
 
   loadAll(): IQuest[] {
@@ -142,11 +136,6 @@ export class QuestsLoader {
     quests.forEach((q) => {
       if (q.repeatable) {
         const repeatableQuests = repeatQuest(q, limitRepeatedQuest);
-
-        repeatableQuests.forEach((rq) => {
-          this.repeatableQuestIds[rq.id] = true;
-        });
-
         resultQuests.push(repeatableQuests);
       } else {
         resultQuests.push([q]);
