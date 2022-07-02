@@ -341,6 +341,10 @@ class ConditionsGenerator {
 
     const counterId = `${killConditionId}_counter`;
 
+    const weapon = mission.weapons_whitelist
+      ? this.getItemIdsFromAcceptedItems(mission.weapons_whitelist)
+      : undefined;
+
     const conditions: CounterCondition[] = [
       {
         _parent: "Kills",
@@ -349,6 +353,7 @@ class ConditionsGenerator {
           target: mission.target || "Any",
           compareMethod: ">=",
           value: "1",
+          weapon,
           id: `${counterId}_kill`,
         },
       },

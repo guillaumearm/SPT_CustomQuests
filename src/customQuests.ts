@@ -68,6 +68,7 @@ export type MissionKill = {
   type: "Kill";
   target?: KillTarget;
   locations?: PossibleLocation[] | PossibleLocation;
+  weapons_whitelist?: string[];
   one_session_only?: boolean;
   count?: number;
   message?: QuestString;

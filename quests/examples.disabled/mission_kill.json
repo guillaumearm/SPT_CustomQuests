@@ -1,5 +1,14 @@
 [
   {
+    "type": "@group",
+    "id": "trap_weapons_1",
+    "items": [
+      "61a4c8884f95bc3b2c5dc96f",
+      "5580223e4bdc2d1c128b457f",
+      "60db29ce99594040e04c4a27"
+    ]
+  },
+  {
     "id": "trap_example_mission_kill_1",
     "trader_id": "fence",
     "name": "Kill mission",
@@ -20,6 +29,13 @@
         "target": "AnyPmc",
         "count": 2,
         "locations": ["customs"]
+      },
+      {
+        "type": "Kill",
+        "message": "Kill 3 guys with a shotgun revolver, a double barrel shotgun or a 357 magnum",
+        "target": "Any",
+        "count": 3,
+        "weapons_whitelist": ["trap_weapons_1"]
       }
     ]
   }
