@@ -19,7 +19,7 @@
       {
         "type": "Kill",
         "message": "Kill 5 scavs on factory",
-        "target": "Scav",
+        "target": "Savage",
         "count": 5,
         "locations": ["factory"]
       },
