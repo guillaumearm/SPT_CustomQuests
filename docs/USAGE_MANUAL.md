@@ -286,8 +286,8 @@ A `Kill` mission payload example:
     "factory"
   ],
   "count": 5,
-  "message": "Kill 5 scavs on customs or factory (in one raid)",
-  "one_session_only": true
+  "message": "Kill 5 scavs on customs or factory with a 'Chiappa Rhino 50DS .357 revolver'",
+  "weapons_whitelist": ["61a4c8884f95bc3b2c5dc96f"]
 }
 ```
 
@@ -311,6 +311,8 @@ The `locations` array possible values are:
 - `woods`
 
 The `count` is the number of kills needed to complete the mission (default to 1).
+
+The `weapons_whitelist` is an array of ids (compatible with [@group directives](#group-directive))
 
 The `message` is the message quest, it's available on all type of missions and support multilingual format.
 
@@ -462,7 +464,7 @@ Currently, there is 2 commands: `@group` and `@build`.
 A directive is a special payload with `type` field (can only be `@group` or `@build` for now), it lives with the quests and do not need to respect any order.
 
 ### group directive
-With the `@group` directive, you can define a group of items with a special id you can re-use in all `accepted_items` field.
+With the `@group` directive, you can define a group of items with a special id you can re-use in all `accepted_items` field as well as for `weapons_whitelist` option in [Kill](#kill) missions.
 
 This simply the quest workflow creation when having a lot of `accepted_items`.
 

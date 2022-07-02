@@ -14,6 +14,7 @@ This mod allow to add your own quests easily with a single json file (per quest)
 - [Quest chaining](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#chained-quests)
 - Several mission types available: [`Kill`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#kill), [`GiveItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#giveitem), [`FindItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#finditem), [`PlaceItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#placeitem), [`VisitPlace`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#visitplace), [`PlaceBeacon` and `PlaceSignalJammer`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#placebeacon-and-placesignaljammer)
 - [`GiveItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#giveitem), [`FindItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#finditem) and [`PlaceItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#placeitem) missions are compatible with [quest items](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/ALL_QUEST_ITEMS.md)
+- [`Kill`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#kill) missions can have a `weapons_whitelist` to limit the kill count to certain weapon ids
 - [Repeatable quests](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#repeatable-quests) (it's not vanilla daily quests)
 - [Rewards](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#rewards): xp and items (with attachements using [`@build` directive](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#build-directive)) on quest success or quest start
 - Group items ids using [`@group` directive](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#group-directive) (valable for `accepted_items` fields only)
@@ -87,7 +88,7 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
 - Custom quest images
-- Mission type `Kill` improvements: weapon restrictions, equipment restrictions
+- Mission type `Kill` improvements: weapon attachments restrictions, weared equipment restrictions
 - Mission type `Kill` improvements: range restrictions, physical effects restrictions
 - Mission restriction: only on night
 - New mission type: `GunSmith`
