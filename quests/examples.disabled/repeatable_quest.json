@@ -13,10 +13,24 @@
       "en": "It works!"
     },
     "rewards": {
-      "xp": 10,
       "items": {
-        "5449016a4bdc2d6f028b456f": 100
+        "5449016a4bdc2d6f028b456f": 10,
+        "5755356824597772cb798962": 2
       }
-    }
+    },
+    "missions": [
+      {
+        "type": "GiveItem",
+        "accepted_items": ["5449016a4bdc2d6f028b456f"],
+        "count": 10,
+        "message": "Give me 10 roubles"
+      },
+      {
+        "type": "GiveItem",
+        "accepted_items": ["5755356824597772cb798962"],
+        "count": 2,
+        "message": "Give me 2 ai-2 medkit"
+      }
+    ]
   }
 ]
