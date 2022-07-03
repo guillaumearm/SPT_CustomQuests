@@ -2,6 +2,7 @@ import type { GameCallbacks } from "@spt-aki/callbacks/GameCallbacks";
 import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { SaveServer } from "@spt-aki/servers/SaveServer";
 import type { DependencyContainer } from "tsyringe";
+import { isNotNil } from "./utils";
 
 const filterInObject = <T>(
   predicate: (x: T, idx: number) => boolean,
@@ -97,6 +98,39 @@ export const resetRepeatableQuestsOnGameStart = (
           pmc.Quests = [];
         }
 
+        // 0. reset all counters to 0 for a repeatable quest
+        // first, index the original repeated quest ids
+        const originalRepeatableQuests: Record<string, boolean> = {};
+
+        pmc.Quests.map((q) => extractOriginalQuestId(q.qid))
+          .filter(isNotNil)
+          .forEach((id) => {
+            originalRepeatableQuests[id] = true;
+          });
+
+        // then, reset all Success repeatable quest
+        // repeatable quest =  original repeatable quest OR repeated quest
+        pmc.Quests.forEach((q) => {
+          if (
+            q.status === "Success" &&
+            (originalRepeatableQuests[q.qid] || isRepeatedQuest(q.qid))
+          ) {
+            // reset backend counters
+            Object.values(pmc.BackendCounters).forEach((counter) => {
+              if (counter.qid === q.qid) {
+                counter.value = 0;
+              }
+            });
+
+            // reset conditions counters
+            pmc.ConditionCounters.Counters.forEach((counter) => {
+              if (counter.qid === q.qid) {
+                counter.value = 0;
+              }
+            });
+          }
+        });
+
         // 1. replace counters
         pmc.Quests.forEach((q) => {
           if (
@@ -123,7 +157,7 @@ export const resetRepeatableQuestsOnGameStart = (
                   }
                 });
 
-              // condition counters
+              // conditions counters
               pmc.ConditionCounters.Counters.filter(
                 (counter) => counter.qid === originalId
               ).forEach((counter) => {
@@ -169,7 +203,7 @@ export const resetRepeatableQuestsOnGameStart = (
           return true;
         }, pmc.BackendCounters);
 
-        // condition counters
+        // conditions counters
         pmc.ConditionCounters.Counters = pmc.ConditionCounters.Counters.filter(
           (counter) => {
             if (isRepeatedQuest(counter.qid)) {
@@ -200,7 +234,7 @@ export const resetRepeatableQuestsOnGameStart = (
           debug(`${removedCounters} counter(s) removed`);
         }
         if (removedRepeatedQuests) {
-          debug(`${removedCounters} repeated quest(s) removed`);
+          debug(`${removedRepeatedQuests} repeated quest(s) removed`);
         }
 
         return response;

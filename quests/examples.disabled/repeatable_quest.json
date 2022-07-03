@@ -4,13 +4,13 @@
     "repeatable": true,
     "trader_id": "fence",
     "name": {
-      "en": "My first quest"
+      "en": "My first repeatable quest"
     },
     "description": {
       "en": "My description"
     },
     "success_message": {
-      "en": "It works!"
+      "en": "It works, repeat again!"
     },
     "rewards": {
       "items": {
@@ -28,7 +28,7 @@
       {
         "type": "GiveItem",
         "accepted_items": ["5755356824597772cb798962"],
-        "count": 2,
+        "count": 3,
         "message": "Give me 2 ai-2 medkit"
       }
     ]
