@@ -145,13 +145,41 @@ export class QuestsLoader {
     return flatten(resultQuests);
   }
 
+  /**
+   * Replace whitespaces ' ' by '_' on all story items
+   */
+  private transformId<T extends StoryItem>(quest: T): T {
+    const { id } = quest;
+
+    const newId = id.replace(/ /g, "_");
+
+    if (newId !== id) {
+      this.logger.warning(
+        `=> Custom Quests: quest id ${id} replaced by '${newId}'`
+      );
+    }
+
+    return {
+      ...quest,
+      id: newId,
+    };
+  }
+
   public injectStory(
     story: StoryItem[],
     fileName = "@api-quest-loader"
   ): IQuest[] {
-    const quests: CustomQuest[] = story.filter(isStoryCustomQuest);
-    const itemBuilds = story.filter(isStoryItemBuild);
-    const itemGroups = story.filter(isStoryAcceptedItemGroup);
+    const quests: CustomQuest[] = story
+      .filter(isStoryCustomQuest)
+      .map(this.transformId.bind(this));
+
+    const itemBuilds = story
+      .filter(isStoryItemBuild)
+      .map(this.transformId.bind(this));
+
+    const itemGroups = story
+      .filter(isStoryAcceptedItemGroup)
+      .map(this.transformId.bind(this));
 
     if (itemBuilds.length) {
       this.debug(

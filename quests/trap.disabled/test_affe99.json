@@ -1,0 +1,1191 @@
+[
+  {
+    "id": "Scav 10x",
+    "trader_id": "prapor",
+    "repeatable": "true",
+    "type": "Elimination",
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 10000,
+
+        "5696686a4bdc2da3298b456a": 100,
+
+        "569668774bdc2da2298b4568": 100,
+
+        "5d235b4d86f7742e017bc88a": 1
+      },
+
+      "xp": 5000
+    },
+
+    "name": "Kill Scavs 10x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 10,
+
+        "locations": ["any"],
+
+        "message": "Kill 10 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 25x",
+
+    "trader_id": "prapor",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 50000,
+
+        "5696686a4bdc2da3298b456a": 250,
+
+        "569668774bdc2da2298b4568": 250,
+
+        "57347ca924597744596b4e71": 3
+      },
+
+      "xp": 10000
+    },
+
+    "name": "Kill Scavs 25x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 25,
+
+        "locations": ["any"],
+
+        "message": "Kill 25 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 50x",
+
+    "trader_id": "therapist",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 100000,
+
+        "5696686a4bdc2da3298b456a": 500,
+
+        "569668774bdc2da2298b4568": 500,
+
+        "5c0530ee86f774697952d952": 3
+      },
+
+      "xp": 20000
+    },
+
+    "name": "Kill 50x Scavs",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 50,
+
+        "locations": ["any"],
+
+        "message": "Kill 50 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 100x",
+
+    "trader_id": "therapist",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 500000,
+
+        "5696686a4bdc2da3298b456a": 1000,
+
+        "569668774bdc2da2298b4568": 1000,
+
+        "59faff1d86f7746c51718c9c": 1
+      },
+
+      "xp": 50000
+    },
+
+    "name": "Kill 100x Scavs",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 100,
+
+        "locations": ["any"],
+
+        "message": "Kill 100 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 150x",
+
+    "trader_id": "fence",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 5000000,
+
+        "5696686a4bdc2da3298b456a": 1500,
+
+        "569668774bdc2da2298b4568": 1500,
+
+        "59faff1d86f7746c51718c9c": 10
+      },
+
+      "xp": 75000
+    },
+
+    "name": "Kill Scavs 150x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 150,
+
+        "locations": ["any"],
+
+        "message": "Kill 150 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 200x",
+
+    "trader_id": "fence",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 7000000,
+
+        "5696686a4bdc2da3298b456a": 2500,
+
+        "569668774bdc2da2298b4568": 2500,
+
+        "59faff1d86f7746c51718c9c": 10,
+
+        "5c0530ee86f774697952d952": 5
+      },
+
+      "xp": 100000
+    },
+
+    "name": "Kill Scavs 200x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 200,
+
+        "locations": ["any"],
+
+        "message": "Kill 200 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 250x",
+
+    "trader_id": "skier",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 10000000,
+
+        "5696686a4bdc2da3298b456a": 3500,
+
+        "569668774bdc2da2298b4568": 3500,
+
+        "59faff1d86f7746c51718c9c": 15,
+
+        "5c0530ee86f774697952d952": 10
+      },
+
+      "xp": 125000
+    },
+
+    "name": "Kill Scavs 250x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 250,
+
+        "locations": ["any"],
+
+        "message": "Kill 250 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "Scav 500x",
+
+    "trader_id": "skier",
+
+    "repeatable": "true",
+
+    "type": "Elimination",
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 15000000,
+
+        "5696686a4bdc2da3298b456a": 5500,
+
+        "569668774bdc2da2298b4568": 5500,
+
+        "59faff1d86f7746c51718c9c": 25,
+
+        "5c0530ee86f774697952d952": 25,
+
+        "57347ca924597744596b4e71": 25
+      },
+
+      "xp": 200000
+    },
+
+    "name": "Kill Scavs 500x",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "count": 500,
+
+        "locations": ["any"],
+
+        "message": "Kill 500 Scavs"
+      }
+    ],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "PMC 10x",
+
+    "trader_id": "peacekeeper",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 10,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 50000,
+
+        "5696686a4bdc2da3298b456a": 100,
+
+        "569668774bdc2da2298b4568": 100,
+
+        "5c1267ee86f77416ec610f72": 3
+      },
+
+      "xp": 5000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 10xDogtags",
+
+    "trader_id": "peacekeeper",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 10,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 50000,
+
+        "5696686a4bdc2da3298b456a": 100,
+
+        "569668774bdc2da2298b4568": 100,
+
+        "5c1267ee86f77416ec610f72": 3
+      },
+
+      "xp": 5000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Completion"
+  },
+
+  {
+    "id": "PMC 25x",
+
+    "trader_id": "peacekeeper",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 25,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 100000,
+
+        "5696686a4bdc2da3298b456a": 500,
+
+        "569668774bdc2da2298b4568": 500,
+
+        "57347ca924597744596b4e71": 5
+      },
+
+      "xp": 10000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 25xDogtags",
+
+    "trader_id": "peacekeeper",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 25,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 100000,
+
+        "5696686a4bdc2da3298b456a": 500,
+
+        "569668774bdc2da2298b4568": 500,
+
+        "57347ca924597744596b4e71": 5
+      },
+
+      "xp": 10000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Completion"
+  },
+
+  {
+    "id": "PMC 50x",
+
+    "trader_id": "mechanic",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 50,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 1000000,
+
+        "5696686a4bdc2da3298b456a": 750,
+
+        "569668774bdc2da2298b4568": 750,
+
+        "5c0530ee86f774697952d952": 5
+      },
+
+      "xp": 25000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 50xDogtags",
+
+    "trader_id": "mechanic",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 50,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 1000000,
+
+        "5696686a4bdc2da3298b456a": 750,
+
+        "569668774bdc2da2298b4568": 750,
+
+        "5c0530ee86f774697952d952": 5
+      },
+
+      "xp": 25000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "unlock_on_quest_start": [],
+
+    "type": "Completion"
+  },
+
+  {
+    "id": "PMC 100x",
+
+    "trader_id": "mechanic",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 100,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 5000000,
+
+        "5696686a4bdc2da3298b456a": 1500,
+
+        "569668774bdc2da2298b4568": 1500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 10
+      },
+
+      "xp": 100000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 100xDogtags",
+
+    "trader_id": "mechanic",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 100,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 5000000,
+
+        "5696686a4bdc2da3298b456a": 1500,
+
+        "569668774bdc2da2298b4568": 1500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 10
+      },
+
+      "xp": 100000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "PMC 150x",
+
+    "trader_id": "ragman",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 150,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 7000000,
+
+        "5696686a4bdc2da3298b456a": 2500,
+
+        "569668774bdc2da2298b4568": 2500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 15,
+
+        "5c0530ee86f774697952d952": 10,
+
+        "57347ca924597744596b4e71": 10
+      },
+
+      "xp": 150000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 150xDogtags",
+
+    "trader_id": "ragman",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 150,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 7000000,
+
+        "5696686a4bdc2da3298b456a": 2500,
+
+        "569668774bdc2da2298b4568": 2500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 15,
+
+        "5c0530ee86f774697952d952": 10,
+
+        "57347ca924597744596b4e71": 10
+      },
+
+      "xp": 150000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "PMC 200x",
+
+    "trader_id": "ragman",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 200,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 1000000,
+
+        "5696686a4bdc2da3298b456a": 3500,
+
+        "569668774bdc2da2298b4568": 3500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 20,
+
+        "5c0530ee86f774697952d952": 15,
+
+        "57347ca924597744596b4e71": 15
+      },
+
+      "xp": 250000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 200xDogtags",
+
+    "trader_id": "ragman",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 200,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 1000000,
+
+        "5696686a4bdc2da3298b456a": 3500,
+
+        "569668774bdc2da2298b4568": 3500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 20,
+
+        "5c0530ee86f774697952d952": 15,
+
+        "57347ca924597744596b4e71": 15
+      },
+
+      "xp": 250000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "PMC 250x",
+
+    "trader_id": "jaeger",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 250,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 2000000,
+
+        "5696686a4bdc2da3298b456a": 5500,
+
+        "569668774bdc2da2298b4568": 5500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 25,
+
+        "5c0530ee86f774697952d952": 20,
+
+        "57347ca924597744596b4e71": 20
+      },
+
+      "xp": 500000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 250xDogtags",
+
+    "trader_id": "jaeger",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 250,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 2000000,
+
+        "5696686a4bdc2da3298b456a": 5500,
+
+        "569668774bdc2da2298b4568": 5500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 25,
+
+        "5c0530ee86f774697952d952": 20,
+
+        "57347ca924597744596b4e71": 20
+      },
+
+      "xp": 500000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": []
+  },
+
+  {
+    "id": "PMC 500x",
+
+    "trader_id": "jaeger",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "Kill",
+
+        "target": "AnyPmc",
+
+        "count": 500,
+
+        "locations": ["any"],
+
+        "message": "Get them!"
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 25000000,
+
+        "5696686a4bdc2da3298b456a": 10500,
+
+        "569668774bdc2da2298b4568": 10500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 50,
+
+        "5c0530ee86f774697952d952": 50,
+
+        "57347ca924597744596b4e71": 50
+      },
+
+      "xp": 1000000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": [],
+
+    "type": "Elimination"
+  },
+
+  {
+    "id": "PMC 500xDogtags",
+
+    "trader_id": "jaeger",
+
+    "repeatable": "true",
+
+    "missions": [
+      {
+        "type": "GiveItem",
+
+        "accepted_items": [
+          "59f32bb586f774757e1e8442",
+
+          "59f32c3b86f77472a31742f0"
+        ],
+
+        "count": 500,
+
+        "message": "Give me their heads..."
+      }
+    ],
+
+    "rewards": {
+      "items": {
+        "5449016a4bdc2d6f028b456f": 25000000,
+
+        "5696686a4bdc2da3298b456a": 10500,
+
+        "569668774bdc2da2298b4568": 10500,
+
+        "5c0a840b86f7742ffa4f2482": 1,
+
+        "5b6d9ce188a4501afc1b2b25": 1,
+
+        "59faff1d86f7746c51718c9c": 50,
+
+        "5c0530ee86f774697952d952": 50,
+
+        "57347ca924597744596b4e71": 50
+      },
+
+      "xp": 1000000
+    },
+
+    "name": "Kill Scum",
+
+    "description": "To much of these motherfuckers going around and taking lifes of innocent citizens. Its time to show them that they are not welcome in our world.",
+
+    "success_message": "You just scratched the surface. Go on...",
+
+    "locked_by_quests": [],
+
+    "unlock_on_quest_start": []
+  }
+]
