@@ -14,8 +14,8 @@ export interface IPmcData {
     Skills: Skills;
     Stats: Stats;
     Encyclopedia: Record<string, boolean>;
-    ConditionCounters: ConditionCounters;
-    BackendCounters: Record<string, BackendCounter>;
+    ConditionCounters?: ConditionCounters;
+    BackendCounters?: Record<string, BackendCounter>;
     InsuredItems: InsuredItem[];
     Hideout: Hideout;
     Bonuses: Bonus[];

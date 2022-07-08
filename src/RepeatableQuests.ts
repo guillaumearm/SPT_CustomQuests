@@ -116,14 +116,14 @@ export const resetRepeatableQuestsOnGameStart = (
             (originalRepeatableQuests[q.qid] || isRepeatedQuest(q.qid))
           ) {
             // reset backend counters
-            Object.values(pmc.BackendCounters).forEach((counter) => {
+            Object.values(pmc.BackendCounters ?? {}).forEach((counter) => {
               if (counter.qid === q.qid) {
                 counter.value = 0;
               }
             });
 
             // reset conditions counters
-            pmc.ConditionCounters.Counters.forEach((counter) => {
+            pmc.ConditionCounters?.Counters.forEach((counter) => {
               if (counter.qid === q.qid) {
                 counter.value = 0;
               }
@@ -146,23 +146,25 @@ export const resetRepeatableQuestsOnGameStart = (
               );
 
               // backend counters
-              Object.values(pmc.BackendCounters)
+              Object.values(pmc.BackendCounters ?? {})
                 .filter((counter) => counter.qid === originalId)
                 .forEach((counter) => {
                   const otherCounterId = conditionsMapping[counter.id];
-                  if (pmc.BackendCounters[otherCounterId]) {
-                    const otherCounter = pmc.BackendCounters[otherCounterId];
+                  const backendCounters = pmc.BackendCounters ?? {};
+
+                  if (backendCounters[otherCounterId]) {
+                    const otherCounter = backendCounters[otherCounterId];
                     counter.value = otherCounter?.value ?? 0;
                     replacedCounters = replacedCounters + 1;
                   }
                 });
 
               // conditions counters
-              pmc.ConditionCounters.Counters.filter(
+              pmc.ConditionCounters?.Counters.filter(
                 (counter) => counter.qid === originalId
               ).forEach((counter) => {
                 const otherCounterId = conditionsMapping[counter.id];
-                const otherCounter = pmc.ConditionCounters.Counters.find(
+                const otherCounter = pmc.ConditionCounters?.Counters.find(
                   (c) => c.id === otherCounterId
                 );
                 if (otherCounter) {
@@ -201,19 +203,20 @@ export const resetRepeatableQuestsOnGameStart = (
             return false;
           }
           return true;
-        }, pmc.BackendCounters);
+        }, pmc.BackendCounters ?? {});
 
         // conditions counters
-        pmc.ConditionCounters.Counters = pmc.ConditionCounters.Counters.filter(
-          (counter) => {
-            if (isRepeatedQuest(counter.qid)) {
-              removedCounters = removedCounters + 1;
-              return false;
-            }
+        if (pmc.ConditionCounters) {
+          pmc.ConditionCounters.Counters =
+            pmc.ConditionCounters?.Counters.filter((counter) => {
+              if (isRepeatedQuest(counter.qid)) {
+                removedCounters = removedCounters + 1;
+                return false;
+              }
 
-            return true;
-          }
-        );
+              return true;
+            }) ?? [];
+        }
 
         // 4. remove all repeated quests
         pmc.Quests = pmc.Quests.filter((q) => {

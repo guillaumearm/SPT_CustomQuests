@@ -68,18 +68,23 @@ export class OnStartHandler {
 
           if (counter && counter.qid === questId) {
             backendCounterRemoved = true;
-            delete pmcData.BackendCounters[counterId];
+            if (pmcData.BackendCounters) {
+              delete pmcData.BackendCounters[counterId];
+            }
           }
         });
 
         // 3. wipe condition counters
-        const Counters = pmcData.ConditionCounters.Counters.filter(
-          (payload) => payload.qid !== questId
-        );
+        const Counters =
+          pmcData.ConditionCounters?.Counters.filter(
+            (payload) => payload.qid !== questId
+          ) ?? [];
         const counterRemoved =
-          Counters.length !== pmcData.ConditionCounters.Counters.length;
+          Counters.length !== pmcData.ConditionCounters?.Counters.length ?? 0;
 
-        pmcData.ConditionCounters.Counters = Counters;
+        if (pmcData.ConditionCounters) {
+          pmcData.ConditionCounters.Counters = Counters;
+        }
 
         // 4. wipe DroppedItems
         let droppedItem = false;
