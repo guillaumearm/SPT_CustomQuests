@@ -227,7 +227,7 @@ function generateLocationCondition(
     ? givenLocations
     : [givenLocations];
 
-  if (locations.includes("any")) {
+  if (locations.includes("any") || !locations.length) {
     return undefined;
   }
 
