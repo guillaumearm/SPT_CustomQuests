@@ -83,7 +83,8 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 
 ## Planned features
 - New mission type: `SurviveRaid`
-- More rewards: unlock traders, unlock barters
+- More rewards: unlock traders and maps (with [Path To Tarkov](https://hub.sp-tarkov.com/files/file/498-path-to-tarkov/) compat)
+- Unlock barters reward (I'm currently waiting for the next spt-aki version)
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
