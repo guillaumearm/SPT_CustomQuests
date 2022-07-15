@@ -166,7 +166,7 @@ export class RewardsGenerator {
 
     rewardReputations.forEach((traderId) => {
       const nb = reputations[traderId];
-      if (typeof nb === "number" && nb > 0) {
+      if (typeof nb === "number" && nb !== 0) {
         result.push(this.generateReputationReward(traderId, nb));
       }
     });
