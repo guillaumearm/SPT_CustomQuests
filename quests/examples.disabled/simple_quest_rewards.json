@@ -18,7 +18,7 @@
       },
       "traders_reputations": {
         "mechanic": 0.25,
-        "prapor": 0.25
+        "prapor": -0.25
       }
     }
   }
