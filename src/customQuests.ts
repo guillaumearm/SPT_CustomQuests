@@ -132,6 +132,9 @@ export type QuestRewards = {
   items?: {
     [itemId: string]: number;
   };
+  traders_reputations?: {
+    [traderId: string]: number;
+  };
 };
 
 export type CustomQuest = {

@@ -3,10 +3,10 @@
     "id": "trap_example_simple_quest_rewards",
     "trader_id": "fence",
     "name": {
-      "en": "Free medkit !"
+      "en": "Free medkit, xp and traders reputations !"
     },
     "description": {
-      "en": "Complete the quest to get a free ai-2 medkit and some xp"
+      "en": "Complete the quest to get a free ai-2 medkit, some xp and reputations for mechanic and prapor"
     },
     "success_message": {
       "en": "Bravo!"
@@ -15,6 +15,10 @@
       "xp": 500,
       "items": {
         "5755356824597772cb798962": 1
+      },
+      "traders_reputations": {
+        "mechanic": 0.25,
+        "prapor": 0.25
       }
     }
   }

@@ -743,15 +743,13 @@ export class CustomQuestsTransformer {
     this.rewardsGenerator = new RewardsGenerator(customQuest, builds);
   }
 
-  private getTraderId(): string {
-    const traderId = this.customQuest.trader_id;
-
-    const lowerCasedId = traderId.toLowerCase();
+  public static getTraderId(traderIdOrAlias: string): string {
+    const lowerCasedId = traderIdOrAlias.toLowerCase();
     if (TRADER_ALIASES[lowerCasedId as keyof typeof TRADER_ALIASES]) {
       return TRADER_ALIASES[lowerCasedId as keyof typeof TRADER_ALIASES];
     }
 
-    return traderId;
+    return traderIdOrAlias;
   }
 
   private getDescriptiveLocation(): string {
@@ -774,7 +772,7 @@ export class CustomQuestsTransformer {
   public generateQuest(): IQuest {
     const q = this.customQuest;
     const questId = q.id;
-    const traderId = this.getTraderId();
+    const traderId = CustomQuestsTransformer.getTraderId(q.trader_id);
     const image = `/files/quest/icon/${q.image || DEFAULT_IMAGE_ID}.jpg`;
     const location = this.getDescriptiveLocation();
     const type = q.type || DEFAULT_TYPE;

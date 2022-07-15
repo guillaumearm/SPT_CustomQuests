@@ -83,15 +83,17 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 
 ## Planned features
 - New mission type: `SurviveRaid`
-- More rewards: trader reputation, unlock traders, unlock barters
+- More rewards: unlock traders, unlock barters
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail
-- Custom quest images
-- Mission type `Kill` improvements: weapon attachments restrictions, weared equipment restrictions
+- Custom quest image
+- Mission type `Kill` improvements: limbs restrictions​
+- Mission type `Kill` improvements: weapon attachments restrictions
+- Mission type `Kill` improvements: weared equipment restrictions
 - Mission type `Kill` improvements: range restrictions, physical effects restrictions
-- Mission restriction: only on night
-- New mission type: `GunSmith`
+- Mission type `Kill` improvements: kill at certain time of the day (or night)
+- New mission type: `WeaponAssembly` (allow to create gunsmith missions)
 - New mission type: `TraderLoyalty`
 - New mission type: `Skill`
 

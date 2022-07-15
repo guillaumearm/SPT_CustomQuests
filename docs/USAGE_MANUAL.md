@@ -168,7 +168,8 @@ To be able to see this quest, your pmc should be at least level 10 + the `trap_q
 Also, you can use the `unlock_on_quest_start` array to specify which quests has to been started to unlock this quest.
 
 ## Rewards
-This quest will give you +5000 xp, 2 ai-2 kits and 1 car first aid kit.
+This quest will give you +5000 xp, 2 ai-2 kits, 1 car first aid kit and give +0.25 loyalty to prapor and mechanic.
+
 ```json
 {
   "id": "trap_quest_example_5",
@@ -181,6 +182,10 @@ This quest will give you +5000 xp, 2 ai-2 kits and 1 car first aid kit.
     "items": {
       "5755356824597772cb798962": 2,
       "590c661e86f7741e566b646a": 1
+    },
+    "traders_reputations": {
+      "mechanic": 0.25,
+      "prapor": 0.25
     }
   }
 }

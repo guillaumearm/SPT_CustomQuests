@@ -146,21 +146,33 @@ export class QuestsLoader {
   }
 
   /**
-   * Replace whitespaces ' ' by '_' on all story items
+   * Replace whitespaces ' ' by '_' in ids for:
+   * 1. all story items
+   * 2. all rewards
+   * 3. all start_rewards
+   * 4. all locked_by_quests
+   * 5. all unlock_on_quest_start
+   * 6. all accepted_items
+   *
    */
-  private transformId<T extends StoryItem>(quest: T): T {
-    const { id } = quest;
+  private transformIds<T extends StoryItem>(item: T): T {
+    const { id } = item;
 
+    // 1
     const newId = id.replace(/ /g, "_");
 
     if (newId !== id) {
-      this.logger.warning(
-        `=> Custom Quests: quest id ${id} replaced by '${newId}'`
-      );
+      this.logger.warning(`=> Custom Quests: id ${id} replaced by '${newId}'`);
     }
 
+    // TODO: 2
+    // TODO: 3
+    // TODO: 4
+    // TODO: 5
+    // TODO: 6
+
     return {
-      ...quest,
+      ...item,
       id: newId,
     };
   }
@@ -171,15 +183,15 @@ export class QuestsLoader {
   ): IQuest[] {
     const quests: CustomQuest[] = story
       .filter(isStoryCustomQuest)
-      .map(this.transformId.bind(this));
+      .map(this.transformIds.bind(this));
 
     const itemBuilds = story
       .filter(isStoryItemBuild)
-      .map(this.transformId.bind(this));
+      .map(this.transformIds.bind(this));
 
     const itemGroups = story
       .filter(isStoryAcceptedItemGroup)
-      .map(this.transformId.bind(this));
+      .map(this.transformIds.bind(this));
 
     if (itemBuilds.length) {
       this.debug(

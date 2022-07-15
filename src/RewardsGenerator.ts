@@ -7,6 +7,7 @@ import type {
   StoryItemBuild,
   StoryItemBuildBase,
 } from "./customQuests";
+import { CustomQuestsTransformer } from "./CustomQuestsTransformer";
 import { isNotUndefined } from "./utils";
 
 export class RewardsGenerator {
@@ -121,6 +122,19 @@ export class RewardsGenerator {
     };
   }
 
+  private generateReputationReward(givenTraderId: string, nb: number): Reward {
+    const traderId = CustomQuestsTransformer.getTraderId(givenTraderId);
+    const idReward = `${this.customQuest.id}_reputation_reward_${traderId}`;
+
+    return {
+      index: 0,
+      value: String(nb),
+      id: idReward,
+      type: "TraderStanding",
+      target: traderId,
+    };
+  }
+
   private generateRewards(
     getRewards: () => QuestRewards | undefined,
     idPrefix = ""
@@ -134,21 +148,28 @@ export class RewardsGenerator {
 
     const xp = rewards.xp ?? 0;
     const items = rewards.items ?? {};
+    const reputations = rewards.traders_reputations ?? {};
 
     const rewardItems = Object.keys(items);
+    const rewardReputations = Object.keys(reputations);
 
     if (xp > 0) {
       result.push(this.generateXpReward(xp, idPrefix));
     }
 
-    if (rewardItems.length > 0) {
-      rewardItems.forEach((itemId) => {
-        const nb = items[itemId];
-        if (typeof nb === "number" && nb > 0) {
-          result.push(this.generateItemReward(itemId, nb, idPrefix));
-        }
-      });
-    }
+    rewardItems.forEach((itemId) => {
+      const nb = items[itemId];
+      if (typeof nb === "number" && nb > 0) {
+        result.push(this.generateItemReward(itemId, nb, idPrefix));
+      }
+    });
+
+    rewardReputations.forEach((traderId) => {
+      const nb = reputations[traderId];
+      if (typeof nb === "number" && nb > 0) {
+        result.push(this.generateReputationReward(traderId, nb));
+      }
+    });
 
     return result;
   }
