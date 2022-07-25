@@ -1,5 +1,6 @@
 import type { Item } from "@spt-aki/models/eft/common/tables/IItem";
 import type { Reward, Rewards } from "@spt-aki/models/eft/common/tables/IQuest";
+import type { QuestRewardType } from "@spt-aki/models/enums/QuestRewardType";
 
 import type {
   CustomQuest,
@@ -30,7 +31,7 @@ export class RewardsGenerator {
       index: 0,
       id: `${idPrefix}${this.customQuest.id}_xp_reward`,
       value: String(xp),
-      type: "Experience",
+      type: "Experience" as QuestRewardType,
     };
   }
 
@@ -86,7 +87,7 @@ export class RewardsGenerator {
       index: 0,
       value: String(nb),
       id: idReward,
-      type: "Item",
+      type: "Item" as QuestRewardType,
       target: targetId,
       items,
     };
@@ -108,7 +109,7 @@ export class RewardsGenerator {
       index: 0,
       value: String(nb),
       id: idReward,
-      type: "Item",
+      type: "Item" as QuestRewardType,
       target: targetId,
       items: [
         {
@@ -130,7 +131,7 @@ export class RewardsGenerator {
       index: 0,
       value: String(nb),
       id: idReward,
-      type: "TraderStanding",
+      type: "TraderStanding" as QuestRewardType,
       target: traderId,
     };
   }

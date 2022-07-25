@@ -1,6 +1,8 @@
 "use strict";
 
-import type { IMod } from "@spt-aki/models/external/mod";
+import type { IPostAkiLoadMod } from "@spt-aki/models/external/IPostAkiLoadMod";
+import type { IPreAkiLoadMod } from "@spt-aki/models/external/IPreAkiLoadMod";
+
 import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import type { SaveServer } from "@spt-aki/servers/SaveServer";
@@ -29,7 +31,7 @@ const setCustomQuestsAPI = (api: CustomQuestsAPI): string => {
   return apiName;
 };
 
-class CustomQuests implements IMod {
+class CustomQuests implements IPreAkiLoadMod, IPostAkiLoadMod {
   private packageJson: PackageJson;
   private config: Config;
   private questDirectory: string;
@@ -40,7 +42,7 @@ class CustomQuests implements IMod {
   private logger: ILogger;
   private debug: (data: string) => void;
 
-  load(container: DependencyContainer): void {
+  preAkiLoad(container: DependencyContainer): void {
     this.packageJson = readJsonFile<PackageJson>(PACKAGE_JSON_PATH);
     this.config = readJsonFile<Config>(CONFIG_PATH);
     this.logger = container.resolve<ILogger>("WinstonLogger");
@@ -76,7 +78,7 @@ class CustomQuests implements IMod {
     this.debug(`api exposed under 'globalThis.${apiName}'`);
   }
 
-  delayedLoad(container: DependencyContainer): void {
+  postAkiLoad(container: DependencyContainer): void {
     if (!this.config.enabled) {
       return;
     }
