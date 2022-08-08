@@ -4,6 +4,19 @@ import type { SaveServer } from "@spt-aki/servers/SaveServer";
 import type { DependencyContainer } from "tsyringe";
 import { isNotNil } from "./utils";
 
+const SUCCESS = 4;
+const STARTED = 2;
+const AVAILABLE_FOR_START = 1;
+
+const isSuccess = (status: any): boolean =>
+  status === SUCCESS || status === "Success";
+
+const isStarted = (status: any): boolean =>
+  status === STARTED || status === "Started";
+
+const isAvailableForStart = (status: any): boolean =>
+  status === AVAILABLE_FOR_START || status === "AvailableForStart";
+
 const filterInObject = <T>(
   predicate: (x: T, idx: number) => boolean,
   xs: Record<string, T>
@@ -112,7 +125,7 @@ export const resetRepeatableQuestsOnGameStart = (
         // repeatable quest =  original repeatable quest OR repeated quest
         pmc.Quests.forEach((q) => {
           if (
-            q.status === "Success" &&
+            isSuccess(q.status) &&
             (originalRepeatableQuests[q.qid] || isRepeatedQuest(q.qid))
           ) {
             // reset backend counters
@@ -135,7 +148,7 @@ export const resetRepeatableQuestsOnGameStart = (
         pmc.Quests.forEach((q) => {
           if (
             isRepeatedQuest(q.qid) &&
-            (q.status === "Started" || q.status === "AvailableForStart")
+            (isStarted(q.status) || isAvailableForStart(q.status))
           ) {
             const originalId = extractOriginalQuestId(q.qid);
             if (originalId) {
@@ -180,7 +193,7 @@ export const resetRepeatableQuestsOnGameStart = (
         pmc.Quests.filter(
           (q) =>
             isRepeatedQuest(q.qid) &&
-            (q.status === "Started" || q.status === "AvailableForStart")
+            (isStarted(q.status) || isAvailableForStart(q.status))
         ).forEach((repeatedQuest) => {
           const originalId = extractOriginalQuestId(repeatedQuest.qid);
 
