@@ -43,7 +43,7 @@ export interface AvailableForProps {
     index: number;
     parentId: string;
     dynamicLocale: boolean;
-    value?: string | number;
+    value?: number | string;
     compareMethod?: string;
     visibilityConditions?: VisibilityCondition[];
     target?: string | string[];
@@ -57,7 +57,7 @@ export interface AvailableForProps {
     counter?: AvailableForCounter;
     plantTime?: number;
     zoneId?: string;
-    type?: string;
+    type?: boolean | string;
     countInRaid?: boolean;
 }
 export interface AvailableForCounter {
@@ -85,15 +85,14 @@ export interface DaytimeCounter {
     to: number;
 }
 export interface VisibilityCondition {
-    id?: string; // not used ?
-    value?: number; // not used ?
-    dynamicLocale?: boolean; // not used ?
-    oneSessionOnly?: boolean; // not used ?
     _parent: string;
     _props: {
         id: string;
-        target: string;
-    };
+        value?: number;
+        target: string
+        dynamicLocale?: boolean;
+        oneSessionOnly?: boolean;
+    }
 }
 export interface Rewards {
     AvailableForStart?: Reward[];
