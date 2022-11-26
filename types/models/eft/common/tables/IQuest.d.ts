@@ -1,4 +1,5 @@
 import { QuestRewardType } from "../../../enums/QuestRewardType";
+import { QuestStatus } from "../../../enums/QuestStatus";
 import { Item } from "./IItem";
 export interface IQuest {
     QuestName: string;
@@ -43,11 +44,11 @@ export interface AvailableForProps {
     index: number;
     parentId: string;
     dynamicLocale: boolean;
-    value?: number | string;
+    value?: string | number;
     compareMethod?: string;
     visibilityConditions?: VisibilityCondition[];
     target?: string | string[];
-    status?: number[];
+    status?: QuestStatus[];
     onlyFoundInRaid?: boolean;
     oneSessionOnly?: boolean;
     doNotResetIfCounterCompleted?: boolean;
@@ -57,7 +58,7 @@ export interface AvailableForProps {
     counter?: AvailableForCounter;
     plantTime?: number;
     zoneId?: string;
-    type?: boolean | string;
+    type?: string;
     countInRaid?: boolean;
 }
 export interface AvailableForCounter {
@@ -72,7 +73,7 @@ export interface CounterProps {
     id: string;
     target: string[] | string;
     compareMethod?: string;
-    value?: string;
+    value?: number | string;
     weapon?: string[];
     equipmentInclusive?: string[][];
     weaponModsInclusive?: string[][];
@@ -103,7 +104,7 @@ export interface Rewards {
     FailRestartable?: Reward[];
     Expired?: Reward[];
 }
-export interface Reward {
+export interface Reward extends Item {
     value?: string | number;
     id: string;
     type: QuestRewardType;
