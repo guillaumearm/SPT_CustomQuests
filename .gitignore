@@ -4,6 +4,7 @@
 /quests/dev*
 /quests/trap/
 /quests/extraquests/
+/quests/local/
 
 /Trap-CustomQuests*
 /dist/
