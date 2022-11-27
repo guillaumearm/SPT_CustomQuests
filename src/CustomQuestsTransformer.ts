@@ -730,6 +730,7 @@ export class CustomQuestsTransformer {
 
   constructor(
     private customQuest: CustomQuest,
+    private questPrefixName = "",
     builds: Record<string, StoryItemBuild>,
     groups: Record<string, StoryAcceptedItemGroup>,
     private db: DatabaseServer,
@@ -858,7 +859,10 @@ export class CustomQuestsTransformer {
         location,
       };
 
-      payload.name = CustomQuestsTransformer.getLocaleValue(name, localeName);
+      payload.name =
+        this.questPrefixName +
+        CustomQuestsTransformer.getLocaleValue(name, localeName);
+
       payload.description = `${templateId}_description`;
       if (success_message) {
         payload.successMessageText = `${templateId}_success_message_text`;

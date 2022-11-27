@@ -26,6 +26,7 @@ export type Config = {
   enabled?: boolean;
   debug?: boolean;
   quest_directory?: string;
+  default_quest_name_prefix?: string;
   limit_repeated_quest?: number;
   at_start?: ConfigAtStart;
 };

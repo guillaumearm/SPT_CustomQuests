@@ -209,6 +209,7 @@ export class QuestsLoader {
 
     const questGen = new QuestsGenerator(
       expandedQuests,
+      this.config.default_quest_name_prefix,
       itemBuilds,
       itemGroups,
       this.db,
