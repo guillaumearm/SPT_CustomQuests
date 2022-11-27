@@ -5,6 +5,7 @@
 /quests/trap/
 /quests/extraquests/
 /quests/local/
+/quests/local.disabled/
 
 /Trap-CustomQuests*
 /dist/
