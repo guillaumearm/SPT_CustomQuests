@@ -1,4 +1,4 @@
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 import crypto from "crypto";
 import { readFileSync } from "fs";
 import type { PackageJson } from "./config";
@@ -11,8 +11,16 @@ export const readJsonFile = <T>(path: string): T => {
   return JSON.parse(readFileSync(path, "utf-8"));
 };
 
-export const getAllLocales = (db: DatabaseServer): string[] =>
-  Object.keys(db.getTables().locales.global);
+export const getAllLocales = (db: DatabaseServer): string[] => {
+  const locales = db.getTables().locales
+
+  if (!locales) {
+    throw new Error("no locales found in db")
+  }
+
+  return Object.keys(locales.global);
+}
+  
 
 export const isNotUndefined = <T>(value: T | undefined): value is T => {
   return value !== undefined;

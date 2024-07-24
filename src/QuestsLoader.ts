@@ -1,7 +1,7 @@
-import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
-import type { VFS } from "@spt-aki/utils/VFS";
+import type { IQuest } from "@spt/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
+import type { VFS } from "@spt/utils/VFS";
 
 import { join } from "path";
 import type { Config } from "./config";
@@ -87,7 +87,11 @@ export class QuestsLoader {
   }
 
   private loadQuest(quest: IQuest): void {
-    const quests = this.db.getTables().templates.quests;
+    const quests = this.db.getTables().templates?.quests;
+
+    if (!quests) {
+      throw new Error("quests templates not found in db")
+    }
 
     if (quests[quest._id]) {
       this.logger.error(
@@ -104,25 +108,29 @@ export class QuestsLoader {
   ): void {
     const locales = this.db.getTables().locales;
 
+    if (!locales) {
+      throw new Error("locales not found in db")
+    }
+
     getAllLocales(this.db).forEach((localeName) => {
       const payload = localesPayloads[localeName];
       const globalLocales = locales.global[localeName];
 
-      if (globalLocales.quest[questId]) {
+      if (globalLocales[questId]) {
         this.logger.error(
           `=> Custom Quests: already registered locales for questId '${questId}'`
         );
       } else {
-        globalLocales.quest[questId] = payload.quest;
+        globalLocales[questId] = payload.quest;
       }
 
       Object.keys(payload.mail).forEach((mailId) => {
-        if (globalLocales.mail[mailId]) {
+        if (globalLocales[mailId]) {
           this.logger.error(
             `=> Custom Quests: already registered mail '${mailId}' for questId '${questId}'`
           );
         } else {
-          globalLocales.mail[mailId] = payload.mail[mailId];
+          globalLocales[mailId] = payload.mail[mailId];
         }
       });
     });

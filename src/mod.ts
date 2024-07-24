@@ -1,12 +1,9 @@
 "use strict";
 
-import type { IPostAkiLoadMod } from "@spt-aki/models/external/IPostAkiLoadMod";
-import type { IPreAkiLoadMod } from "@spt-aki/models/external/IPreAkiLoadMod";
-
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
-import type { SaveServer } from "@spt-aki/servers/SaveServer";
-import type { VFS } from "@spt-aki/utils/VFS";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
+import type { SaveServer } from "@spt/servers/SaveServer";
+import type { VFS } from "@spt/utils/VFS";
 
 import type { DependencyContainer } from "tsyringe";
 
@@ -18,6 +15,8 @@ import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
 import { resetRepeatableQuestsOnGameStart } from "./RepeatableQuests";
 import { getModDisplayName, noop, readJsonFile } from "./utils";
+import { IPreSptLoadMod } from "@spt/models/external/IPreSptLoadMod";
+import { IPostSptLoadMod } from "@spt/models/external/IPostSptLoadMod";
 
 type CustomQuestsAPI = {
   load: (quests: StoryItem[]) => void;
@@ -31,7 +30,7 @@ const setCustomQuestsAPI = (api: CustomQuestsAPI): string => {
   return apiName;
 };
 
-class CustomQuests implements IPreAkiLoadMod, IPostAkiLoadMod {
+class CustomQuests implements IPreSptLoadMod, IPostSptLoadMod {
   private packageJson: PackageJson;
   private config: Config;
   private questDirectory: string;
@@ -42,7 +41,7 @@ class CustomQuests implements IPreAkiLoadMod, IPostAkiLoadMod {
   private logger: ILogger;
   private debug: (data: string) => void;
 
-  preAkiLoad(container: DependencyContainer): void {
+  preSptLoad(container: DependencyContainer): void {
     this.packageJson = readJsonFile<PackageJson>(PACKAGE_JSON_PATH);
     this.config = readJsonFile<Config>(CONFIG_PATH);
     this.logger = container.resolve<ILogger>("WinstonLogger");
@@ -78,7 +77,7 @@ class CustomQuests implements IPreAkiLoadMod, IPostAkiLoadMod {
     this.debug(`api exposed under 'globalThis.${apiName}'`);
   }
 
-  postAkiLoad(container: DependencyContainer): void {
+  postSptLoad(container: DependencyContainer): void {
     if (!this.config.enabled) {
       return;
     }

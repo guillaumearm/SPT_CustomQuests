@@ -3,10 +3,10 @@ import type {
   Conditions,
   CounterCondition,
   IQuest,
-} from "@spt-aki/models/eft/common/tables/IQuest";
-import type { ILocaleQuest } from "@spt-aki/models/spt/server/ILocaleBase";
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+} from "@spt/models/eft/common/tables/IQuest";
+
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 
 import { ALL_PLACES_BY_MAP } from "./allPlacesByMap";
 import { ALL_ZONES_BY_MAP } from "./allZonesByMap";
@@ -34,6 +34,7 @@ import {
   isNotNil,
   isNotUndefined,
 } from "./utils";
+import { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
 
 const QuestStatus = {
   Locked: 0,
@@ -67,7 +68,7 @@ Object.keys(ALL_PLACES_BY_MAP).forEach((mapName) => {
 const FALLBACK_LOCALE = "en";
 const DEFAULT_IMAGE_ID = "5a27cafa86f77424e20615d6";
 const DEFAULT_LOCATION = "any";
-const DEFAULT_TYPE = "Completion";
+const DEFAULT_TYPE = "Completion" as QuestTypeEnum;
 const DEFAULT_SUCCESS_MESSAGE = "Quest successfully completed";
 const DEFAULT_PLANT_TIME = 30;
 
@@ -721,7 +722,7 @@ class ConditionsGenerator {
 
 export type GeneratedLocales = Record<
   string,
-  { mail: Record<string, string>; quest: ILocaleQuest }
+  { mail: Record<string, string>; quest: IQuest }
 >;
 
 export class CustomQuestsTransformer {
@@ -783,6 +784,8 @@ export class CustomQuestsTransformer {
     return {
       QuestName: questId,
       _id: questId,
+      status: "",
+      questStatus: 1,
       image,
       type,
       traderId,
@@ -795,10 +798,16 @@ export class CustomQuestsTransformer {
       name: `${questId} name`,
       note: `${questId} note`,
       isKey: false,
+      KeyQuest: false,
       restartable: false,
       instantComplete: false,
       secretQuest: false,
+      side: "Pmc",
+      acceptPlayerMessage: `${questId} acceptPlayerMessage`,
+      declinePlayerMessage: `${questId} declinePlayerMessage`,
+      completePlayerMessage: `${questId} completePlayerMessage`,
       startedMessageText: `${questId} startedMessageText`,
+      changeQuestMessageText: `${questId} changeQuestMessageText`,
       successMessageText: q.success_message
         ? `${questId} successMessageText`
         : DEFAULT_SUCCESS_MESSAGE,
@@ -847,11 +856,18 @@ export class CustomQuestsTransformer {
 
     const allLocales = getAllLocales(this.db);
 
+    // TODO: check how locales work with quests
     allLocales.forEach((localeName) => {
-      const payload: ILocaleQuest = {
+      const payload: IQuest = {
         name: "",
         description: "",
-        conditions: {},
+        conditions: {
+          Started: [],
+          AvailableForFinish: [],
+          AvailableForStart: [],
+          Success: [],
+          Fail: [],
+        },
         note: "",
         failMessageText: "",
         startedMessageText: "",
@@ -868,7 +884,13 @@ export class CustomQuestsTransformer {
         payload.successMessageText = `${templateId}_success_message_text`;
       }
 
-      payload.conditions = {};
+      payload.conditions = {
+        Started: [],
+        AvailableForFinish: [],
+        AvailableForStart: [],
+        Success: [],
+        Fail: [],
+      };
 
       (missions || []).forEach((mission) => {
         const missionId = this.getMissionId(mission);

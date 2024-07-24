@@ -1,6 +1,6 @@
-import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+import type { IQuest } from "@spt/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 
 import type {
   CustomQuest,

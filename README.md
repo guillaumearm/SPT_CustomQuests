@@ -1,5 +1,5 @@
 # Custom Quests
-Easy quests creation tool for [SPT-AKI](https://www.sp-tarkov.com/)
+Easy quests creation tool for [SPT](https://www.sp-tarkov.com/)
 
 Using [Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/) will help you A LOT to create and edit json quests files.
 
@@ -84,7 +84,7 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 ## Planned features
 - New mission type: `SurviveRaid`
 - More rewards: unlock traders and maps (with [Path To Tarkov](https://hub.sp-tarkov.com/files/file/498-path-to-tarkov/) compat)
-- Unlock barters reward (I'm currently waiting for the next spt-aki version)
+- Unlock barters reward
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
 - Rewards on fail

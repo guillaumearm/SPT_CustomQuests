@@ -1,7 +1,7 @@
-import type { IQuest } from "@spt-aki/models/eft/common/tables/IQuest";
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
-import type { SaveServer } from "@spt-aki/servers/SaveServer";
+import type { IQuest } from "@spt/models/eft/common/tables/IQuest";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
+import type { SaveServer } from "@spt/servers/SaveServer";
 
 import { ALL_VANILLA_QUESTS } from "./allVanillaQuestIds";
 import type { Config, ConfigAtStart } from "./config";
@@ -34,7 +34,13 @@ export class OnStartHandler {
   }
 
   private unlockJaegger(): void {
-    const jaeger = this.db.getTables().traders[JAEGER_ID];
+    const traders = this.db.getTables().traders
+
+    if (!traders) {
+      throw new Error("no traders found in db")
+    }
+
+    const jaeger = traders[JAEGER_ID];
 
     jaeger.base.unlockedByDefault = true;
     this.logger.info(`=> Custom Quests: Jaeger trader unlocked by default`);
@@ -56,62 +62,65 @@ export class OnStartHandler {
 
         pmcData.Quests = Quests;
 
+        // TODO
         // 2. wipe backend counters
-        if (!pmcData.BackendCounters) {
-          pmcData.BackendCounters = {};
-        }
+        // if (!pmcData.BackendCounters) {
+        //   pmcData.BackendCounters = {};
+        // }
 
-        let backendCounterRemoved = false;
-        const backendCounters = pmcData.BackendCounters;
-        Object.keys(backendCounters).forEach((counterId) => {
-          const counter = backendCounters[counterId];
+        // let backendCounterRemoved = false;
+        // const backendCounters = pmcData.BackendCounters;
+        // Object.keys(backendCounters).forEach((counterId) => {
+        //   const counter = backendCounters[counterId];
 
-          if (counter && counter.qid === questId) {
-            backendCounterRemoved = true;
-            if (pmcData.BackendCounters) {
-              delete pmcData.BackendCounters[counterId];
-            }
-          }
-        });
+        //   if (counter && counter.qid === questId) {
+        //     backendCounterRemoved = true;
+        //     if (pmcData.BackendCounters) {
+        //       delete pmcData.BackendCounters[counterId];
+        //     }
+        //   }
+        // });
 
+        // TODO
         // 3. wipe condition counters
-        const Counters =
-          pmcData.ConditionCounters?.Counters.filter(
-            (payload) => payload.qid !== questId
-          ) ?? [];
-        const counterRemoved =
-          Counters.length !== pmcData.ConditionCounters?.Counters.length ?? 0;
+        // const Counters =
+        //   pmcData.ConditionCounters?.Counters.filter(
+        //     (payload) => payload.qid !== questId
+        //   ) ?? [];
+        // const counterRemoved =
+        //   Counters.length !== pmcData.ConditionCounters?.Counters.length ?? 0;
 
-        if (pmcData.ConditionCounters) {
-          pmcData.ConditionCounters.Counters = Counters;
-        }
+        // if (pmcData.ConditionCounters) {
+        //   pmcData.ConditionCounters.Counters = Counters;
+        // }
 
+        // TODO
         // 4. wipe DroppedItems
-        let droppedItem = false;
-        if (
-          pmcData.Stats &&
-          pmcData.Stats.DroppedItems &&
-          pmcData.Stats.DroppedItems.length > 0
-        ) {
-          const DroppedItems = pmcData.Stats.DroppedItems.filter(
-            (payload) => payload.QuestId !== questId
-          );
+        // let droppedItem = false;
+        // if (
+        //   pmcData.Stats &&
+        //   pmcData.Stats.DroppedItems &&
+        //   pmcData.Stats.DroppedItems.length > 0
+        // ) {
+        //   const DroppedItems = pmcData.Stats.DroppedItems.filter(
+        //     (payload) => payload.QuestId !== questId
+        //   );
 
-          if (DroppedItems.length !== pmcData.Stats.DroppedItems.length) {
-            droppedItem = true;
-          }
+        //   if (DroppedItems.length !== pmcData.Stats.DroppedItems.length) {
+        //     droppedItem = true;
+        //   }
 
-          pmcData.Stats.DroppedItems = DroppedItems;
-        }
+        //   pmcData.Stats.DroppedItems = DroppedItems;
+        // }
 
-        if (
-          questRemoved ||
-          backendCounterRemoved ||
-          counterRemoved ||
-          droppedItem
-        ) {
-          nbWiped += 1;
-        }
+        // if (
+        //   questRemoved ||
+        //   backendCounterRemoved ||
+        //   counterRemoved ||
+        //   droppedItem
+        // ) {
+        //   nbWiped += 1;
+        // }
       }
 
       // 5. wipe dialogues
