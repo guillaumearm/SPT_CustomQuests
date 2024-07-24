@@ -1,10 +1,11 @@
-import { IBaseInteractionRequestData } from "../common/request/IBaseInteractionRequestData";
+import { IBaseInteractionRequestData } from "@spt/models/eft/common/request/IBaseInteractionRequestData";
 export interface IInventoryBaseActionRequestData extends IBaseInteractionRequestData {
 }
 export interface To {
     id: string;
     container: string;
     location?: ToLocation | number;
+    isSearched?: boolean;
 }
 export interface ToLocation {
     x: number;
@@ -16,7 +17,7 @@ export interface ToLocation {
 export interface Container {
     id: string;
     container: string;
-    location: Location | number;
+    location?: Location | number;
 }
 export interface Location {
     x: number;

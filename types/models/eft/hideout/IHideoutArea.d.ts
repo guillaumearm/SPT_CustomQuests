@@ -1,25 +1,62 @@
+import { BonusSkillType } from "@spt/models/enums/BonusSkillType";
+import { BonusType } from "@spt/models/enums/BonusType";
 export interface IHideoutArea {
     _id: string;
     type: number;
     enabled: boolean;
     needsFuel: boolean;
+    requirements: IAreaRequirement[];
     takeFromSlotLocked: boolean;
     craftGivesExp: boolean;
+    displayLevel: boolean;
+    enableAreaRequirements: boolean;
+    parentArea?: string;
     stages: Record<string, Stage>;
 }
-export interface Stage {
-    requirements: Requirement[];
-    bonuses: StageBonus[];
-    slots: number;
-    constructionTime: number;
-    description: string;
+export interface IAreaRequirement {
+    areaType: number;
+    requiredlevel: number;
+    type: string;
 }
-export interface Requirement {
+export interface Stage {
+    autoUpgrade: boolean;
+    bonuses: StageBonus[];
+    constructionTime: number;
+    /** Containers inventory tpl */
+    container?: string;
+    description: string;
+    displayInterface: boolean;
+    improvements: IStageImprovement[];
+    requirements: IStageRequirement[];
+    slots: number;
+}
+export interface IStageImprovement {
+    id: string;
+    bonuses: IStageImprovementBonus[];
+    improvementTime: number;
+    requirements: IStageImprovementRequirement[];
+}
+export interface IStageImprovementBonus {
+    passive: boolean;
+    production: boolean;
+    type: string;
+    value: number;
+    visible: boolean;
+}
+export interface IStageImprovementRequirement {
+    count: number;
+    isEncoded: boolean;
+    isFunctional: boolean;
+    templateId: string;
+    type: string;
+}
+export interface IStageRequirement {
     areaType?: number;
     requiredLevel?: number;
     type: string;
     templateId?: string;
     count?: number;
+    isEncoded: false;
     isFunctional?: boolean;
     traderId?: string;
     loyaltyLevel?: number;
@@ -31,10 +68,11 @@ export interface StageBonus {
     passive: boolean;
     production: boolean;
     visible: boolean;
-    skillType?: string;
-    type: string;
+    skillType?: BonusSkillType;
+    type: BonusType;
     filter?: string[];
     icon?: string;
+    /** CHANGES PER DUMP */
     id?: string;
     templateId?: string;
 }

@@ -1,14 +1,14 @@
-import { IPmcData } from "../../eft/common/IPmcData";
-import { IHideoutUpgradeRequestData } from "../../eft/hideout/IHideoutUpgradeRequestData";
-import { IHideoutUpgradeCompleteRequestData } from "../../eft/hideout/IHideoutUpgradeCompleteRequestData";
-import { IHideoutScavCaseStartRequestData } from "../../eft/hideout/IHideoutScavCaseStartRequestData";
-import { IHideoutPutItemInRequestData } from "../../eft/hideout/IHideoutPutItemInRequestData";
-import { IHideoutTakeItemOutRequestData } from "../../eft/hideout/IHideoutTakeItemOutRequestData";
-import { IHideoutToggleAreaRequestData } from "../../eft/hideout/IHideoutToggleAreaRequestData";
-import { IHideoutSingleProductionStartRequestData } from "../../eft/hideout/IHideoutSingleProductionStartRequestData";
-import { IHideoutContinousProductionStartRequestData } from "../../eft/hideout/IHideoutContinousProductionStartRequestData";
-import { IHideoutTakeProductionRequestData } from "../../eft/hideout/IHideoutTakeProductionRequestData";
-import { IItemEventRouterResponse } from "../../eft/itemEvent/IItemEventRouterResponse";
+import { IPmcData } from "@spt/models/eft/common/IPmcData";
+import { IHideoutContinuousProductionStartRequestData } from "@spt/models/eft/hideout/IHideoutContinuousProductionStartRequestData";
+import { IHideoutPutItemInRequestData } from "@spt/models/eft/hideout/IHideoutPutItemInRequestData";
+import { IHideoutScavCaseStartRequestData } from "@spt/models/eft/hideout/IHideoutScavCaseStartRequestData";
+import { IHideoutSingleProductionStartRequestData } from "@spt/models/eft/hideout/IHideoutSingleProductionStartRequestData";
+import { IHideoutTakeItemOutRequestData } from "@spt/models/eft/hideout/IHideoutTakeItemOutRequestData";
+import { IHideoutTakeProductionRequestData } from "@spt/models/eft/hideout/IHideoutTakeProductionRequestData";
+import { IHideoutToggleAreaRequestData } from "@spt/models/eft/hideout/IHideoutToggleAreaRequestData";
+import { IHideoutUpgradeCompleteRequestData } from "@spt/models/eft/hideout/IHideoutUpgradeCompleteRequestData";
+import { IHideoutUpgradeRequestData } from "@spt/models/eft/hideout/IHideoutUpgradeRequestData";
+import { IItemEventRouterResponse } from "@spt/models/eft/itemEvent/IItemEventRouterResponse";
 export interface IHideoutCallbacks {
     upgrade(pmcData: IPmcData, body: IHideoutUpgradeRequestData, sessionID: string): IItemEventRouterResponse;
     upgradeComplete(pmcData: IPmcData, body: IHideoutUpgradeCompleteRequestData, sessionID: string): IItemEventRouterResponse;
@@ -17,7 +17,7 @@ export interface IHideoutCallbacks {
     toggleArea(pmcData: IPmcData, body: IHideoutToggleAreaRequestData, sessionID: string): IItemEventRouterResponse;
     singleProductionStart(pmcData: IPmcData, body: IHideoutSingleProductionStartRequestData, sessionID: string): IItemEventRouterResponse;
     scavCaseProductionStart(pmcData: IPmcData, body: IHideoutScavCaseStartRequestData, sessionID: string): IItemEventRouterResponse;
-    continuousProductionStart(pmcData: IPmcData, body: IHideoutContinousProductionStartRequestData, sessionID: string): IItemEventRouterResponse;
+    continuousProductionStart(pmcData: IPmcData, body: IHideoutContinuousProductionStartRequestData, sessionID: string): IItemEventRouterResponse;
     takeProduction(pmcData: IPmcData, body: IHideoutTakeProductionRequestData, sessionID: string): IItemEventRouterResponse;
     update(timeSinceLastRun: number): boolean;
 }

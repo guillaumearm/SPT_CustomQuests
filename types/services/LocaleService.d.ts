@@ -1,8 +1,7 @@
-import { ILocaleConfig } from "../models/spt/config/ILocaleConfig";
-import { ILocaleGlobalBase } from "../models/spt/server/ILocaleBase";
-import { ILogger } from "../models/spt/utils/ILogger";
-import { ConfigServer } from "../servers/ConfigServer";
-import { DatabaseServer } from "../servers/DatabaseServer";
+import { ILocaleConfig } from "@spt/models/spt/config/ILocaleConfig";
+import { ILogger } from "@spt/models/spt/utils/ILogger";
+import { ConfigServer } from "@spt/servers/ConfigServer";
+import { DatabaseServer } from "@spt/servers/DatabaseServer";
 /**
  * Handles getting locales from config or users machine
  */
@@ -14,9 +13,9 @@ export declare class LocaleService {
     constructor(logger: ILogger, databaseServer: DatabaseServer, configServer: ConfigServer);
     /**
      * Get the eft globals db file based on the configured locale in config/locale.json, if not found, fall back to 'en'
-     * @returns ILocaleGlobalBase
+     * @returns dictionary
      */
-    getLocaleDb(): ILocaleGlobalBase;
+    getLocaleDb(): Record<string, string>;
     /**
      * Gets the game locale key from the locale.json file,
      * if value is 'system' get system locale
@@ -35,8 +34,25 @@ export declare class LocaleService {
      */
     getServerSupportedLocales(): string[];
     /**
+     * Get array of languages supported for localisation
+     * @returns array of locales e.g. en/fr/cn
+     */
+    getLocaleFallbacks(): {
+        [locale: string]: string;
+    };
+    /**
+     * Get the full locale of the computer running the server lowercased e.g. en-gb / pt-pt
+     * @returns string
+     */
+    protected getPlatformForServerLocale(): string;
+    /**
      * Get the locale of the computer running the server
      * @returns langage part of locale e.g. 'en' part of 'en-US'
      */
-    protected getPlatformLocale(): string;
+    protected getPlatformForClientLocale(): string;
+    /**
+     * This is in a function so we can overwrite it during testing
+     * @returns The current platform locale
+     */
+    protected getPlatformLocale(): Intl.Locale;
 }

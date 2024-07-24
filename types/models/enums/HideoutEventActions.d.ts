@@ -7,5 +7,8 @@ export declare enum HideoutEventActions {
     HIDEOUT_SINGLE_PRODUCTION_START = "HideoutSingleProductionStart",
     HIDEOUT_SCAV_CASE_PRODUCTION_START = "HideoutScavCaseProductionStart",
     HIDEOUT_CONTINUOUS_PRODUCTION_START = "HideoutContinuousProductionStart",
-    HIDEOUT_TAKE_PRODUCTION = "HideoutTakeProduction"
+    HIDEOUT_TAKE_PRODUCTION = "HideoutTakeProduction",
+    HIDEOUT_RECORD_SHOOTING_RANGE_POINTS = "RecordShootingRangePoints",
+    HIDEOUT_IMPROVE_AREA = "HideoutImproveArea",
+    HIDEOUT_CANCEL_PRODUCTION_COMMAND = "HideoutCancelProductionCommand"
 }
