@@ -21,6 +21,7 @@
     "rebuild": "npm run clean && npm run build",
     "build": "tsc",
     "test:all": "npm run lint:all && npm run build:release",
+    "test:ci": "npm run test:all",
     "test": "tsc --noEmit && npm run lint:all"
   },
   "devDependencies": {
