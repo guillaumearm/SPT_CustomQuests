@@ -41,10 +41,10 @@ export type QuestCondition = Omit<VanillaQuestCondition, "type"> & {
 };
 
 export interface QuestConditionTypes {
-  Started: QuestCondition[];
+  Started: QuestCondition[] | undefined;
   AvailableForFinish: QuestCondition[];
   AvailableForStart: QuestCondition[];
-  Success: QuestCondition[];
+  Success: QuestCondition[] | undefined;
   Fail: QuestCondition[];
 }
 
@@ -105,6 +105,7 @@ const TRADER_ALIASES = {
   mechanic: "5a7c2eca46aef81a7ca2145d",
   ragman: "5ac3b934156ae10c4430e83c",
   jaeger: "5c0647fdd443bc2504c2d371",
+  // TODO: add ref trader
 };
 
 const DESCRIPTIVE_LOCATION_ALIASES = {
@@ -370,7 +371,7 @@ class ConditionsGenerator {
         // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec' | 'Any'
         target: mission.target || "Any",
         compareMethod: ">=",
-        value: count, // TODO: check this ?
+        value: 1,
         weapon,
       },
       generateLocationCondition(killConditionId, mission.locations),
@@ -436,6 +437,7 @@ class ConditionsGenerator {
       target: allItems,
       value: String(count),
       visibilityConditions: [],
+      isEncoded: false,
     };
   }
 
@@ -709,8 +711,8 @@ class ConditionsGenerator {
       AvailableForStart: this.generateAvailableForStart(),
       AvailableForFinish: this.generateAvailableForFinish(),
       Fail: this.generateFail(),
-      Started: [],
-      Success: [],
+      Started: undefined, // should not be an empty array
+      Success: undefined, // should not be an empty array
     };
   }
 }
