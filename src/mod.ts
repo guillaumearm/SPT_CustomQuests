@@ -15,8 +15,8 @@ import { OnStartHandler } from "./OnStartHandler";
 import { QuestsLoader } from "./QuestsLoader";
 import { resetRepeatableQuestsOnGameStart } from "./RepeatableQuests";
 import { getModDisplayName, noop, readJsonFile } from "./utils";
-import { IPreSptLoadMod } from "@spt/models/external/IPreSptLoadMod";
-import { IPostSptLoadMod } from "@spt/models/external/IPostSptLoadMod";
+import type { IPreSptLoadMod } from "@spt/models/external/IPreSptLoadMod";
+import type { IPostSptLoadMod } from "@spt/models/external/IPostSptLoadMod";
 
 type CustomQuestsAPI = {
   load: (quests: StoryItem[]) => void;
