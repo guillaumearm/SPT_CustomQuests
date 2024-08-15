@@ -34,6 +34,7 @@ import {
   isNotUndefined,
 } from "./utils";
 import type { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
+import type { QuestStatus as IQuestStatus } from "@spt/models/enums/QuestStatus";
 
 export type QuestCondition = Omit<VanillaQuestCondition, "type"> & {
   type?: boolean | string;
@@ -60,6 +61,8 @@ const QuestStatus = {
   Fail: 5,
   FailRestartable: 6,
   MarkedAsFailed: 7,
+  Expired: 8,
+  AvailableAfter: 9,
 };
 
 const ZONES: Record<string, string> = {};
@@ -792,11 +795,14 @@ export class CustomQuestsTransformer {
     const conditions = this.conditionsGenerator.generateConditions();
     const rewards = this.rewardsGenerator.generateAllRewards();
 
+    const status: IQuestStatus = QuestStatus.AvailableForStart;
+
     return {
       QuestName: questId,
       _id: questId,
-      status: "",
-      questStatus: 1,
+      status: status,
+      questStatus: status,
+      sptStatus: status,
       image,
       type,
       traderId,
