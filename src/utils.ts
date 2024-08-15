@@ -12,15 +12,14 @@ export const readJsonFile = <T>(path: string): T => {
 };
 
 export const getAllLocales = (db: DatabaseServer): string[] => {
-  const locales = db.getTables().locales
+  const locales = db.getTables().locales;
 
   if (!locales) {
-    throw new Error("no locales found in db")
+    throw new Error("no locales found in db");
   }
 
   return Object.keys(locales.global);
-}
-  
+};
 
 export const isNotUndefined = <T>(value: T | undefined): value is T => {
   return value !== undefined;

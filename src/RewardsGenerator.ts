@@ -1,5 +1,8 @@
 import type { Item } from "@spt/models/eft/common/tables/IItem";
-import type { IQuestReward, IQuestRewards } from "@spt/models/eft/common/tables/IQuest";
+import type {
+  IQuestReward,
+  IQuestRewards,
+} from "@spt/models/eft/common/tables/IQuest";
 import type { QuestRewardType } from "@spt/models/enums/QuestRewardType";
 
 import type {
@@ -17,7 +20,9 @@ export class RewardsGenerator {
     private builds: Record<string, StoryItemBuild>
   ) {}
 
-  static setRewardsIndexes(rewards: (IQuestReward | undefined)[]): IQuestReward[] {
+  static setRewardsIndexes(
+    rewards: (IQuestReward | undefined)[]
+  ): IQuestReward[] {
     return rewards.filter(isNotUndefined).map((reward, index) => {
       return {
         ...reward,
@@ -123,7 +128,10 @@ export class RewardsGenerator {
     };
   }
 
-  private generateReputationReward(givenTraderId: string, nb: number): IQuestReward {
+  private generateReputationReward(
+    givenTraderId: string,
+    nb: number
+  ): IQuestReward {
     const traderId = CustomQuestsTransformer.getTraderId(givenTraderId);
     const idReward = `${this.customQuest.id}_reputation_reward_${traderId}`;
 
