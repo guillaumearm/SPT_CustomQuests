@@ -7,7 +7,7 @@ import { join } from "path";
 import type { Config } from "./config";
 import { getLimitRepeatedQuest } from "./config";
 
-import type { CustomQuest, StoryItem } from "./customQuests";
+import type { CustomQuest, LocaleName, StoryItem } from "./customQuests";
 
 import {
   isStoryAcceptedItemGroup,
@@ -15,7 +15,7 @@ import {
   isStoryItemBuild,
 } from "./customQuests";
 
-import type { GeneratedLocales } from "./CustomQuestsTransformer";
+import type { GeneratedLocales, Quest } from "./CustomQuestsTransformer";
 import { QuestsGenerator } from "./QuestsGenerator";
 import { createRepeatedQuestId } from "./RepeatableQuests";
 import { flatten, getAllLocales, readJsonFile } from "./utils";
@@ -54,7 +54,7 @@ export class QuestsLoader {
     this.questDirectory = questDirectory;
   }
 
-  loadAll(): IQuest[] {
+  loadAll(): Quest[] {
     let loadedQuests = this.loadDir(this.questDirectory);
 
     this.vfs.getDirs(this.questDirectory).forEach((subdir) => {
@@ -73,8 +73,8 @@ export class QuestsLoader {
     return loadedQuests;
   }
 
-  private loadDir(dir: string): IQuest[] {
-    let loadedQuests: IQuest[] = [];
+  private loadDir(dir: string): Quest[] {
+    let loadedQuests: Quest[] = [];
 
     this.vfs.getFiles(dir).forEach((fileName) => {
       if (fileName.endsWith(".json")) {
@@ -86,11 +86,11 @@ export class QuestsLoader {
     return loadedQuests;
   }
 
-  private loadQuest(quest: IQuest): void {
+  private loadQuest(quest: Quest): void {
     const quests = this.db.getTables().templates?.quests;
 
     if (!quests) {
-      throw new Error("quests templates not found in db")
+      throw new Error("quests templates not found in db");
     }
 
     if (quests[quest._id]) {
@@ -98,7 +98,7 @@ export class QuestsLoader {
         `=> Custom Quests: already registered questId '${quest._id}'`
       );
     } else {
-      quests[quest._id] = quest;
+      quests[quest._id] = quest as IQuest;
     }
   }
 
@@ -109,11 +109,11 @@ export class QuestsLoader {
     const locales = this.db.getTables().locales;
 
     if (!locales) {
-      throw new Error("locales not found in db")
+      throw new Error("locales not found in db");
     }
 
     getAllLocales(this.db).forEach((localeName) => {
-      const payload = localesPayloads[localeName];
+      const payload = localesPayloads[localeName as LocaleName];
       const globalLocales = locales.global[localeName];
 
       if (globalLocales[questId]) {
@@ -124,13 +124,13 @@ export class QuestsLoader {
         globalLocales[questId] = payload.quest;
       }
 
-      Object.keys(payload.mail).forEach((mailId) => {
-        if (globalLocales[mailId]) {
+      Object.keys(payload).forEach((localeIdentifier) => {
+        if (globalLocales[localeIdentifier]) {
           this.logger.error(
-            `=> Custom Quests: already registered mail '${mailId}' for questId '${questId}'`
+            `=> Custom Quests: already registered locale '${localeIdentifier}' for questId '${questId}'`
           );
         } else {
-          globalLocales[mailId] = payload.mail[mailId];
+          globalLocales[localeIdentifier] = payload[localeIdentifier];
         }
       });
     });
@@ -188,7 +188,7 @@ export class QuestsLoader {
   public injectStory(
     story: StoryItem[],
     fileName = "@api-quest-loader"
-  ): IQuest[] {
+  ): Quest[] {
     const quests: CustomQuest[] = story
       .filter(isStoryCustomQuest)
       .map(this.transformIds.bind(this));
@@ -235,7 +235,7 @@ export class QuestsLoader {
     });
   }
 
-  private loadFile(fileName: string, dir: string): IQuest[] {
+  private loadFile(fileName: string, dir: string): Quest[] {
     const fullPath = join(dir, fileName);
 
     const storyOrQuest = readJsonFile<StoryItem | StoryItem[]>(fullPath);

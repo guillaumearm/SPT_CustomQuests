@@ -5,6 +5,7 @@ import type { SaveServer } from "@spt/servers/SaveServer";
 
 import { ALL_VANILLA_QUESTS } from "./allVanillaQuestIds";
 import type { Config, ConfigAtStart } from "./config";
+import type { Quest } from "./CustomQuestsTransformer";
 
 const JAEGER_ID = "5c0647fdd443bc2504c2d371";
 
@@ -34,10 +35,10 @@ export class OnStartHandler {
   }
 
   private unlockJaegger(): void {
-    const traders = this.db.getTables().traders
+    const traders = this.db.getTables().traders;
 
     if (!traders) {
-      throw new Error("no traders found in db")
+      throw new Error("no traders found in db");
     }
 
     const jaeger = traders[JAEGER_ID];
@@ -47,7 +48,7 @@ export class OnStartHandler {
   }
 
   private wipeProfilesForQuest(questId: string): void {
-    let nbWiped = 0;
+    const nbWiped = 0;
     const profileIds = Object.keys(this.saveServer.getProfiles());
 
     profileIds.forEach((profileId) => {
@@ -151,7 +152,7 @@ export class OnStartHandler {
     }
   }
 
-  afterCustomQuestsLoaded(loadedQuests: IQuest[]): void {
+  afterCustomQuestsLoaded(loadedQuests: Quest[]): void {
     if (
       !this.onStartConfig.wipe_enabled_custom_quests_state_from_all_profiles
     ) {

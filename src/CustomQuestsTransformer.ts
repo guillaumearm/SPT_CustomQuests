@@ -1,9 +1,7 @@
 import type {
-  IQuestCondition,
-  // Conditions,
+  IQuestCondition as VanillaQuestCondition,
   IQuestConditionCounterCondition,
-  IQuest,
-  IQuestConditionTypes,
+  IQuest as VanillaQuest,
 } from "@spt/models/eft/common/tables/IQuest";
 
 import type { ILogger } from "@spt/models/spt/utils/ILogger";
@@ -36,6 +34,22 @@ import {
   isNotUndefined,
 } from "./utils";
 import type { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
+
+export type QuestCondition = Omit<VanillaQuestCondition, "type"> & {
+  type?: boolean | string;
+};
+
+export interface QuestConditionTypes {
+  Started: QuestCondition[];
+  AvailableForFinish: QuestCondition[];
+  AvailableForStart: QuestCondition[];
+  Success: QuestCondition[];
+  Fail: QuestCondition[];
+}
+
+export type Quest = Omit<VanillaQuest, "conditions"> & {
+  conditions: QuestConditionTypes;
+};
 
 const QuestStatus = {
   Locked: 0,
@@ -94,6 +108,8 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
   bigmap: "56f40101d2720b2a4d8b45d6",
   customs: "56f40101d2720b2a4d8b45d6",
   factory: "55f2d3fd4bdc2d5f408b4567",
+  factory4_day: "55f2d3fd4bdc2d5f408b4567",
+  factory4_night: "59fc81d786f774390775787e",
   interchange: "5714dbc024597771384a510d",
   laboratory: "5b0fc42d86f7744a585f9105",
   labs: "5b0fc42d86f7744a585f9105",
@@ -102,6 +118,9 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
   reserve: "5704e5fad2720bc05b8b4567",
   shoreline: "5704e554d2720bac5b8b456e",
   woods: "5704e3c2d2720bac5b8b4567",
+  groundzero: "653e6760052c01c1c805532f",
+  sandbox: "653e6760052c01c1c805532f",
+  sandbox_high: "65b8d6f5cdde2479cb2a3125",
 };
 
 const LOCATION_ALIASES = {
@@ -113,6 +132,9 @@ const LOCATION_ALIASES = {
   shoreline: ["Shoreline"],
   interchange: ["Interchange"],
   lighthouse: ["Lighthouse"],
+  groundzero: ["Sandbox", "Sandbox_high"],
+  sandbox: ["Sandbox"],
+  sandbox_high: ["Sandbox_high"],
 };
 
 const getTargetFromLocations = (locations: string[]): string[] => {
@@ -249,7 +271,7 @@ class ConditionsGenerator {
   ) {}
 
   private static setConditionsIndexes(
-    conditions: (IQuestCondition | undefined)[]
+    conditions: (QuestCondition | undefined)[]
   ) {
     return conditions.filter(isNotUndefined).map((payload, index) => {
       return {
@@ -259,7 +281,7 @@ class ConditionsGenerator {
     });
   }
 
-  private generateLevelCondition(): IQuestCondition | undefined {
+  private generateLevelCondition(): QuestCondition | undefined {
     const level_needed = this.customQuest.level_needed ?? 0;
     const qid = this.customQuest.id;
 
@@ -283,7 +305,7 @@ class ConditionsGenerator {
   private generateQuestCondition(
     questId: string,
     status = QUEST_STATUS_SUCCESS
-  ): IQuestCondition | undefined {
+  ): QuestCondition | undefined {
     if (questId) {
       return {
         conditionType: "Quest",
@@ -299,7 +321,7 @@ class ConditionsGenerator {
     return undefined;
   }
 
-  private generateAvailableForStart(): IQuestCondition[] {
+  private generateAvailableForStart(): QuestCondition[] {
     const locked_by_quests = this.customQuest.locked_by_quests || [];
     const unlock_on_quest_start = this.customQuest.unlock_on_quest_start || [];
 
@@ -319,7 +341,7 @@ class ConditionsGenerator {
     ]);
   }
 
-  private generateKillCondition(mission: MissionKill): IQuestCondition | null {
+  private generateKillCondition(mission: MissionKill): QuestCondition | null {
     const killConditionId = generateKillConditionId(
       this.customQuest.id,
       mission
@@ -386,7 +408,7 @@ class ConditionsGenerator {
 
   private generateGiveItemCondition(
     mission: MissionGiveItem
-  ): IQuestCondition | null {
+  ): QuestCondition | null {
     const items = mission.accepted_items;
     const count = mission.count === undefined ? 1 : mission.count;
     const fir = mission.found_in_raid_only || false;
@@ -416,7 +438,7 @@ class ConditionsGenerator {
 
   private generateFindItemCondition(
     mission: MissionFindItem
-  ): IQuestCondition | null {
+  ): QuestCondition | null {
     const items = mission.accepted_items;
     const count = mission.count === undefined ? 1 : mission.count;
 
@@ -445,7 +467,7 @@ class ConditionsGenerator {
 
   private generatePlaceBeaconCondition(
     mission: MissionPlaceBeacon | MissionPlaceSignalJammer | MissionPlaceItem
-  ): IQuestCondition | IQuestCondition[] | null {
+  ): QuestCondition | QuestCondition[] | null {
     const qid = this.customQuest.id;
 
     if (!ZONES[mission.zone_id]) {
@@ -478,7 +500,7 @@ class ConditionsGenerator {
       accepted_items = this.getItemIdsFromAcceptedItems(accepted_items);
     }
 
-    const placeBeaconCondition: IQuestCondition = {
+    const placeBeaconCondition: QuestCondition = {
       conditionType,
       index: 0,
       id,
@@ -526,7 +548,7 @@ class ConditionsGenerator {
           parentId: "",
           oneSessionOnly: mission.one_session_only ?? false,
           dynamicLocale: false,
-          // type: "Completion", // TODO
+          type: "Completion",
           doNotResetIfCounterCompleted: false,
           value: "1",
           visibilityConditions: [
@@ -547,7 +569,7 @@ class ConditionsGenerator {
 
   private generateVisitPlaceCondition(
     mission: MissionVisitPlace
-  ): IQuestCondition | IQuestCondition[] | null {
+  ): QuestCondition | QuestCondition[] | null {
     const qid = this.customQuest.id;
 
     if (!PLACES[mission.place_id]) {
@@ -559,7 +581,7 @@ class ConditionsGenerator {
 
     const id = generateVisitPlaceConditionId(qid, mission);
 
-    const counterVisit: IQuestCondition = {
+    const counterVisit: QuestCondition = {
       conditionType: "CounterCreator",
       index: 0,
       target: "",
@@ -591,7 +613,7 @@ class ConditionsGenerator {
 
     const target = getNeedSurviveTargetFromLocation(PLACES[mission.place_id]);
 
-    const counterExit: IQuestCondition = {
+    const counterExit: QuestCondition = {
       conditionType: "CounterCreator",
       target: "",
       index: 0,
@@ -625,7 +647,7 @@ class ConditionsGenerator {
           conditionType: "CompleteCondition",
           target: id,
           id: `${id}_visibility_condition`,
-          oneSessionOnly: false, // TODO
+          oneSessionOnly: false, // TODO test this
           dynamicLocale: false,
         },
       ],
@@ -634,7 +656,7 @@ class ConditionsGenerator {
     return [counterVisit, counterExit];
   }
 
-  private generateAvailableForFinish(): IQuestCondition[] {
+  private generateAvailableForFinish(): QuestCondition[] {
     const missions = (this.customQuest.missions || [])
       .map((mission) => {
         if (mission.type === "Kill") {
@@ -679,7 +701,7 @@ class ConditionsGenerator {
   }
 
   // if adding values here, getConditionsIdsMappingFromTemplate should be impacted
-  generateConditions(): IQuestConditionTypes {
+  generateConditions(): QuestConditionTypes {
     return {
       AvailableForStart: this.generateAvailableForStart(),
       AvailableForFinish: this.generateAvailableForFinish(),
@@ -690,10 +712,29 @@ class ConditionsGenerator {
   }
 }
 
-export type GeneratedLocales = Record<
-  string,
-  { mail: Record<string, string>; quest: IQuest }
->;
+export type GeneratedLocales = Record<LocaleName, Record<string, string>>;
+
+const getEmptyGeneratedLocales = (): GeneratedLocales => {
+  return {
+    ch: {},
+    cz: {},
+    en: {},
+    "es-mx": {},
+    es: {},
+    fr: {},
+    ge: {},
+    hu: {},
+    it: {},
+    jp: {},
+    kr: {},
+    pl: {},
+    po: {},
+    ro: {},
+    ru: {},
+    sk: {},
+    tu: {},
+  };
+};
 
 export class CustomQuestsTransformer {
   private conditionsGenerator: ConditionsGenerator;
@@ -741,7 +782,7 @@ export class CustomQuestsTransformer {
     return location;
   }
 
-  public generateQuest(): IQuest {
+  public generateQuest(): Quest {
     const q = this.customQuest;
     const questId = q.id;
     const traderId = CustomQuestsTransformer.getTraderId(q.trader_id);
@@ -818,86 +859,55 @@ export class CustomQuestsTransformer {
     return null;
   }
 
-  generateLocales(generatedQuest: IQuest): GeneratedLocales {
-    const {
-      name,
-      description,
-      success_message,
-      missions,
-      id: qid,
-      trader_id,
-    } = this.customQuest;
-    const { location, templateId } = generatedQuest;
+  generateLocales(generatedQuest: Quest): GeneratedLocales {
+    const { name, description, success_message, missions } = this.customQuest;
+    const generatedLocales = getEmptyGeneratedLocales();
 
-    const result: GeneratedLocales = {};
-
+    // en | ru | ...
     const allLocales = getAllLocales(this.db);
 
-    // TODO: check how locales work with quests
-    allLocales.forEach((localeName) => {
-      const payload: IQuest = {
-        // ...generatedQuest,
-        name: "",
-        description: "",
-        conditions: {
-          Started: [],
-          AvailableForFinish: [],
-          AvailableForStart: [],
-          Success: [],
-          Fail: [],
-        },
-        note: "",
-        failMessageText: "",
-        startedMessageText: "",
-        successMessageText: "",
-        location,
-      };
+    allLocales.forEach((givenLocaleName) => {
+      const localeName = givenLocaleName as LocaleName;
 
-      payload.name =
-        this.questPrefixName +
+      const localeValues = generatedLocales[localeName];
+
+      localeValues[generatedQuest.name] =
         CustomQuestsTransformer.getLocaleValue(name, localeName);
+      localeValues[generatedQuest.description] =
+        CustomQuestsTransformer.getLocaleValue(description, localeName);
 
-      payload.description = `${templateId}_description`;
       if (success_message) {
-        payload.successMessageText = `${templateId}_success_message_text`;
+        localeValues[generatedQuest.successMessageText] =
+          CustomQuestsTransformer.getLocaleValue(success_message, localeName);
       }
-
-      payload.conditions = {
-        Started: [],
-        AvailableForFinish: [],
-        AvailableForStart: [],
-        Success: [],
-        Fail: [],
-      };
 
       (missions || []).forEach((mission) => {
         const missionId = this.getMissionId(mission);
         if (missionId) {
-          payload.conditions[missionId] =
-            CustomQuestsTransformer.getLocaleValue(mission.message, localeName);
+          localeValues[missionId] = CustomQuestsTransformer.getLocaleValue(
+            mission.message,
+            localeName
+          );
         }
 
         const needSurvive = (mission as MissionVisitPlace).need_survive;
 
         if (needSurvive) {
-          payload.conditions[`${missionId}_exit_location`] =
+          localeValues[`${missionId}_exit_location`] =
             CustomQuestsTransformer.getLocaleValue(needSurvive, localeName);
         }
       });
 
-      if (!result[localeName]) {
-        result[localeName] = { quest: payload, mail: {} };
-      }
+      // TODO: check that mail works?
+      // result[localeName].mail[payload.description] =
+      //   CustomQuestsTransformer.getLocaleValue(description, localeName);
 
-      result[localeName].mail[payload.description] =
-        CustomQuestsTransformer.getLocaleValue(description, localeName);
-
-      if (success_message) {
-        result[localeName].mail[payload.successMessageText] =
-          CustomQuestsTransformer.getLocaleValue(success_message, localeName);
-      }
+      // if (success_message) {
+      //   result[localeName].mail[payload.successMessageText] =
+      //     CustomQuestsTransformer.getLocaleValue(success_message, localeName);
+      // }
     });
 
-    return result;
+    return generatedLocales;
   }
 }

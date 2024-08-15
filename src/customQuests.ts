@@ -1,4 +1,4 @@
-import { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
+import type { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
 
 const ALL_DESCRIPTIVE_LOCATION_OBJ = {
   any: true,
@@ -49,6 +49,7 @@ export type LocalizedString = {
   kr?: string;
   pl?: string;
   po?: string;
+  ro?: string;
   ru?: string;
   sk?: string;
   tu?: string;
@@ -56,7 +57,7 @@ export type LocalizedString = {
 
 export type LocaleName = keyof LocalizedString;
 
-export type QuestType = QuestTypeEnum
+export type QuestType = QuestTypeEnum;
 
 export type QuestString = string | LocalizedString;
 

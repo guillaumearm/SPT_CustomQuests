@@ -8,7 +8,7 @@ import type {
   StoryItemBuild,
 } from "./customQuests";
 
-import type { GeneratedLocales } from "./CustomQuestsTransformer";
+import type { GeneratedLocales, Quest } from "./CustomQuestsTransformer";
 import { CustomQuestsTransformer } from "./CustomQuestsTransformer";
 
 import { indexBy } from "./utils";
@@ -53,8 +53,8 @@ export class QuestsGenerator {
     }
   }
 
-  generateWithLocales(): (readonly [IQuest, GeneratedLocales])[] {
-    const result: (readonly [IQuest, GeneratedLocales])[] = [];
+  generateWithLocales(): (readonly [Quest, GeneratedLocales])[] {
+    const result: (readonly [Quest, GeneratedLocales])[] = [];
 
     this.quests.forEach((customQuest) => {
       if (customQuest.disabled) {

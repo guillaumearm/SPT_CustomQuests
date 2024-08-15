@@ -1,6 +1,6 @@
-import type { GameCallbacks } from "@spt-aki/callbacks/GameCallbacks";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
-import type { SaveServer } from "@spt-aki/servers/SaveServer";
+import type { GameCallbacks } from "@spt/callbacks/GameCallbacks";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
+import type { SaveServer } from "@spt/servers/SaveServer";
 import type { DependencyContainer } from "tsyringe";
 import { isNotNil } from "./utils";
 
@@ -40,7 +40,11 @@ const getConditionsIdsMappingFromTemplate = (
   db: DatabaseServer
 ): Record<string, string> => {
   const mapping: Record<string, string> = {};
-  const quests = db.getTables().templates.quests;
+  const quests = db.getTables().templates?.quests;
+
+  if (!quests) {
+    throw new Error("Cannot load quests templates from db");
+  }
 
   const sourceQuest = quests[sourceQuestId];
   const destQuest = quests[destQuestId];
@@ -60,19 +64,19 @@ const getConditionsIdsMappingFromTemplate = (
 
   sourceStartConditions.forEach((condition, idx) => {
     if (destStartConditions[idx]) {
-      mapping[condition._props.id] = destStartConditions[idx]._props.id;
+      mapping[condition.id] = destStartConditions[idx].id;
     }
   });
 
   sourceFinishConditions.forEach((condition, idx) => {
     if (destFinishConditions[idx]) {
-      mapping[condition._props.id] = destFinishConditions[idx]._props.id;
+      mapping[condition.id] = destFinishConditions[idx].id;
     }
   });
 
   sourceFailConditions.forEach((condition, idx) => {
     if (destFailConditions[idx]) {
-      mapping[condition._props.id] = destFailConditions[idx]._props.id;
+      mapping[condition.id] = destFailConditions[idx].id;
     }
   });
 
@@ -129,18 +133,20 @@ export const resetRepeatableQuestsOnGameStart = (
             (originalRepeatableQuests[q.qid] || isRepeatedQuest(q.qid))
           ) {
             // reset backend counters
-            Object.values(pmc.BackendCounters ?? {}).forEach((counter) => {
-              if (counter.qid === q.qid) {
-                counter.value = 0;
+            Object.values(pmc.TaskConditionCounters ?? {}).forEach(
+              (counter) => {
+                if (counter.sourceId === q.qid) {
+                  counter.value = 0;
+                }
               }
-            });
+            );
 
-            // reset conditions counters
-            pmc.ConditionCounters?.Counters.forEach((counter) => {
-              if (counter.qid === q.qid) {
-                counter.value = 0;
-              }
-            });
+            // // reset conditions counters
+            // pmc.TaskConditionCounters?.Counters.forEach((counter) => {
+            //   if (counter.qid === q.qid) {
+            //     counter.value = 0;
+            //   }
+            // });
           }
         });
 
@@ -159,11 +165,11 @@ export const resetRepeatableQuestsOnGameStart = (
               );
 
               // backend counters
-              Object.values(pmc.BackendCounters ?? {})
-                .filter((counter) => counter.qid === originalId)
+              Object.values(pmc.TaskConditionCounters ?? {})
+                .filter((counter) => counter.sourceId === originalId)
                 .forEach((counter) => {
                   const otherCounterId = conditionsMapping[counter.id];
-                  const backendCounters = pmc.BackendCounters ?? {};
+                  const backendCounters = pmc.TaskConditionCounters ?? {};
 
                   if (backendCounters[otherCounterId]) {
                     const otherCounter = backendCounters[otherCounterId];
@@ -173,18 +179,18 @@ export const resetRepeatableQuestsOnGameStart = (
                 });
 
               // conditions counters
-              pmc.ConditionCounters?.Counters.filter(
-                (counter) => counter.qid === originalId
-              ).forEach((counter) => {
-                const otherCounterId = conditionsMapping[counter.id];
-                const otherCounter = pmc.ConditionCounters?.Counters.find(
-                  (c) => c.id === otherCounterId
-                );
-                if (otherCounter) {
-                  counter.value = otherCounter?.value ?? 0;
-                  replacedCounters = replacedCounters + 1;
-                }
-              });
+              // pmc.TaskConditionCounters?.Counters.filter(
+              //   (counter) => counter.qid === originalId
+              // ).forEach((counter) => {
+              //   const otherCounterId = conditionsMapping[counter.id];
+              //   const otherCounter = pmc.ConditionCounters?.Counters.find(
+              //     (c) => c.id === otherCounterId
+              //   );
+              //   if (otherCounter) {
+              //     counter.value = otherCounter?.value ?? 0;
+              //     replacedCounters = replacedCounters + 1;
+              //   }
+              // });
             }
           }
         });
@@ -210,26 +216,26 @@ export const resetRepeatableQuestsOnGameStart = (
 
         // 3. remove all counters related to @repeated quests
         // backend counters
-        pmc.BackendCounters = filterInObject((counter) => {
-          if (isRepeatedQuest(counter.qid ?? "")) {
+        pmc.TaskConditionCounters = filterInObject((counter) => {
+          if (isRepeatedQuest(counter.sourceId ?? "")) {
             removedCounters = removedCounters + 1;
             return false;
           }
           return true;
-        }, pmc.BackendCounters ?? {});
+        }, pmc.TaskConditionCounters ?? {});
 
         // conditions counters
-        if (pmc.ConditionCounters) {
-          pmc.ConditionCounters.Counters =
-            pmc.ConditionCounters?.Counters.filter((counter) => {
-              if (isRepeatedQuest(counter.qid)) {
-                removedCounters = removedCounters + 1;
-                return false;
-              }
+        // if (pmc.TaskConditionCounters) {
+        //   pmc.ConditionCounters.Counters =
+        //     pmc.ConditionCounters?.Counters.filter((counter) => {
+        //       if (isRepeatedQuest(counter.qid)) {
+        //         removedCounters = removedCounters + 1;
+        //         return false;
+        //       }
 
-              return true;
-            }) ?? [];
-        }
+        //       return true;
+        //     }) ?? [];
+        // }
 
         // 4. remove all repeated quests
         pmc.Quests = pmc.Quests.filter((q) => {
