@@ -12,3 +12,4 @@
 /Trap-CustomQuests*
 /dist/
 /src/*.js
+/src/*.js.map
