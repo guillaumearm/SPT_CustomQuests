@@ -1,7 +1,7 @@
 # Custom Quests
 Easy quests creation tool for [SPT](https://www.sp-tarkov.com/)
 
-Using [Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/) will help you A LOT to create and edit json quests files.
+Using [Custom Quests Editor](https://hub.sp-tarkov.com/files/file/596-custom-quests-editor/) will help you A LOT to create and edit json quests files.
 
 [API Documentation - How to create quests](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md) (manually)
 
@@ -9,7 +9,7 @@ Using [Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-que
 This mod allow to add your own quests easily with a single json file (per quest).
 
 ## Features
-- [Online App: Custom Quests Editor](https://hub.sp-tarkov.com/files/file/525-custom-quests-editor/)
+- [Online App: Custom Quests Editor](https://hub.sp-tarkov.com/files/file/596-custom-quests-editor/)
 - Create a custom quest with a single json file
 - [Quest chaining](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#chained-quests)
 - Several mission types available: [`Kill`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#kill), [`GiveItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#giveitem), [`FindItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#finditem), [`PlaceItem`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#placeitem), [`VisitPlace`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#visitplace), [`PlaceBeacon` and `PlaceSignalJammer`](https://github.com/guillaumearm/aki_CustomQuests/blob/master/docs/USAGE_MANUAL.md#placebeacon-and-placesignaljammer)
@@ -83,7 +83,7 @@ Check the [`CustomQuestsAPI` type definition](https://github.com/guillaumearm/ak
 
 ## Planned features
 - New mission type: `SurviveRaid`
-- More rewards: unlock traders and maps (with [Path To Tarkov](https://hub.sp-tarkov.com/files/file/498-path-to-tarkov/) compat)
+- More rewards: unlock traders and maps (with [Path To Tarkov](https://hub.sp-tarkov.com/files/file/569-path-to-tarkov/) compat)
 - Unlock barters reward
 - More kill targets: bosses, raiders, rogues.
 - Failure quests: this allow to create several path in your story
