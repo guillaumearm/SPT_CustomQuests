@@ -13,7 +13,7 @@
     "copy:files": "mkdirp ./dist && cp package.json ./dist && cp README.md ./dist && cp LICENSE ./dist && cpr config ./dist/config && cpr docs ./dist/docs && cpr quests ./dist/quests && npm run clean:distquests",
     "check:dist": "node scripts/check-dist-quests.js && node scripts/check-dist-config.js",
     "build:release": "npm run rebuild && npm run copy:files && npm run check:dist && npm run zip:files",
-    "clean": "rimraf dist tmp 'src/**/*.js' Trap-CustomQuests*",
+    "clean": "rimraf -g dist tmp src/**/*.js src/**/*.js.map Trap-CustomQuests*",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
     "lint": "eslint --ignore-pattern '*.js' .",
