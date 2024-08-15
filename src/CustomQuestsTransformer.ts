@@ -1,12 +1,13 @@
 import type {
-  AvailableForConditions,
-  Conditions,
-  CounterCondition,
+  IQuestCondition,
+  // Conditions,
+  IQuestConditionCounterCondition,
   IQuest,
-} from "@spt-aki/models/eft/common/tables/IQuest";
-import type { ILocaleQuest } from "@spt-aki/models/spt/server/ILocaleBase";
-import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
-import type { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
+  IQuestConditionTypes,
+} from "@spt/models/eft/common/tables/IQuest";
+
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 
 import { ALL_PLACES_BY_MAP } from "./allPlacesByMap";
 import { ALL_ZONES_BY_MAP } from "./allZonesByMap";
@@ -34,6 +35,7 @@ import {
   isNotNil,
   isNotUndefined,
 } from "./utils";
+import type { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
 
 const QuestStatus = {
   Locked: 0,
@@ -67,7 +69,7 @@ Object.keys(ALL_PLACES_BY_MAP).forEach((mapName) => {
 const FALLBACK_LOCALE = "en";
 const DEFAULT_IMAGE_ID = "5a27cafa86f77424e20615d6";
 const DEFAULT_LOCATION = "any";
-const DEFAULT_TYPE = "Completion";
+const DEFAULT_TYPE = "Completion" as QuestTypeEnum;
 const DEFAULT_SUCCESS_MESSAGE = "Quest successfully completed";
 const DEFAULT_PLANT_TIME = 30;
 
@@ -218,7 +220,7 @@ function generateVisitPlaceConditionId(
 function generateLocationCondition(
   prefixId: string,
   givenLocations?: PossibleLocation[] | PossibleLocation
-): CounterCondition | undefined {
+): IQuestConditionCounterCondition | undefined {
   if (!givenLocations || givenLocations === "any") {
     return undefined;
   }
@@ -232,11 +234,10 @@ function generateLocationCondition(
   }
 
   return {
-    _parent: "Location",
-    _props: {
-      target: getTargetFromLocations(locations),
-      id: `${prefixId}_location`,
-    },
+    conditionType: "Location",
+    dynamicLocale: false,
+    target: getTargetFromLocations(locations),
+    id: `${prefixId}_location`,
   };
 }
 
@@ -247,37 +248,32 @@ class ConditionsGenerator {
     private logger: ILogger
   ) {}
 
-  private static setPropsIndexes(
-    conditions: (AvailableForConditions | undefined)[]
+  private static setConditionsIndexes(
+    conditions: (IQuestCondition | undefined)[]
   ) {
     return conditions.filter(isNotUndefined).map((payload, index) => {
       return {
         ...payload,
-        _props: {
-          ...payload._props,
-          index,
-        },
+        index,
       };
     });
   }
 
-  private generateLevelCondition(): AvailableForConditions | undefined {
+  private generateLevelCondition(): IQuestCondition | undefined {
     const level_needed = this.customQuest.level_needed ?? 0;
     const qid = this.customQuest.id;
 
     if (level_needed > 1) {
       return {
-        _parent: "Level",
-        _props: {
-          index: 0,
-          id: `${qid}_level_condition`,
-          parentId: "",
-          dynamicLocale: false,
-          value: level_needed,
-          compareMethod: ">=",
-          visibilityConditions: [],
-        },
+        conditionType: "Level",
+        index: 0,
+        id: `${qid}_level_condition`,
+        parentId: "",
         dynamicLocale: false,
+        value: level_needed,
+        compareMethod: ">=",
+        visibilityConditions: [],
+        target: "",
       };
     }
 
@@ -287,26 +283,23 @@ class ConditionsGenerator {
   private generateQuestCondition(
     questId: string,
     status = QUEST_STATUS_SUCCESS
-  ): AvailableForConditions | undefined {
+  ): IQuestCondition | undefined {
     if (questId) {
       return {
-        _parent: "Quest",
-        _props: {
-          index: 0,
-          id: "",
-          parentId: "",
-          dynamicLocale: false,
-          target: questId,
-          status: status,
-        },
+        conditionType: "Quest",
+        index: 0,
+        id: "",
+        parentId: "",
         dynamicLocale: false,
+        target: questId,
+        status: status,
       };
     }
 
     return undefined;
   }
 
-  private generateAvailableForStart(): AvailableForConditions[] {
+  private generateAvailableForStart(): IQuestCondition[] {
     const locked_by_quests = this.customQuest.locked_by_quests || [];
     const unlock_on_quest_start = this.customQuest.unlock_on_quest_start || [];
 
@@ -319,16 +312,14 @@ class ConditionsGenerator {
       this.generateQuestCondition(questId, QUEST_STATUS_STARTED)
     );
 
-    return ConditionsGenerator.setPropsIndexes([
+    return ConditionsGenerator.setConditionsIndexes([
       levelCondition,
       ...questSuccessConditions,
       ...questStartedConditions,
     ]);
   }
 
-  private generateKillCondition(
-    mission: MissionKill
-  ): AvailableForConditions | null {
+  private generateKillCondition(mission: MissionKill): IQuestCondition | null {
     const killConditionId = generateKillConditionId(
       this.customQuest.id,
       mission
@@ -345,39 +336,37 @@ class ConditionsGenerator {
       ? this.getItemIdsFromAcceptedItems(mission.weapons_whitelist)
       : undefined;
 
-    const conditions: CounterCondition[] = [
+    const conditions: IQuestConditionCounterCondition[] = [
       {
-        _parent: "Kills",
-        _props: {
-          // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec' | 'Any'
-          target: mission.target || "Any",
-          compareMethod: ">=",
-          value: "1",
-          weapon,
-          id: `${counterId}_kill`,
-        },
+        conditionType: "Kills",
+        id: `${counterId}_kill`,
+        dynamicLocale: false,
+
+        // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec' | 'Any'
+        target: mission.target || "Any",
+        compareMethod: ">=",
+        value: count, // TODO: check this ?
+        weapon,
       },
       generateLocationCondition(killConditionId, mission.locations),
     ].filter(isNotUndefined);
 
     return {
-      _parent: "CounterCreator",
-      _props: {
-        index: 0,
-        counter: {
-          id: counterId,
-          conditions: conditions,
-        },
-        id: killConditionId,
-        parentId: "",
-        oneSessionOnly: mission.one_session_only ?? false,
-        dynamicLocale: false,
-        type: "Elimination",
-        doNotResetIfCounterCompleted: false,
-        value: String(count),
-        visibilityConditions: [],
+      conditionType: "CounterCreator",
+      index: 0,
+      counter: {
+        id: counterId,
+        conditions: conditions,
       },
+      id: killConditionId,
+      parentId: "",
+      oneSessionOnly: mission.one_session_only ?? false,
       dynamicLocale: false,
+      // type: "Elimination",
+      doNotResetIfCounterCompleted: false,
+      value: String(count),
+      visibilityConditions: [],
+      target: "",
     };
   }
 
@@ -397,7 +386,7 @@ class ConditionsGenerator {
 
   private generateGiveItemCondition(
     mission: MissionGiveItem
-  ): AvailableForConditions | null {
+  ): IQuestCondition | null {
     const items = mission.accepted_items;
     const count = mission.count === undefined ? 1 : mission.count;
     const fir = mission.found_in_raid_only || false;
@@ -410,27 +399,24 @@ class ConditionsGenerator {
     const id = generateGiveItemConditionId(this.customQuest.id, mission);
 
     return {
-      _parent: "HandoverItem",
-      _props: {
-        index: 0,
-        id,
-        dogtagLevel: 0,
-        maxDurability: 100,
-        minDurability: 0,
-        parentId: "",
-        onlyFoundInRaid: fir,
-        dynamicLocale: false,
-        target: allItems,
-        value: String(count),
-        visibilityConditions: [],
-      },
+      conditionType: "HandoverItem",
+      index: 0,
+      id,
+      dogtagLevel: 0,
+      maxDurability: 100,
+      minDurability: 0,
+      parentId: "",
+      onlyFoundInRaid: fir,
       dynamicLocale: false,
+      target: allItems,
+      value: String(count),
+      visibilityConditions: [],
     };
   }
 
   private generateFindItemCondition(
     mission: MissionFindItem
-  ): AvailableForConditions | null {
+  ): IQuestCondition | null {
     const items = mission.accepted_items;
     const count = mission.count === undefined ? 1 : mission.count;
 
@@ -442,27 +428,24 @@ class ConditionsGenerator {
     const id = generateFindItemConditionId(this.customQuest.id, mission);
 
     return {
-      _parent: "FindItem",
-      _props: {
-        index: 0,
-        id,
-        dogtagLevel: 0,
-        maxDurability: 100,
-        minDurability: 0,
-        parentId: "",
-        onlyFoundInRaid: true,
-        dynamicLocale: false,
-        target: allItems,
-        value: String(count),
-        visibilityConditions: [],
-      },
+      conditionType: "FindItem",
+      index: 0,
+      id,
+      dogtagLevel: 0,
+      maxDurability: 100,
+      minDurability: 0,
+      parentId: "",
+      onlyFoundInRaid: true,
       dynamicLocale: false,
+      target: allItems,
+      value: String(count),
+      visibilityConditions: [],
     };
   }
 
   private generatePlaceBeaconCondition(
     mission: MissionPlaceBeacon | MissionPlaceSignalJammer | MissionPlaceItem
-  ): AvailableForConditions | AvailableForConditions[] | null {
+  ): IQuestCondition | IQuestCondition[] | null {
     const qid = this.customQuest.id;
 
     if (!ZONES[mission.zone_id]) {
@@ -475,14 +458,14 @@ class ConditionsGenerator {
     const id = generatePlaceBeaconConditionId(qid, mission);
 
     let accepted_items: string[] = [];
-    let _parent = "PlaceBeacon";
+    let conditionType = "PlaceBeacon";
 
     if (mission.type === "PlaceBeacon") {
       accepted_items = [BEACON_ITEM_ID];
     } else if (mission.type === "PlaceSignalJammer") {
       accepted_items = [SIGNAL_JAMMER_ID];
     } else if (mission.type === "PlaceItem") {
-      _parent = "LeaveItemAtLocation";
+      conditionType = "LeaveItemAtLocation";
       accepted_items = mission.accepted_items || [];
 
       if (!accepted_items.length) {
@@ -495,24 +478,21 @@ class ConditionsGenerator {
       accepted_items = this.getItemIdsFromAcceptedItems(accepted_items);
     }
 
-    const placeBeaconCondition: AvailableForConditions = {
-      _parent,
-      _props: {
-        index: 0,
-        id,
-        dogtagLevel: 0,
-        maxDurability: 100,
-        minDurability: 0,
-        parentId: "",
-        onlyFoundInRaid: false,
-        dynamicLocale: false,
-        plantTime: mission.plant_time || DEFAULT_PLANT_TIME,
-        zoneId: mission.zone_id,
-        target: accepted_items,
-        value: "1",
-        visibilityConditions: [],
-      },
+    const placeBeaconCondition: IQuestCondition = {
+      conditionType,
+      index: 0,
+      id,
+      dogtagLevel: 0,
+      maxDurability: 100,
+      minDurability: 0,
+      parentId: "",
+      onlyFoundInRaid: false,
       dynamicLocale: false,
+      plantTime: mission.plant_time || DEFAULT_PLANT_TIME,
+      zoneId: mission.zone_id,
+      target: accepted_items,
+      value: "1",
+      visibilityConditions: [],
     };
 
     if (mission.need_survive) {
@@ -521,47 +501,43 @@ class ConditionsGenerator {
       return [
         placeBeaconCondition,
         {
-          _parent: "CounterCreator",
-          _props: {
-            index: 0,
-            counter: {
-              id: `${id}_counter`,
-              conditions: [
-                {
-                  _parent: "Location",
-                  _props: {
-                    target: target,
-                    id: `${id}_condition_location`,
-                  },
-                },
-                {
-                  _parent: "ExitStatus",
-                  _props: {
-                    status: ["Survived", "Runner"],
-                    id: `${id}_condition_exitstatus`,
-                    target: [],
-                  },
-                },
-              ],
-            },
-            id: `${id}_exit_location`,
-            parentId: "",
-            oneSessionOnly: mission.one_session_only ?? false,
-            dynamicLocale: false,
-            type: "Completion",
-            doNotResetIfCounterCompleted: false,
-            value: "1",
-            visibilityConditions: [
+          conditionType: "CounterCreator",
+          target: "",
+          index: 0,
+          counter: {
+            id: `${id}_counter`,
+            conditions: [
               {
-                _parent: "CompleteCondition",
-                _props: {
-                  target: id,
-                  id: `${id}_visibility_condition`,
-                },
+                conditionType: "Location",
+                target: target,
+                id: `${id}_condition_location`,
+                dynamicLocale: false,
+              },
+              {
+                conditionType: "ExitStatus",
+                status: ["Survived", "Runner"],
+                id: `${id}_condition_exitstatus`,
+                target: [],
+                dynamicLocale: false,
               },
             ],
           },
+          id: `${id}_exit_location`,
+          parentId: "",
+          oneSessionOnly: mission.one_session_only ?? false,
           dynamicLocale: false,
+          // type: "Completion", // TODO
+          doNotResetIfCounterCompleted: false,
+          value: "1",
+          visibilityConditions: [
+            {
+              conditionType: "CompleteCondition",
+              target: id,
+              id: `${id}_visibility_condition`,
+              dynamicLocale: false,
+              oneSessionOnly: false, // TODO: test this
+            },
+          ],
         },
       ];
     }
@@ -571,7 +547,7 @@ class ConditionsGenerator {
 
   private generateVisitPlaceCondition(
     mission: MissionVisitPlace
-  ): AvailableForConditions | AvailableForConditions[] | null {
+  ): IQuestCondition | IQuestCondition[] | null {
     const qid = this.customQuest.id;
 
     if (!PLACES[mission.place_id]) {
@@ -583,33 +559,30 @@ class ConditionsGenerator {
 
     const id = generateVisitPlaceConditionId(qid, mission);
 
-    const counterVisit: AvailableForConditions = {
-      _parent: "CounterCreator",
-      _props: {
-        index: 0,
-        counter: {
-          id: `${id}_counter`,
-          conditions: [
-            {
-              _parent: "VisitPlace",
-              _props: {
-                target: mission.place_id,
-                value: "1",
-                id: `${id}_visit_place`,
-              },
-            },
-          ],
-        },
-        id: id,
-        parentId: "",
-        oneSessionOnly: mission.one_session_only ?? false,
-        dynamicLocale: false,
-        type: "Exploration",
-        doNotResetIfCounterCompleted: false,
-        value: "1",
-        visibilityConditions: [],
+    const counterVisit: IQuestCondition = {
+      conditionType: "CounterCreator",
+      index: 0,
+      target: "",
+      counter: {
+        id: `${id}_counter`,
+        conditions: [
+          {
+            conditionType: "VisitPlace",
+            target: mission.place_id,
+            value: 1,
+            id: `${id}_visit_place`,
+            dynamicLocale: false,
+          },
+        ],
       },
+      id: id,
+      parentId: "",
+      oneSessionOnly: mission.one_session_only ?? false,
       dynamicLocale: false,
+      // type: "Exploration",
+      doNotResetIfCounterCompleted: false,
+      value: "1",
+      visibilityConditions: [],
     };
 
     if (!mission.need_survive) {
@@ -618,54 +591,50 @@ class ConditionsGenerator {
 
     const target = getNeedSurviveTargetFromLocation(PLACES[mission.place_id]);
 
-    const counterExit: AvailableForConditions = {
-      _parent: "CounterCreator",
-      _props: {
-        index: 0,
-        counter: {
-          id: `${id}_exit_counter`,
-          conditions: [
-            {
-              _parent: "Location",
-              _props: {
-                target: target,
-                id: `${id}_condition_location`,
-              },
-            },
-            {
-              _parent: "ExitStatus",
-              _props: {
-                status: ["Survived", "Runner"],
-                id: `${id}_condition_exitstatus`,
-                target: [],
-              },
-            },
-          ],
-        },
-        id: `${id}_exit_location`,
-        parentId: "",
-        oneSessionOnly: mission.one_session_only ?? false,
-        dynamicLocale: false,
-        type: "Completion",
-        doNotResetIfCounterCompleted: false,
-        value: "1",
-        visibilityConditions: [
+    const counterExit: IQuestCondition = {
+      conditionType: "CounterCreator",
+      target: "",
+      index: 0,
+      counter: {
+        id: `${id}_exit_counter`,
+        conditions: [
           {
-            _parent: "CompleteCondition",
-            _props: {
-              target: id,
-              id: `${id}_visibility_condition`,
-            },
+            conditionType: "Location",
+            target: target,
+            id: `${id}_condition_location`,
+            dynamicLocale: false,
+          },
+          {
+            conditionType: "ExitStatus",
+            status: ["Survived", "Runner"],
+            id: `${id}_condition_exitstatus`,
+            target: [],
+            dynamicLocale: false,
           },
         ],
       },
+      id: `${id}_exit_location`,
+      parentId: "",
+      oneSessionOnly: mission.one_session_only ?? false,
       dynamicLocale: false,
+      // type: "Completion",
+      doNotResetIfCounterCompleted: false,
+      value: "1",
+      visibilityConditions: [
+        {
+          conditionType: "CompleteCondition",
+          target: id,
+          id: `${id}_visibility_condition`,
+          oneSessionOnly: false, // TODO
+          dynamicLocale: false,
+        },
+      ],
     };
 
     return [counterVisit, counterExit];
   }
 
-  private generateAvailableForFinish(): AvailableForConditions[] {
+  private generateAvailableForFinish(): IQuestCondition[] {
     const missions = (this.customQuest.missions || [])
       .map((mission) => {
         if (mission.type === "Kill") {
@@ -701,7 +670,7 @@ class ConditionsGenerator {
         return [condition];
       });
 
-    return ConditionsGenerator.setPropsIndexes(flatten(missions));
+    return ConditionsGenerator.setConditionsIndexes(flatten(missions));
   }
 
   private generateFail() {
@@ -710,18 +679,20 @@ class ConditionsGenerator {
   }
 
   // if adding values here, getConditionsIdsMappingFromTemplate should be impacted
-  generateConditions(): Conditions {
+  generateConditions(): IQuestConditionTypes {
     return {
       AvailableForStart: this.generateAvailableForStart(),
       AvailableForFinish: this.generateAvailableForFinish(),
       Fail: this.generateFail(),
+      Started: [],
+      Success: [],
     };
   }
 }
 
 export type GeneratedLocales = Record<
   string,
-  { mail: Record<string, string>; quest: ILocaleQuest }
+  { mail: Record<string, string>; quest: IQuest }
 >;
 
 export class CustomQuestsTransformer {
@@ -783,6 +754,8 @@ export class CustomQuestsTransformer {
     return {
       QuestName: questId,
       _id: questId,
+      status: "",
+      questStatus: 1,
       image,
       type,
       traderId,
@@ -795,10 +768,16 @@ export class CustomQuestsTransformer {
       name: `${questId} name`,
       note: `${questId} note`,
       isKey: false,
+      KeyQuest: false,
       restartable: false,
       instantComplete: false,
       secretQuest: false,
+      side: "Pmc",
+      acceptPlayerMessage: `${questId} acceptPlayerMessage`,
+      declinePlayerMessage: `${questId} declinePlayerMessage`,
+      completePlayerMessage: `${questId} completePlayerMessage`,
       startedMessageText: `${questId} startedMessageText`,
+      changeQuestMessageText: `${questId} changeQuestMessageText`,
       successMessageText: q.success_message
         ? `${questId} successMessageText`
         : DEFAULT_SUCCESS_MESSAGE,
@@ -840,18 +819,33 @@ export class CustomQuestsTransformer {
   }
 
   generateLocales(generatedQuest: IQuest): GeneratedLocales {
-    const { name, description, success_message, missions } = this.customQuest;
+    const {
+      name,
+      description,
+      success_message,
+      missions,
+      id: qid,
+      trader_id,
+    } = this.customQuest;
     const { location, templateId } = generatedQuest;
 
     const result: GeneratedLocales = {};
 
     const allLocales = getAllLocales(this.db);
 
+    // TODO: check how locales work with quests
     allLocales.forEach((localeName) => {
-      const payload: ILocaleQuest = {
+      const payload: IQuest = {
+        // ...generatedQuest,
         name: "",
         description: "",
-        conditions: {},
+        conditions: {
+          Started: [],
+          AvailableForFinish: [],
+          AvailableForStart: [],
+          Success: [],
+          Fail: [],
+        },
         note: "",
         failMessageText: "",
         startedMessageText: "",
@@ -868,7 +862,13 @@ export class CustomQuestsTransformer {
         payload.successMessageText = `${templateId}_success_message_text`;
       }
 
-      payload.conditions = {};
+      payload.conditions = {
+        Started: [],
+        AvailableForFinish: [],
+        AvailableForStart: [],
+        Success: [],
+        Fail: [],
+      };
 
       (missions || []).forEach((mission) => {
         const missionId = this.getMissionId(mission);

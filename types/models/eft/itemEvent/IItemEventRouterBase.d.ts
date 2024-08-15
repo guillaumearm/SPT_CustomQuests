@@ -1,13 +1,14 @@
-import { Skills } from "../common/tables/IBotBase";
-import { Item, Upd } from "../common/tables/IItem";
-import { IQuest } from "../common/tables/IQuest";
-import { IPmcDataRepeatableQuest } from "../common/tables/IRepeatableQuests";
-import { IRagfairOffer } from "../ragfair/IRagfairOffer";
+import { Health, IQuestStatus, Productive, Skills } from "@spt/models/eft/common/tables/IBotBase";
+import { Item, Upd } from "@spt/models/eft/common/tables/IItem";
+import { IQuest } from "@spt/models/eft/common/tables/IQuest";
+import { IPmcDataRepeatableQuest } from "@spt/models/eft/common/tables/IRepeatableQuests";
+import { IRagfairOffer } from "@spt/models/eft/ragfair/IRagfairOffer";
+import { EquipmentBuildType } from "@spt/models/enums/EquipmentBuildType";
 export interface IItemEventRouterBase {
     warnings: Warning[];
     profileChanges: TProfileChanges | "";
 }
-export declare type TProfileChanges = Record<string, ProfileChange>;
+export type TProfileChanges = Record<string, ProfileChange>;
 export interface Warning {
     index: number;
     errmsg: string;
@@ -19,31 +20,55 @@ export interface ProfileChange {
     experience: number;
     quests: IQuest[];
     ragFairOffers: IRagfairOffer[];
-    builds: BuildChange[];
+    weaponBuilds: IWeaponBuildChange[];
+    equipmentBuilds: IEquipmentBuildChange[];
     items: ItemChanges;
-    production: Record<string, Production>;
+    production: Record<string, Productive>;
+    /** Hideout area improvement id */
+    improvements: Record<string, Improvement>;
     skills: Skills;
-    traderRelations: Record<string, TraderRelations>;
+    health: Health;
+    traderRelations: Record<string, TraderData>;
     repeatableQuests?: IPmcDataRepeatableQuest[];
+    recipeUnlocked: Record<string, boolean>;
+    changedHideoutStashes?: Record<string, IHideoutStashItem>;
+    questsStatus: IQuestStatus[];
 }
-export interface BuildChange {
+export interface IHideoutStashItem {
+    Id: string;
+    Tpl: string;
+}
+export interface IWeaponBuildChange {
     id: string;
     name: string;
     root: string;
     items: Item[];
+}
+export interface IEquipmentBuildChange {
+    id: string;
+    name: string;
+    root: string;
+    items: Item[];
+    type: string;
+    fastpanel: any[];
+    buildType: EquipmentBuildType;
 }
 export interface ItemChanges {
     new: Product[];
     change: Product[];
     del: Product[];
 }
-export interface Production {
-    Progress: number;
-    StartTimestamp: number;
-    ProductionTime: number;
-    inProgress: boolean;
-    RecipeId: string;
-    Products: Product[];
+export interface Improvement {
+    completed: boolean;
+    improveCompleteTimestamp: number;
+}
+/** Related to TraderInfo */
+export interface TraderData {
+    salesSum: number;
+    standing: number;
+    loyalty: number;
+    unlocked: boolean;
+    disabled: boolean;
 }
 export interface Product {
     _id: string;
@@ -58,11 +83,4 @@ export interface ItemChangeLocation {
     y: number;
     r: number;
     isSearched?: boolean;
-}
-export interface TraderRelations {
-    salesSum?: number;
-    standing?: number;
-    loyalty?: number;
-    unlocked?: boolean;
-    disabled?: boolean;
 }

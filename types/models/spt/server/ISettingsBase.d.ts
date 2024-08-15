@@ -10,7 +10,9 @@ export interface Config {
     FirstCycleDelaySeconds: number;
     FramerateLimit: FramerateLimit;
     GroupStatusInterval: number;
+    GroupStatusButtonInterval: number;
     KeepAliveInterval: number;
+    LobbyKeepAliveInterval: number;
     Mark502and504AsNonImportant: boolean;
     MemoryManagementSettings: MemoryManagementSettings;
     NVidiaHighlights: boolean;
@@ -18,10 +20,15 @@ export interface Config {
     PingServerResultSendInterval: number;
     PingServersInterval: number;
     ReleaseProfiler: ReleaseProfiler;
+    RequestConfirmationTimeouts: number[];
+    RequestsMadeThroughLobby: string[];
     SecondCycleDelaySeconds: number;
+    ShouldEstablishLobbyConnection: boolean;
     TurnOffLogging: boolean;
     WeaponOverlapDistanceCulling: number;
     WebDiagnosticsEnabled: boolean;
+    NetworkStateView: INetworkStateView;
+    WsReconnectionDelays: string[];
 }
 export interface FramerateLimit {
     MaxFramerateGameLimit: number;
@@ -40,4 +47,8 @@ export interface ReleaseProfiler {
     Enabled: boolean;
     MaxRecords: number;
     RecordTriggerValue: number;
+}
+export interface INetworkStateView {
+    LossThreshold: number;
+    RttThreshold: number;
 }

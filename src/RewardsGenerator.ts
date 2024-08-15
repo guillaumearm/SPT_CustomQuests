@@ -1,6 +1,6 @@
-import type { Item } from "@spt-aki/models/eft/common/tables/IItem";
-import type { Reward, Rewards } from "@spt-aki/models/eft/common/tables/IQuest";
-import type { QuestRewardType } from "@spt-aki/models/enums/QuestRewardType";
+import type { Item } from "@spt/models/eft/common/tables/IItem";
+import type { IQuestReward, IQuestRewards } from "@spt/models/eft/common/tables/IQuest";
+import type { QuestRewardType } from "@spt/models/enums/QuestRewardType";
 
 import type {
   CustomQuest,
@@ -17,7 +17,7 @@ export class RewardsGenerator {
     private builds: Record<string, StoryItemBuild>
   ) {}
 
-  static setRewardsIndexes(rewards: (Reward | undefined)[]): Reward[] {
+  static setRewardsIndexes(rewards: (IQuestReward | undefined)[]): IQuestReward[] {
     return rewards.filter(isNotUndefined).map((reward, index) => {
       return {
         ...reward,
@@ -26,7 +26,7 @@ export class RewardsGenerator {
     });
   }
 
-  private generateXpReward(xp: number, idPrefix = ""): Reward {
+  private generateXpReward(xp: number, idPrefix = ""): IQuestReward {
     return {
       index: 0,
       id: `${idPrefix}${this.customQuest.id}_xp_reward`,
@@ -70,7 +70,7 @@ export class RewardsGenerator {
     item: StoryItemBuild,
     nb: number,
     idPrefix: string
-  ): Reward {
+  ): IQuestReward {
     const idReward = `${this.customQuest.id}_item_reward_${item.id}`;
     const targetId = `${idPrefix}TARGET_${idReward}`;
 
@@ -97,7 +97,7 @@ export class RewardsGenerator {
     itemId: string,
     nb: number,
     idPrefix: string
-  ): Reward {
+  ): IQuestReward {
     if (this.builds[itemId]) {
       return this.generateBuildItemReward(this.builds[itemId], nb, idPrefix);
     }
@@ -123,7 +123,7 @@ export class RewardsGenerator {
     };
   }
 
-  private generateReputationReward(givenTraderId: string, nb: number): Reward {
+  private generateReputationReward(givenTraderId: string, nb: number): IQuestReward {
     const traderId = CustomQuestsTransformer.getTraderId(givenTraderId);
     const idReward = `${this.customQuest.id}_reputation_reward_${traderId}`;
 
@@ -139,8 +139,8 @@ export class RewardsGenerator {
   private generateRewards(
     getRewards: () => QuestRewards | undefined,
     idPrefix = ""
-  ): Reward[] {
-    const result: Reward[] = [];
+  ): IQuestReward[] {
+    const result: IQuestReward[] = [];
     const rewards = getRewards();
 
     if (!rewards) {
@@ -175,7 +175,7 @@ export class RewardsGenerator {
     return result;
   }
 
-  public generateAllRewards(): Rewards {
+  public generateAllRewards(): IQuestRewards {
     return {
       Started: this.generateRewards(
         () => this.customQuest.start_rewards,

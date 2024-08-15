@@ -1,3 +1,5 @@
+import { QuestTypeEnum } from "@spt/models/enums/QuestTypeEnum";
+
 const ALL_DESCRIPTIVE_LOCATION_OBJ = {
   any: true,
   customs: true,
@@ -54,12 +56,8 @@ export type LocalizedString = {
 
 export type LocaleName = keyof LocalizedString;
 
-export type QuestType =
-  | "Completion"
-  | "PickUp"
-  | "Elimination"
-  | "Loyalty"
-  | "Discover";
+export type QuestType = QuestTypeEnum
+
 export type QuestString = string | LocalizedString;
 
 export type KillTarget = "Savage" | "AnyPmc" | "Usec" | "Bear" | "Any";

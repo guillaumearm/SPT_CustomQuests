@@ -1,21 +1,24 @@
 export interface Item {
-    _id?: string;
-    _tpl?: string;
+    _id: string;
+    _tpl: string;
     parentId?: string;
     slotId?: string;
     location?: Location | number;
     upd?: Upd;
 }
 export interface Upd {
+    Buff?: Buff;
     OriginalStackObjectsCount?: number;
     Togglable?: Togglable;
     Map?: Map;
     Tag?: Tag;
+    /** SPT specific property, not made by BSG */
     sptPresetId?: string;
     FaceShield?: FaceShield;
     StackObjectsCount?: number;
     UnlimitedCount?: boolean;
     Repairable?: Repairable;
+    RecodableComponent?: RecodableComponent;
     FireMode?: FireMode;
     SpawnedInSession?: boolean;
     Light?: Light;
@@ -30,6 +33,13 @@ export interface Upd {
     Foldable?: Foldable;
     SideEffect?: SideEffect;
     RepairKit?: RepairKit;
+    CultistAmulet?: ICultistAmulet;
+}
+export interface Buff {
+    rarity: string;
+    buffType: string;
+    value: number;
+    thresholdDurability?: number;
 }
 export interface Togglable {
     On: boolean;
@@ -51,6 +61,9 @@ export interface FaceShield {
 export interface Repairable {
     Durability: number;
     MaxDurability: number;
+}
+export interface RecodableComponent {
+    IsEncoded: boolean;
 }
 export interface MedKit {
     HpResource: number;
@@ -98,11 +111,15 @@ export interface Location {
     y: number;
     r: string | number;
     isSearched?: boolean;
-    rotation?: string;
+    /** SPT property? */
+    rotation?: string | boolean;
 }
 export interface SideEffect {
     Value: number;
 }
 export interface RepairKit {
     Resource: number;
+}
+export interface ICultistAmulet {
+    NumberOfUsages: number;
 }

@@ -7,6 +7,9 @@ export interface IBotDurability {
     cursedassault: BotDurability;
     marksman: BotDurability;
     pmcbot: BotDurability;
+    arenafighterevent: BotDurability;
+    arenafighter: BotDurability;
+    crazyassaultevent: BotDurability;
     exusec: BotDurability;
     gifter: BotDurability;
     sectantpriest: BotDurability;
@@ -14,18 +17,8 @@ export interface IBotDurability {
 }
 /** Durability values to be used when a more specific bot type cant be found */
 export interface DefaultDurability {
-    armor: DefaultArmor;
+    armor: ArmorDurability;
     weapon: WeaponDurability;
-}
-export interface DefaultArmor {
-    maxDelta: number;
-    minDelta: number;
-}
-export interface WeaponDurability {
-    lowestMax: number;
-    highestMax: number;
-    maxDelta: number;
-    minDelta: number;
 }
 export interface PmcDurability {
     armor: PmcDurabilityArmor;
@@ -44,4 +37,12 @@ export interface BotDurability {
 export interface ArmorDurability {
     maxDelta: number;
     minDelta: number;
+    minLimitPercent: number;
+}
+export interface WeaponDurability {
+    lowestMax: number;
+    highestMax: number;
+    maxDelta: number;
+    minDelta: number;
+    minLimitPercent: number;
 }

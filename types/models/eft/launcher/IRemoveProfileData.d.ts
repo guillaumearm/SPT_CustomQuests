@@ -1,2 +1,2 @@
-import { ILoginRequestData } from "./ILoginRequestData";
-export declare type IRemoveProfileData = ILoginRequestData;
+import { ILoginRequestData } from "@spt/models/eft/launcher/ILoginRequestData";
+export type IRemoveProfileData = ILoginRequestData;
