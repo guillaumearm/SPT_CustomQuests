@@ -7,7 +7,13 @@ import { join } from "path";
 import type { Config } from "./config";
 import { getLimitRepeatedQuest } from "./config";
 
-import type { CustomQuest, LocaleName, StoryItem } from "./customQuests";
+import type {
+  CustomQuest,
+  LocaleName,
+  StoryAcceptedItemGroup,
+  StoryItem,
+  StoryItemBuild,
+} from "./customQuests";
 
 import {
   isStoryAcceptedItemGroup,
@@ -192,11 +198,11 @@ export class QuestsLoader {
       .filter(isStoryCustomQuest)
       .map(this.transformIds.bind(this));
 
-    const itemBuilds = story
+    const itemBuilds: StoryItemBuild[] = story
       .filter(isStoryItemBuild)
       .map(this.transformIds.bind(this));
 
-    const itemGroups = story
+    const itemGroups: StoryAcceptedItemGroup[] = story
       .filter(isStoryAcceptedItemGroup)
       .map(this.transformIds.bind(this));
 
@@ -213,6 +219,8 @@ export class QuestsLoader {
     }
 
     const expandedQuests = this.expandRepeatableQuests(quests);
+
+    console.log(expandedQuests);
 
     const questGen = new QuestsGenerator(
       expandedQuests,

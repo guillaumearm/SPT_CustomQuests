@@ -343,11 +343,11 @@ class ConditionsGenerator {
       this.generateQuestCondition(questId, QUEST_STATUS_STARTED, index)
     );
 
-    return [
+    return ConditionsGenerator.setConditionsIndexes([
       levelCondition,
       ...questSuccessConditions,
       ...questStartedConditions,
-    ].filter(isNotUndefined);
+    ]);
   }
 
   private generateKillCondition(mission: MissionKill): QuestCondition | null {
