@@ -276,7 +276,7 @@ class ConditionsGenerator {
 
   private static setConditionsIndexes(
     conditions: (QuestCondition | undefined)[]
-  ) {
+  ): QuestCondition[] {
     return conditions.filter(isNotUndefined).map((payload, index) => {
       return {
         ...payload,
@@ -308,17 +308,22 @@ class ConditionsGenerator {
 
   private generateQuestCondition(
     questId: string,
-    status = QUEST_STATUS_SUCCESS
+    status: number[],
+    questConditionIndex: number
   ): QuestCondition | undefined {
     if (questId) {
       return {
         conditionType: "Quest",
-        index: 0,
-        id: "",
+        index: 0, // will be filled later by setConditionsIndexes (do not use questConditionIndex here because of possible collisions)
+        id: `${questId}_questcondition_${questConditionIndex}`,
+        dispersion: 0,
+        availableAfter: 0,
         parentId: "",
+        globalQuestCounterId: "",
         dynamicLocale: false,
         target: questId,
         status: status,
+        visibilityConditions: [],
       };
     }
 
@@ -331,18 +336,18 @@ class ConditionsGenerator {
 
     const levelCondition = this.generateLevelCondition();
 
-    const questSuccessConditions = locked_by_quests.map((questId) =>
-      this.generateQuestCondition(questId, QUEST_STATUS_SUCCESS)
+    const questSuccessConditions = locked_by_quests.map((questId, index) =>
+      this.generateQuestCondition(questId, QUEST_STATUS_SUCCESS, index)
     );
-    const questStartedConditions = unlock_on_quest_start.map((questId) =>
-      this.generateQuestCondition(questId, QUEST_STATUS_STARTED)
+    const questStartedConditions = unlock_on_quest_start.map((questId, index) =>
+      this.generateQuestCondition(questId, QUEST_STATUS_STARTED, index)
     );
 
-    return ConditionsGenerator.setConditionsIndexes([
+    return [
       levelCondition,
       ...questSuccessConditions,
       ...questStartedConditions,
-    ]);
+    ].filter(isNotUndefined);
   }
 
   private generateKillCondition(mission: MissionKill): QuestCondition | null {
@@ -367,7 +372,6 @@ class ConditionsGenerator {
         conditionType: "Kills",
         id: `${counterId}_kill`,
         dynamicLocale: false,
-
         // target = 'Savage' | 'AnyPmc' | 'Bear' | 'Usec' | 'Any'
         target: mission.target || "Any",
         compareMethod: ">=",

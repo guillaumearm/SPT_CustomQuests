@@ -276,11 +276,11 @@ export const createRepeatedQuestId = (questId: string, index: number): string =>
  * repeated quest = with REPEATED_QUEST_PREFIX prefix
  * repeatable quest = original quest + repeated quests included
  */
-export const isRepeatedQuest = (questId: string): boolean => {
+const isRepeatedQuest = (questId: string): boolean => {
   return questId.startsWith(REPEATED_QUEST_PREFIX);
 };
 
-export const extractOriginalQuestId = (questId: string): string | null => {
+const extractOriginalQuestId = (questId: string): string | null => {
   if (!isRepeatedQuest(questId)) {
     return null;
   }

@@ -163,7 +163,7 @@ You can found all quests images in `Aki_Data/Server/images/quests/` directory.
 }
 ```
 
-To be able to see this quest, your pmc should be at least level 10 + the `trap_quest_example_1` and `trap_quest_example_1_bis` quests should have been completed.
+To be able to see this quest, your pmc should be at least level 10 + the `trap_quest_example_1` or `trap_quest_example_1_bis` quests should have been completed.
 
 Also, you can use the `unlock_on_quest_start` array to specify which quests has to been started to unlock this quest.
 
