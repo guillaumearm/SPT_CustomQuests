@@ -30,10 +30,9 @@ const repeatQuest = (
     Array(Math.abs(limitRepeatedQuest)).keys()
   ).map((index) => {
     const newQuest = { ...quest };
-    const lockedByQuests = newQuest.locked_by_quests ?? [];
 
     newQuest.id = createRepeatedQuestId(newQuest.id, index);
-    newQuest.locked_by_quests = [...lockedByQuests, previousId];
+    newQuest.locked_by_quests = [previousId];
 
     previousId = newQuest.id;
     return newQuest;
