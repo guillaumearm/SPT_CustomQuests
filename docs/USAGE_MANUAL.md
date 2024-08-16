@@ -538,7 +538,7 @@ For example:
 ### build directive
 With the `@build` directive, you can simply define a weapon build (or any item with attachments)
 
-For example: (TODO)
+For example:
 
 ```json
 [

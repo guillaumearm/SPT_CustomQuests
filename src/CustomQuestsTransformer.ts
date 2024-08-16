@@ -905,15 +905,6 @@ export class CustomQuestsTransformer {
             CustomQuestsTransformer.getLocaleValue(needSurvive, localeName);
         }
       });
-
-      // TODO: check that mail works?
-      // result[localeName].mail[payload.description] =
-      //   CustomQuestsTransformer.getLocaleValue(description, localeName);
-
-      // if (success_message) {
-      //   result[localeName].mail[payload.successMessageText] =
-      //     CustomQuestsTransformer.getLocaleValue(success_message, localeName);
-      // }
     });
 
     return generatedLocales;

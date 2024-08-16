@@ -3,6 +3,9 @@ node_modules
 dist/
 types/
 tmp/
+scripts/
+
+prettierrc.js
 
 # Exclude these filetypes from linting
 *.json

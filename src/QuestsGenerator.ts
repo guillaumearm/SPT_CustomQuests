@@ -1,4 +1,3 @@
-import type { IQuest } from "@spt/models/eft/common/tables/IQuest";
 import type { ILogger } from "@spt/models/spt/utils/ILogger";
 import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 

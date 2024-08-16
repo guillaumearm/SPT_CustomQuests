@@ -1,4 +1,3 @@
-import type { IQuest } from "@spt/models/eft/common/tables/IQuest";
 import type { ILogger } from "@spt/models/spt/utils/ILogger";
 import type { DatabaseServer } from "@spt/servers/DatabaseServer";
 import type { SaveServer } from "@spt/servers/SaveServer";
@@ -48,7 +47,7 @@ export class OnStartHandler {
   }
 
   private wipeProfilesForQuest(questId: string): void {
-    const nbWiped = 0;
+    let nbWiped = 0;
     const profileIds = Object.keys(this.saveServer.getProfiles());
 
     profileIds.forEach((profileId) => {
@@ -65,63 +64,45 @@ export class OnStartHandler {
 
         // TODO
         // 2. wipe backend counters
-        // if (!pmcData.BackendCounters) {
-        //   pmcData.BackendCounters = {};
-        // }
+        if (!pmcData.TaskConditionCounters) {
+          pmcData.TaskConditionCounters = {};
+        }
 
-        // let backendCounterRemoved = false;
-        // const backendCounters = pmcData.BackendCounters;
-        // Object.keys(backendCounters).forEach((counterId) => {
-        //   const counter = backendCounters[counterId];
+        let backendCounterRemoved = false;
+        const taskConditionCounters = pmcData.TaskConditionCounters;
+        Object.keys(taskConditionCounters).forEach((counterId) => {
+          const counter = taskConditionCounters[counterId];
 
-        //   if (counter && counter.qid === questId) {
-        //     backendCounterRemoved = true;
-        //     if (pmcData.BackendCounters) {
-        //       delete pmcData.BackendCounters[counterId];
-        //     }
-        //   }
-        // });
-
-        // TODO
-        // 3. wipe condition counters
-        // const Counters =
-        //   pmcData.ConditionCounters?.Counters.filter(
-        //     (payload) => payload.qid !== questId
-        //   ) ?? [];
-        // const counterRemoved =
-        //   Counters.length !== pmcData.ConditionCounters?.Counters.length ?? 0;
-
-        // if (pmcData.ConditionCounters) {
-        //   pmcData.ConditionCounters.Counters = Counters;
-        // }
+          if (counter && counter.sourceId === questId) {
+            backendCounterRemoved = true;
+            if (pmcData.TaskConditionCounters) {
+              delete pmcData.TaskConditionCounters[counterId];
+            }
+          }
+        });
 
         // TODO
         // 4. wipe DroppedItems
-        // let droppedItem = false;
-        // if (
-        //   pmcData.Stats &&
-        //   pmcData.Stats.DroppedItems &&
-        //   pmcData.Stats.DroppedItems.length > 0
-        // ) {
-        //   const DroppedItems = pmcData.Stats.DroppedItems.filter(
-        //     (payload) => payload.QuestId !== questId
-        //   );
+        let droppedItem = false;
+        if (
+          pmcData.Stats.Eft &&
+          pmcData.Stats.Eft.DroppedItems &&
+          pmcData.Stats.Eft.DroppedItems.length > 0
+        ) {
+          const DroppedItems = pmcData.Stats.Eft.DroppedItems.filter(
+            (payload) => payload.QuestId !== questId
+          );
 
-        //   if (DroppedItems.length !== pmcData.Stats.DroppedItems.length) {
-        //     droppedItem = true;
-        //   }
+          if (DroppedItems.length !== pmcData.Stats.Eft.DroppedItems.length) {
+            droppedItem = true;
+          }
 
-        //   pmcData.Stats.DroppedItems = DroppedItems;
-        // }
+          pmcData.Stats.Eft.DroppedItems = DroppedItems;
+        }
 
-        // if (
-        //   questRemoved ||
-        //   backendCounterRemoved ||
-        //   counterRemoved ||
-        //   droppedItem
-        // ) {
-        //   nbWiped += 1;
-        // }
+        if (questRemoved || backendCounterRemoved || droppedItem) {
+          nbWiped += 1;
+        }
       }
 
       // 5. wipe dialogues
