@@ -55,6 +55,7 @@ const main = () => {
     resultByMaps[place.location][place.placeId] = true;
   });
 
+  // eslint-disable-next-line no-undef
   console.log(resultByMaps);
 };
 
