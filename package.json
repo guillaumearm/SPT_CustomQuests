@@ -6,6 +6,10 @@
   "main": "src/mod.js",
   "license": "MIT",
   "author": "Trap",
+  "loadBefore": [],
+  "loadAfter": [],
+  "incompatibilities": [],
+  "isBundleMod": false,
   "sptVersion": "3.9.x",
   "scripts": {
     "dev:install": "npm run build:release && node scripts/install-files.js",
