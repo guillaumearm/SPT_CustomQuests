@@ -28,6 +28,15 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_skier_11_2`](https://mapgenie.io/tarkov/maps/woods?locationIds=36939) = On the pile of planks beside the path at sawmill
 - [`huntsman_005_1`](https://mapgenie.io/tarkov/maps/woods?locationIds=86413) = ZB-014 stash
 - [`huntsman_005_2`](https://mapgenie.io/tarkov/maps/woods?locationIds=86414) = ZB-016 stash
+- `meh_45_radio_area_mark_1` (TODO: add mapgenie url)
+- `meh_45_radio_area_mark_2` (TODO: add mapgenie url)
+- `meh_45_radio_area_mark_3` (TODO: add mapgenie url)
+- `meh_45_radio_area_mark_4` (TODO: add mapgenie url)
+- `q14_8_1` (TODO: add mapgenie url)
+- `q14_8_2` (TODO: add mapgenie url)
+- `q14_8_3` (TODO: add mapgenie url)
+- `q14_8_4` (TODO: add mapgenie url)
+- `q14_8_5` (TODO: add mapgenie url)
 
 ## Shoreline
 - [`place_peacemaker_007_2_N3`](https://mapgenie.io/tarkov/maps/shoreline?locationIds=28154) = room 321 (west wing)
@@ -64,6 +73,9 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`place_merch_21_3`](https://mapgenie.io/tarkov/maps/interchange?locationIds=28772) = Minibus 3 between garage B and C
 - [`place_merch_020_1`](https://mapgenie.io/tarkov/maps/interchange?locationIds=37022) = in garbage pile inside the Avokado store
 - [`place_merch_020_2`](https://mapgenie.io/tarkov/maps/interchange?locationIds=37040) = in garbage pile next to the stage
+- `quest_zone_keeper6_kiba_hide` (TODO: add mapgenie url)
+- `quest_zone_keeper6_safe_hide` (TODO: add mapgenie url)
+- `quest_zone_keeper6_cont_hide` (TODO: add mapgenie url)
 
 ## Factory
 - [`place_SADOVOD_01_1`](https://mapgenie.io/tarkov/maps/factory?locationIds=33740) = Control Board 1 in glass hall
@@ -82,6 +94,12 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`qlight_fuel_blood_bezovoz2`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153310) = Second tanker truck at the water treatment plant
 - [`qlight_fuel_blood_bezovoz3`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153311) = Third tanker truck, south of the water treatment plant, near of the bridge
 - [`qlight16_peace_terra`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153644) = TerraGroup cargo on the beach
+- `meh_42_radio_area_mark_1` (TODO: add mapgenie url)
+- `meh_42_radio_area_mark_2` (TODO: add mapgenie url)
+- `meh_42_radio_area_mark_3` (TODO: add mapgenie url)
+- `meh_42_radio_area_mark_4` (TODO: add mapgenie url)
+- `qlight_extension_medic1_hide1` (TODO: add mapgenie url)
+- `qlight_extension_mechanik1_hide1` (TODO: add mapgenie url)
 
 ## Reserve
 - [`tadeush_bmp2_area_mark_2`](https://mapgenie.io/tarkov/maps/reserve?locationIds=89745) = First bmp2 not far from scav lands
@@ -91,3 +109,30 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`tadeush_stryker_area_mark_3`](https://mapgenie.io/tarkov/maps/reserve?locationIds=89746) = First LAV behind bunker hermetic doors
 - [`baraholshik_fuel_area_2`](https://mapgenie.io/tarkov/maps/reserve?locationIds=85957) = Fuel 1 near the checkpoint fence scav exfil
 - [`baraholshik_fuel_area_3`](https://mapgenie.io/tarkov/maps/reserve?locationIds=85958) = Fuel 2 near White tower
+
+## Streets of Tarkov
+- `quest_zone_place_c14_revx_1` (TODO: add mapgenie url)
+- `quest_zone_place_c14_revx_2` (TODO: add mapgenie url)
+- `quest_zone_place_c14_revx_3` (TODO: add mapgenie url)
+- `quest_zone_keeper10_place` (TODO: add mapgenie url)
+- `quest_zone_hide_sillent` (TODO: add mapgenie url)
+- `quest_zone_hide_sillent2` (TODO: add mapgenie url)
+- `quest_zone_hide_barber1` (TODO: add mapgenie url)
+- `quest_zone_hide_barber2` (TODO: add mapgenie url)
+- `quest_city_trotil2` (TODO: add mapgenie url)
+- `quest_city_trotil1` (TODO: add mapgenie url)
+
+
+## Ground Zero
+N/A (check [ALL_PLACES.md](./ALL_PLACES.md))
+
+## Unknown (help asked: need to identify on which map thos items can be found)
+- `quest_zone_place_c24_tigr1` (TODO: find on which map is this zone)
+- `quest_zone_place_c24_tigr2` (TODO: find on which map is this zone)
+- `tadeush_bmp2_area_mark_12` (TODO: find on which map is this zone)
+- `place_keeper5_1` (TODO: find on which map is this zone)
+- `place_keeper5_2` (TODO: find on which map is this zone)
+- `quest_zone_keeper8_1_hide1` (TODO: find on which map is this zone)
+- `quest_zone_keeper8_1_hide2` (TODO: find on which map is this zone)
+- `quest_zone_hide_2st_mech` (TODO: find on which map is this zone)
+- `place_flyers1` (TODO: find on which map is this zone)
