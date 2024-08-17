@@ -52,3 +52,53 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 
 ## Laboratory
 - [`5eff135be0d3331e9d282b7b`](https://mapgenie.io/tarkov/maps/lab?locationIds=46254) = Flash drive marked with blue tape
+
+
+## Unknown (help asked: need to identify on which map thos items can be found)
+- `5937fc6786f7742cab753590` = Silver pocket watch on a chain
+- `5a29276886f77435ed1b117c` = Working hard drive
+- `5910922b86f7747d96753483` = Carbon case
+- `5937fd0086f7742bf33fc198` = Bronze pocket watch on a chain
+- `590dde5786f77405e71908b2` = Bank case
+- `5a687e7886f7740c4a5133fb` = Blood sample
+- `59f9ddae86f77407ab46e047` = Secure Flash drive
+- `593a87af86f774122f54a951` = Syringe with a chemical
+- `5a29284f86f77463ef3db363` = Toughbook reinforced laptop
+- `5a294d8486f774068638cd93` = UAV SAS disk #2
+- `590de92486f77423d9312a33` = Gold pocket watch on a chain
+- `5a0448bc86f774736f14efa8` = Key to the closed premises of the Health Resort
+- `5939a00786f7742fe8132936` = Golden Zibbo lighter
+- `5ae9a34d86f7740aab00e4de` = Note for Therapist
+- `5b43237186f7742f3a4ab252` = Chemical container #1
+- `5b4c72fb86f7745cef1cffc5` = Single-axis Fiber Optic Gyroscope #2
+- `5b4c72b386f7745b453af9c0` = Motor Controller #2
+- `5b4c81a086f77417d26be63f` = Chemical container #2
+- `5b4c72c686f77462ac37e907` = Motor Controller #3
+- `5b4c81bd86f77418a75ae159` = Chemical container #3
+- `60c080eb991ac167ad1c3ad4` = MBT Integrated Navigation System
+- `609267a2bb3f46069c3e6c7d` = T-90M Commander Control Panel
+- `619252352be33f26043400a7` = Laptop with information
+- `638dfc803083a019d447768e` = Working hard drive
+- `63989ced706b793c7d60cfef` = Informant's journal
+- `638cbc68a63f1b49be6a3010` = Registered letter
+- `63a943cead5cc12f22161ff7` = Accountant's notes
+- `6398a072e301557ae24cec92` = Lightkeeper intelligence
+- `6398a4cfb5992f573c6562b3` = Secured tape
+- `638cbb3ba63f1b49be6a300e` = Secure Flash drive
+- `6398a0861c712b1e1d4dadf1` = Forged Lightkeeper intelligence
+- `638e0057ab150a5f56238960` = Housing office journal
+- `638cbb0f7f97256fac16167a` = Accountant's journal
+- `6398fd8ad3de3849057f5128` = Backup hideout key
+- `638e9d5536b3b72c944e2fc7` = Flash drive with recordings
+- `63927b29c115f907b14700b9` = Chemical container with samples
+- `638df4cc7b560b03794a18d2` = AG guitar pick
+- `6393262086e646067c176aa2` = Medical observation record
+- `628393620d8524273e7eb028` = Working hard drive
+- `6399f54b0a36db13c823ad21` = Radio transmitter body
+- `64f09c02b63b74469b6c149f` = Paramedic's GPhone X
+- `64f69b4267e11a7c6206e010` = Chef's diary
+- `64f5b4f71a5f313cb144c06c` = Secret component
+- `64f07f7726cfa02c506f8ac0` = Journal
+- `6575a6ca8778e96ded05a802` = TerraGroup scientist's hard drive
+- `6582bd252b50c61c565828e2` = Bottle of Le Jean wine
+- `657acb2ac900be5902191ac9` = Cadastral registry records
