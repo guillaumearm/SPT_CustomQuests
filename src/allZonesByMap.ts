@@ -94,4 +94,7 @@ export const ALL_ZONES_BY_MAP = {
     "baraholshik_fuel_area_2",
     "baraholshik_fuel_area_3",
   ],
+
+  tarkovstreets: [],
+  groundzero: [],
 };

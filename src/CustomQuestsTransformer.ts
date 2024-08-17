@@ -105,7 +105,7 @@ const TRADER_ALIASES = {
   mechanic: "5a7c2eca46aef81a7ca2145d",
   ragman: "5ac3b934156ae10c4430e83c",
   jaeger: "5c0647fdd443bc2504c2d371",
-  // TODO: add ref trader
+  ref: "6617beeaa9cfa777ca915b7c",
 };
 
 const DESCRIPTIVE_LOCATION_ALIASES = {
@@ -122,7 +122,7 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
   reserve: "5704e5fad2720bc05b8b4567",
   shoreline: "5704e554d2720bac5b8b456e",
   woods: "5704e3c2d2720bac5b8b4567",
-  // TODO: add streets
+  streets: "5714dc692459777137212e12",
   groundzero: "653e6760052c01c1c805532f",
   sandbox: "653e6760052c01c1c805532f",
   sandbox_high: "65b8d6f5cdde2479cb2a3125",
@@ -140,6 +140,7 @@ const LOCATION_ALIASES = {
   groundzero: ["Sandbox", "Sandbox_high"],
   sandbox: ["Sandbox"],
   sandbox_high: ["Sandbox_high"],
+  streets: ["TarkovStreets"],
 };
 
 const getTargetFromLocations = (locations: string[]): string[] => {
@@ -161,9 +162,15 @@ const getTargetFromLocations = (locations: string[]): string[] => {
 };
 
 const getNeedSurviveTargetFromLocation = (location: string): string[] => {
-  return location === "factory"
-    ? ["factory4_day", "factory4_night"]
-    : [location];
+  if (location === "factory") {
+    return ["factory4_day", "factory4_night"];
+  }
+
+  if (location === "groundzero") {
+    return ["sandbox", "sandbox_high"];
+  }
+
+  return [location];
 };
 
 function generateKillConditionId(
@@ -657,7 +664,7 @@ class ConditionsGenerator {
           conditionType: "CompleteCondition",
           target: id,
           id: `${id}_visibility_condition`,
-          oneSessionOnly: false, // TODO test this
+          oneSessionOnly: false, // TODO test this ?
           dynamicLocale: false,
         },
       ],

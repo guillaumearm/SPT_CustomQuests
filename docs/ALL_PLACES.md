@@ -92,3 +92,7 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 
 ## Laboratory
 - [`peace_027_area`](https://mapgenie.io/tarkov/maps/lab?locationIds=46254) = sanitar's room in the green zone (locked by key card with a blue marking)
+
+## Streets
+
+## Ground Zero
