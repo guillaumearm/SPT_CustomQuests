@@ -45,6 +45,8 @@ class CustomQuests implements IPreSptLoadMod, IPostSptLoadMod {
     this.packageJson = readJsonFile<PackageJson>(PACKAGE_JSON_PATH);
     this.config = readJsonFile<Config>(CONFIG_PATH);
     this.logger = container.resolve<ILogger>("WinstonLogger");
+    const db = container.resolve<DatabaseServer>("DatabaseServer");
+    const saveServer = container.resolve<SaveServer>("SaveServer");
 
     this.debug = this.config.debug
       ? (data: string) => this.logger.debug(`Custom Quests: ${data}`, true)
@@ -75,6 +77,8 @@ class CustomQuests implements IPreSptLoadMod, IPostSptLoadMod {
 
     const apiName = setCustomQuestsAPI(api);
     this.debug(`api exposed under 'globalThis.${apiName}'`);
+
+    resetRepeatableQuestsOnGameStart(container, saveServer, this.debug, db);
   }
 
   postSptLoad(container: DependencyContainer): void {
@@ -103,8 +107,6 @@ class CustomQuests implements IPreSptLoadMod, IPostSptLoadMod {
       this.logger,
       this.debug
     );
-
-    resetRepeatableQuestsOnGameStart(container, saveServer, this.debug, db);
 
     const loadedQuests = this.questsLoader.loadAll();
     const apiQuests = this.questsLoader.injectStory(this.pendingItems);

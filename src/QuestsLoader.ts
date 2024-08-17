@@ -27,17 +27,22 @@ import { createRepeatedQuestId } from "./RepeatableQuests";
 import { flatten, getAllLocales, readJsonFile } from "./utils";
 
 const repeatQuest = (
-  quest: CustomQuest,
+  originalQuest: CustomQuest,
   limitRepeatedQuest: number
 ): CustomQuest[] => {
-  let previousId = quest.id;
+  // This is to avoid a weird BSG bug. pretty sure at some time ids doesn't strict match but a "x contains y" check is made somewhere
+  const quest = {
+    ...originalQuest,
+    id: `#${originalQuest.id}#`,
+  };
 
+  let previousId = quest.id;
   const additionalQuests: CustomQuest[] = Array.from(
     Array(Math.abs(limitRepeatedQuest)).keys()
   ).map((index) => {
     const newQuest = { ...quest };
 
-    newQuest.id = createRepeatedQuestId(newQuest.id, index);
+    newQuest.id = createRepeatedQuestId(originalQuest.id, index);
     newQuest.locked_by_quests = [previousId];
 
     previousId = newQuest.id;
@@ -171,18 +176,18 @@ export class QuestsLoader {
   private transformIds<T extends StoryItem>(item: T): T {
     const { id } = item;
 
-    // 1
+    // 1. all story items
     const newId = id.replace(/ /g, "_");
 
     if (newId !== id) {
       this.logger.warning(`=> Custom Quests: id ${id} replaced by '${newId}'`);
     }
 
-    // TODO: 2
-    // TODO: 3
-    // TODO: 4
-    // TODO: 5
-    // TODO: 6
+    // TODO: 2 all rewards
+    // TODO: 3 all start_rewards
+    // TODO: 4 all locked_by_quests
+    // TODO: 5 all unlock_on_quest_start
+    // TODO: 6 all accepted_items
 
     return {
       ...item,
@@ -219,8 +224,6 @@ export class QuestsLoader {
     }
 
     const expandedQuests = this.expandRepeatableQuests(quests);
-
-    console.log(expandedQuests);
 
     const questGen = new QuestsGenerator(
       expandedQuests,

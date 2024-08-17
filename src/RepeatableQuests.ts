@@ -100,8 +100,6 @@ export const resetRepeatableQuestsOnGameStart = (
 
       controller.gameStart = (url, info, sessionId) => {
         debug("game started!");
-        const response = gameStart(url, info, sessionId);
-
         const profile = saveServer.getProfile(sessionId);
         const pmc = profile.characters.pmc;
 
@@ -132,7 +130,6 @@ export const resetRepeatableQuestsOnGameStart = (
             isSuccess(q.status) &&
             (originalRepeatableQuests[q.qid] || isRepeatedQuest(q.qid))
           ) {
-            // reset backend counters
             Object.values(pmc.TaskConditionCounters ?? {}).forEach(
               (counter) => {
                 if (counter.sourceId === q.qid) {
@@ -140,13 +137,6 @@ export const resetRepeatableQuestsOnGameStart = (
                 }
               }
             );
-
-            // // reset conditions counters
-            // pmc.TaskConditionCounters?.Counters.forEach((counter) => {
-            //   if (counter.qid === q.qid) {
-            //     counter.value = 0;
-            //   }
-            // });
           }
         });
 
@@ -164,7 +154,6 @@ export const resetRepeatableQuestsOnGameStart = (
                 db
               );
 
-              // backend counters
               Object.values(pmc.TaskConditionCounters ?? {})
                 .filter((counter) => counter.sourceId === originalId)
                 .forEach((counter) => {
@@ -177,20 +166,6 @@ export const resetRepeatableQuestsOnGameStart = (
                     replacedCounters = replacedCounters + 1;
                   }
                 });
-
-              // conditions counters
-              // pmc.TaskConditionCounters?.Counters.filter(
-              //   (counter) => counter.qid === originalId
-              // ).forEach((counter) => {
-              //   const otherCounterId = conditionsMapping[counter.id];
-              //   const otherCounter = pmc.ConditionCounters?.Counters.find(
-              //     (c) => c.id === otherCounterId
-              //   );
-              //   if (otherCounter) {
-              //     counter.value = otherCounter?.value ?? 0;
-              //     replacedCounters = replacedCounters + 1;
-              //   }
-              // });
             }
           }
         });
@@ -215,7 +190,6 @@ export const resetRepeatableQuestsOnGameStart = (
         });
 
         // 3. remove all counters related to @repeated quests
-        // backend counters
         pmc.TaskConditionCounters = filterInObject((counter) => {
           if (isRepeatedQuest(counter.sourceId ?? "")) {
             removedCounters = removedCounters + 1;
@@ -223,19 +197,6 @@ export const resetRepeatableQuestsOnGameStart = (
           }
           return true;
         }, pmc.TaskConditionCounters ?? {});
-
-        // conditions counters
-        // if (pmc.TaskConditionCounters) {
-        //   pmc.ConditionCounters.Counters =
-        //     pmc.ConditionCounters?.Counters.filter((counter) => {
-        //       if (isRepeatedQuest(counter.qid)) {
-        //         removedCounters = removedCounters + 1;
-        //         return false;
-        //       }
-
-        //       return true;
-        //     }) ?? [];
-        // }
 
         // 4. remove all repeated quests
         pmc.Quests = pmc.Quests.filter((q) => {
@@ -259,21 +220,23 @@ export const resetRepeatableQuestsOnGameStart = (
           debug(`${removedRepeatedQuests} repeated quest(s) removed`);
         }
 
-        return response;
+        return gameStart(url, info, sessionId);
       };
-    }
+    },
+    { frequency: "Always" }
   );
 };
 
 const REPEATED_QUEST_PREFIX = "@repeated";
+const REPEATED_QUEST_SUFFIX = "@";
 
 export const createRepeatedQuestId = (questId: string, index: number): string =>
-  `${REPEATED_QUEST_PREFIX}/${questId}/${index}`;
+  `${REPEATED_QUEST_PREFIX}/${questId}/${index}${REPEATED_QUEST_SUFFIX}`;
 
 /**
  * Warning: a repeated quest is not repeatable quest
  *
- * repeated quest = with REPEATED_QUEST_PREFIX prefix
+ * repeated quest = with REPEATED_QUEST_* prefix and suffix
  * repeatable quest = original quest + repeated quests included
  */
 const isRepeatedQuest = (questId: string): boolean => {
