@@ -53,9 +53,10 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 
 ## Factory
 - [`pumproom`](https://mapgenie.io/tarkov/maps/factory?locationIds=30432) = Pumping station room (locked)
-- [`place_pacemaker_SCOUT_01`](https://mapgenie.io/tarkov/maps/factory?locationIds=25059) = Cellars exfil (not sure of this one) ???
-- [`place_pacemaker_SCOUT_02`](https://mapgenie.io/tarkov/maps/factory?locationIds=25057) = Gate 0 exfil (not sure of this one) ???
-- [`place_pacemaker_SCOUT_03`](https://mapgenie.io/tarkov/maps/factory?locationIds=25056) = Gate 3 exfil (not sure of this one) ???
+- [`place_pacemaker_SCOUT_01`](https://mapgenie.io/tarkov/maps/factory?locationIds=25059) = Cellars exfil (not sure of this one ?)
+- [`place_pacemaker_SCOUT_02`](https://mapgenie.io/tarkov/maps/factory?locationIds=25057) = Gate 0 exfil (not sure of this one ?)
+- [`place_pacemaker_SCOUT_03`](https://mapgenie.io/tarkov/maps/factory?locationIds=25056) = Gate 3 exfil (not sure of this one ?)
+- [`place_pacemaker_SCOUT_04`](https://mapgenie.io/tarkov/maps/factory?locationIds=88025) = Med tent gates (not sure of this one ?)
 - [`ter_017_area_1`](https://mapgenie.io/tarkov/maps/factory?locationIds=118057) = Breach room/Secretary's office
 - [`locked_office`](https://mapgenie.io/tarkov/maps/factory?locationIds=25092) = locked room at 3rd floor
 
@@ -65,6 +66,14 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 - [`qlight_find_light_merchant`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=152795) = Recon area around the Lighthouse (warning: snipers)
 - [`qlight_find_crushed_heli`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=153641) = Helicopter crash
 - [`qlight_find_scav_group1`](https://mapgenie.io/tarkov/maps/lighthouse?locationIds=152789) = Tennis Courts at Chalet
+- `meh_48_transponder_area_check_1` (TODO: add mapgenie url)
+- `meh_50_visit_area_check_1` (TODO: add mapgenie url)
+- `qlight_extension_medic1_exploration1` (TODO: add mapgenie url)
+- `qlight_extension_prapor1_exploration1` (TODO: add mapgenie url)
+- `qlight_extension_prapor1_exploration2` (TODO: add mapgenie url)
+- `qlight_extension_prapor1_exploration3` (TODO: add mapgenie url)
+- `qlight_extension_bariga1_exploration1` (TODO: add mapgenie url)
+- `qlight_extension_mechanik1_exploration1` (TODO: add mapgenie url)
 
 ## Reserve
 - [`huntsman_029`](https://mapgenie.io/tarkov/maps/reserve?locationIds=40913) = food storage location in underground bunker
@@ -92,7 +101,65 @@ Disclaimer: for `Reserve` and `Lighthouse`, you need a `mapgenie.io` pro account
 
 ## Laboratory
 - [`peace_027_area`](https://mapgenie.io/tarkov/maps/lab?locationIds=46254) = sanitar's room in the green zone (locked by key card with a blue marking)
+- `quest_zone_keeper7_saferoom` (TODO: add mapgenie url)
+- `quest_zone_keeper7_test` (TODO: add mapgenie url)
 
 ## Streets
+- `quest_zone_keeper8_1` (TODO: add mapgenie url)
+- `quest_zone_keeper8_2` (TODO: add mapgenie url)
+- `quest_zone_find_2st_mech` (TODO: add mapgenie url)
+- `quest_zone_c5_mar` (TODO: add mapgenie url)
+- `quest_zone_c6_kpss` (TODO: add mapgenie url)
+- `quest_zone_c7_mel` (TODO: add mapgenie url)
+- `quest_zone_c8_dom1` (TODO: add mapgenie url)
+- `quest_zone_c8_dom2` (TODO: add mapgenie url)
+- `quest_zone_c8_dom2_dead` (TODO: add mapgenie url)
+- `quest_zone_c11_gmed` (TODO: add mapgenie url)
+- `quest_zone_c16_koll_1` (TODO: add mapgenie url)
+- `quest_zone_c16_koll_2` (TODO: add mapgenie url)
+- `quest_zone_c21_look` (TODO: add mapgenie url)
+- `quest_zone_c25_cinem` (TODO: add mapgenie url)
+- `quest_zone_c27_sect` (TODO: add mapgenie url)
+- `quest_zone_keeper99` (TODO: add mapgenie url)
+- `quest_zone_c29_debt` (TODO: add mapgenie url)
+- `quest_zone_c25_cinem2` (TODO: add mapgenie url)
+- `quest_produkt1` (TODO: add mapgenie url)
+- `quest_produkt2` (TODO: add mapgenie url)
+- `quest_produkt3` (TODO: add mapgenie url)
+- `quest_produkt4` (TODO: add mapgenie url)
+- `quest_zone_find_sillent` (TODO: add mapgenie url)
+- `quest_zone_find_2st_kpss2` (TODO: add mapgenie url)
+- `quest_zone_find_2st_med_invent1` (TODO: add mapgenie url)
+- `quest_zone_find_2st_med_invent2` (TODO: add mapgenie url)
+- `Bank_points_3` (TODO: add mapgenie url)
+- `Bank_points_4` (TODO: add mapgenie url)
+- `Bank_points_6` (TODO: add mapgenie url)
+- `Bank_points_1` (TODO: add mapgenie url)
+- `Bank_points_2` (TODO: add mapgenie url)
+- `Bank_points_8` (TODO: add mapgenie url)
+- `Bank_points_9` (TODO: add mapgenie url)
+- `Bank_points_10` (TODO: add mapgenie url)
+- `Bank_points_13` (TODO: add mapgenie url)
+- `Bank_points_11` (TODO: add mapgenie url)
+- `Bank_points_12` (TODO: add mapgenie url)
+- `Bank_points_5` (TODO: add mapgenie url)
+- `Bank_points_14` (TODO: add mapgenie url)
+- `Bank_points_15` (TODO: add mapgenie url)
+- `Bank_points_16` (TODO: add mapgenie url)
+- `Office_enter` (TODO: add mapgenie url)
+- `Office_quest` (TODO: add mapgenie url)
+- `Hookah_quest` (TODO: add mapgenie url)
+- `Pharma_1` (TODO: add mapgenie url)
+- `Pharma_2` (TODO: add mapgenie url)
+- `Pharma_3` (TODO: add mapgenie url)
+- `fond_quest` (TODO: add mapgenie url)
+
 
 ## Ground Zero
+- `Sandbox_1_MedicalArea_exploration` (TODO: add mapgenie url)
+- `Sandbox_2_Kord_exploration` (TODO: add mapgenie url)
+- `Sandbox_2_AGS_exploration` (TODO: add mapgenie url)
+- `Sandbox_3_Vino_exploration` (TODO: add mapgenie url)
+- `Sandbox_5_DeadGroup_exploration` (TODO: add mapgenie url)
+- `Sandbox_5_Laborant_exploration` (TODO: add mapgenie url)
+- `Sandbox_5_Office_exploration` (TODO: add mapgenie url)
