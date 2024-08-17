@@ -1,5 +1,6 @@
 export const ALL_ZONES_BY_MAP = {
   bigmap: [
+    "gazel",
     "place_peacemaker_007_N1",
     "place_peacemaker_002_N1",
     "place_peacemaker_002_N2",
@@ -25,6 +26,15 @@ export const ALL_ZONES_BY_MAP = {
     "place_skier_11_2",
     "huntsman_005_1",
     "huntsman_005_2",
+    "meh_45_radio_area_mark_1",
+    "meh_45_radio_area_mark_2",
+    "meh_45_radio_area_mark_3",
+    "meh_45_radio_area_mark_4",
+    "q14_8_1",
+    "q14_8_2",
+    "q14_8_3",
+    "q14_8_4",
+    "q14_8_5",
   ],
 
   shoreline: [
@@ -63,6 +73,9 @@ export const ALL_ZONES_BY_MAP = {
     "place_merch_21_3",
     "place_merch_020_1",
     "place_merch_020_2",
+    "quest_zone_keeper6_kiba_hide",
+    "quest_zone_keeper6_safe_hide",
+    "quest_zone_keeper6_cont_hide",
   ],
 
   factory: [
@@ -83,6 +96,12 @@ export const ALL_ZONES_BY_MAP = {
     "qlight_fuel_blood_bezovoz2",
     "qlight_fuel_blood_bezovoz3",
     "qlight16_peace_terra",
+    "meh_42_radio_area_mark_1",
+    "meh_42_radio_area_mark_2",
+    "meh_42_radio_area_mark_3",
+    "meh_42_radio_area_mark_4",
+    "qlight_extension_medic1_hide1",
+    "qlight_extension_mechanik1_hide1",
   ],
 
   rezervbase: [
@@ -95,6 +114,31 @@ export const ALL_ZONES_BY_MAP = {
     "baraholshik_fuel_area_3",
   ],
 
-  tarkovstreets: [],
+  tarkovstreets: [
+    "quest_zone_place_c14_revx_1",
+    "quest_zone_place_c14_revx_2",
+    "quest_zone_place_c14_revx_3",
+    "quest_zone_keeper10_place",
+    "quest_zone_hide_sillent",
+    "quest_zone_hide_sillent2",
+    "quest_zone_hide_barber1",
+    "quest_zone_hide_barber2",
+    "quest_city_trotil2",
+    "quest_city_trotil1",
+  ],
+
   groundzero: [],
+
+  // TODO: define on which map those should be
+  any: [
+    "quest_zone_place_c24_tigr1",
+    "quest_zone_place_c24_tigr2",
+    "tadeush_bmp2_area_mark_12",
+    "place_keeper5_1",
+    "place_keeper5_2",
+    "quest_zone_keeper8_1_hide1",
+    "quest_zone_keeper8_1_hide2",
+    "quest_zone_hide_2st_mech",
+    "place_flyers1",
+  ],
 };
