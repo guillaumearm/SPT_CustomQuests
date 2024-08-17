@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_simple_quest",
+    "id": "#trap_example_simple_quest#",
     "trader_id": "fence",
     "name": {
       "en": "My first quest",

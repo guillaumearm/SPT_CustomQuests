@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_simple_repeatable_quest",
+    "id": "#trap_example_simple_repeatable_quest#",
     "repeatable": true,
     "trader_id": "fence",
     "name": {

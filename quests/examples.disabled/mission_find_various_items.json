@@ -157,7 +157,7 @@
     ]
   },
   {
-    "id": "trap_example_mission_find_various_items",
+    "id": "#trap_example_mission_find_various_items#",
     "trader_id": "prapor",
     "name": "Find various items",
     "description": "Find 5 various items",

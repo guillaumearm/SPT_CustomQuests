@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_find_and_place_itemquest",
+    "id": "#trap_example_mission_find_and_place_itemquest#",
     "trader_id": "prapor",
     "name": "FindItem + PlaceItem mission",
     "description": "Place the sealed letter found on the dead scav in factory break room (first floor)",

@@ -40,7 +40,7 @@
     }
   },
   {
-    "id": "trap_example_quest_item_build_rewards",
+    "id": "#trap_example_quest_item_build_rewards#",
     "trader_id": "fence",
     "name": {
       "en": "2 new weapons!"

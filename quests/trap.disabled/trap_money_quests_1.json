@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_prapor_ammo_1",
+    "id": "#trap_prapor_ammo_1#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 1"
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "id": "trap_prapor_ammo_3",
+    "id": "#trap_prapor_ammo_3#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 2"
@@ -162,11 +162,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_1"],
+    "locked_by_quests": ["#trap_prapor_ammo_1#"],
     "image": "5a27c44386f7744237421af0"
   },
   {
-    "id": "trap_prapor_ammo_5",
+    "id": "#trap_prapor_ammo_5#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 3"
@@ -246,11 +246,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_3"],
+    "locked_by_quests": ["#trap_prapor_ammo_3#"],
     "image": "5a27cafa86f77424e20615d6"
   },
   {
-    "id": "trap_prapor_ammo_10",
+    "id": "#trap_prapor_ammo_10#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 4"
@@ -330,11 +330,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_5"],
+    "locked_by_quests": ["#trap_prapor_ammo_5#"],
     "image": "5a29221d86f77457303da9fa"
   },
   {
-    "id": "trap_prapor_ammo_25",
+    "id": "#trap_prapor_ammo_25#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 5"
@@ -414,11 +414,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_10"],
+    "locked_by_quests": ["#trap_prapor_ammo_10#"],
     "image": "5a29222486f77456f50d09e7"
   },
   {
-    "id": "trap_prapor_ammo_50",
+    "id": "#trap_prapor_ammo_50#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 6"
@@ -498,11 +498,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_25"],
+    "locked_by_quests": ["#trap_prapor_ammo_25#"],
     "image": "5ac4d8f186f774422237860d"
   },
   {
-    "id": "trap_prapor_ammo_100",
+    "id": "#trap_prapor_ammo_100#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 7"
@@ -582,11 +582,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_50"],
+    "locked_by_quests": ["#trap_prapor_ammo_50#"],
     "image": "5ac4d9aa86f7744784484abf"
   },
   {
-    "id": "trap_prapor_ammo_250",
+    "id": "#trap_prapor_ammo_250#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 8"
@@ -666,11 +666,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_100"],
+    "locked_by_quests": ["#trap_prapor_ammo_100#"],
     "image": "5ac4da0486f7744cc7701bdc"
   },
   {
-    "id": "trap_prapor_ammo_500",
+    "id": "#trap_prapor_ammo_500#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 9"
@@ -750,11 +750,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_250"],
+    "locked_by_quests": ["#trap_prapor_ammo_250#"],
     "image": "5ac4db0986f77442000164dd"
   },
   {
-    "id": "trap_prapor_ammo_1000",
+    "id": "#trap_prapor_ammo_1000#",
     "trader_id": "prapor",
     "name": {
       "en": "More ammo part 10"
@@ -834,11 +834,11 @@
         "found_in_raid_only": true
       }
     ],
-    "locked_by_quests": ["trap_prapor_ammo_500"],
+    "locked_by_quests": ["#trap_prapor_ammo_500#"],
     "image": "5ac4dbb086f7743e7c61ca09"
   },
   {
-    "id": "trap_fence_kill_scav_1",
+    "id": "#trap_fence_kill_scav_1#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 1"
@@ -865,7 +865,7 @@
     ]
   },
   {
-    "id": "trap_fence_kill_scav_3",
+    "id": "#trap_fence_kill_scav_3#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 2"
@@ -891,10 +891,10 @@
         "count": 3
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_1"]
+    "locked_by_quests": ["#trap_fence_kill_scav_1#"]
   },
   {
-    "id": "trap_fence_kill_scav_5",
+    "id": "#trap_fence_kill_scav_5#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 3"
@@ -920,10 +920,10 @@
         "count": 5
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_3"]
+    "locked_by_quests": ["#trap_fence_kill_scav_3#"]
   },
   {
-    "id": "trap_fence_kill_scav_10",
+    "id": "#trap_fence_kill_scav_10#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 4"
@@ -949,10 +949,10 @@
         "count": 10
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_5"]
+    "locked_by_quests": ["#trap_fence_kill_scav_5#"]
   },
   {
-    "id": "trap_fence_kill_scav_25",
+    "id": "#trap_fence_kill_scav_25#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 5"
@@ -978,10 +978,10 @@
         "count": 25
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_10"]
+    "locked_by_quests": ["#trap_fence_kill_scav_10#"]
   },
   {
-    "id": "trap_fence_kill_scav_50",
+    "id": "#trap_fence_kill_scav_50#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 6"
@@ -1007,10 +1007,10 @@
         "count": 50
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_25"]
+    "locked_by_quests": ["#trap_fence_kill_scav_25#"]
   },
   {
-    "id": "trap_fence_kill_scav_100",
+    "id": "#trap_fence_kill_scav_100#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 7"
@@ -1036,10 +1036,10 @@
         "count": 100
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_50"]
+    "locked_by_quests": ["#trap_fence_kill_scav_50#"]
   },
   {
-    "id": "trap_fence_kill_scav_250",
+    "id": "#trap_fence_kill_scav_250#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 8"
@@ -1065,10 +1065,10 @@
         "count": 250
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_100"]
+    "locked_by_quests": ["#trap_fence_kill_scav_100#"]
   },
   {
-    "id": "trap_fence_kill_scav_500",
+    "id": "#trap_fence_kill_scav_500#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 9"
@@ -1094,10 +1094,10 @@
         "count": 500
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_250"]
+    "locked_by_quests": ["#trap_fence_kill_scav_250#"]
   },
   {
-    "id": "trap_fence_kill_scav_1000",
+    "id": "#trap_fence_kill_scav_1000#",
     "trader_id": "fence",
     "name": {
       "en": "The scav cleaner part 10"
@@ -1123,10 +1123,10 @@
         "count": 1000
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_scav_500"]
+    "locked_by_quests": ["#trap_fence_kill_scav_500#"]
   },
   {
-    "id": "trap_fence_kill_pmc_1",
+    "id": "#trap_fence_kill_pmc_1#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 1"
@@ -1154,7 +1154,7 @@
     ]
   },
   {
-    "id": "trap_fence_kill_pmc_3",
+    "id": "#trap_fence_kill_pmc_3#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 2"
@@ -1181,11 +1181,11 @@
         "count": 3
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_1"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_1#"],
     "image": "5a27c44386f7744237421af0"
   },
   {
-    "id": "trap_fence_kill_pmc_5",
+    "id": "#trap_fence_kill_pmc_5#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 3"
@@ -1212,11 +1212,11 @@
         "count": 5
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_3"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_3#"],
     "image": "5a27cafa86f77424e20615d6"
   },
   {
-    "id": "trap_fence_kill_pmc_10",
+    "id": "#trap_fence_kill_pmc_10#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 4"
@@ -1243,11 +1243,11 @@
         "count": 10
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_5"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_5#"],
     "image": "5a29221d86f77457303da9fa"
   },
   {
-    "id": "trap_fence_kill_pmc_25",
+    "id": "#trap_fence_kill_pmc_25#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 5"
@@ -1274,11 +1274,11 @@
         "count": 25
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_10"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_10#"],
     "image": "5a29222486f77456f50d09e7"
   },
   {
-    "id": "trap_fence_kill_pmc_50",
+    "id": "#trap_fence_kill_pmc_50#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 6"
@@ -1305,11 +1305,11 @@
         "count": 50
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_25"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_25#"],
     "image": "5ac4d8f186f774422237860d"
   },
   {
-    "id": "trap_fence_kill_pmc_100",
+    "id": "#trap_fence_kill_pmc_100#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 7"
@@ -1336,11 +1336,11 @@
         "count": 100
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_50"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_50#"],
     "image": "5ac4d9aa86f7744784484abf"
   },
   {
-    "id": "trap_fence_kill_pmc_250",
+    "id": "#trap_fence_kill_pmc_250#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 8"
@@ -1367,11 +1367,11 @@
         "count": 250
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_100"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_100#"],
     "image": "5ac4da0486f7744cc7701bdc"
   },
   {
-    "id": "trap_fence_kill_pmc_500",
+    "id": "#trap_fence_kill_pmc_500#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 9"
@@ -1398,11 +1398,11 @@
         "count": 500
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_250"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_250#"],
     "image": "5ac4db0986f77442000164dd"
   },
   {
-    "id": "trap_fence_kill_pmc_1000",
+    "id": "#trap_fence_kill_pmc_1000#",
     "trader_id": "fence",
     "name": {
       "en": "The PMC cleaner part 10"
@@ -1429,11 +1429,11 @@
         "count": 1000
       }
     ],
-    "locked_by_quests": ["trap_fence_kill_pmc_500"],
+    "locked_by_quests": ["#trap_fence_kill_pmc_500#"],
     "image": "5ac4dbb086f7743e7c61ca09"
   },
   {
-    "id": "trap_therapist_meds_1",
+    "id": "#trap_therapist_meds_1#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 1"
@@ -1488,7 +1488,7 @@
     ]
   },
   {
-    "id": "trap_therapist_meds_3",
+    "id": "#trap_therapist_meds_3#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 2"
@@ -1541,11 +1541,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_1"],
+    "locked_by_quests": ["#trap_therapist_meds_1#"],
     "image": "5a27c44386f7744237421af0"
   },
   {
-    "id": "trap_therapist_meds_5",
+    "id": "#trap_therapist_meds_5#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 3"
@@ -1598,11 +1598,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_3"],
+    "locked_by_quests": ["#trap_therapist_meds_3#"],
     "image": "5a27cafa86f77424e20615d6"
   },
   {
-    "id": "trap_therapist_meds_10",
+    "id": "#trap_therapist_meds_10#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 4"
@@ -1655,11 +1655,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_5"],
+    "locked_by_quests": ["#trap_therapist_meds_5#"],
     "image": "5a29221d86f77457303da9fa"
   },
   {
-    "id": "trap_therapist_meds_25",
+    "id": "#trap_therapist_meds_25#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 5"
@@ -1712,11 +1712,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_10"],
+    "locked_by_quests": ["#trap_therapist_meds_10#"],
     "image": "5a29222486f77456f50d09e7"
   },
   {
-    "id": "trap_therapist_meds_50",
+    "id": "#trap_therapist_meds_50#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 6"
@@ -1769,11 +1769,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_25"],
+    "locked_by_quests": ["#trap_therapist_meds_25#"],
     "image": "5ac4d8f186f774422237860d"
   },
   {
-    "id": "trap_therapist_meds_100",
+    "id": "#trap_therapist_meds_100#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 7"
@@ -1826,11 +1826,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_50"],
+    "locked_by_quests": ["#trap_therapist_meds_50#"],
     "image": "5ac4d9aa86f7744784484abf"
   },
   {
-    "id": "trap_therapist_meds_250",
+    "id": "#trap_therapist_meds_250#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 8"
@@ -1883,11 +1883,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_100"],
+    "locked_by_quests": ["#trap_therapist_meds_100#"],
     "image": "5ac4da0486f7744cc7701bdc"
   },
   {
-    "id": "trap_therapist_meds_500",
+    "id": "#trap_therapist_meds_500#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 9"
@@ -1940,11 +1940,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_250"],
+    "locked_by_quests": ["#trap_therapist_meds_250#"],
     "image": "5ac4db0986f77442000164dd"
   },
   {
-    "id": "trap_therapist_meds_1000",
+    "id": "#trap_therapist_meds_1000#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 10"
@@ -1997,11 +1997,11 @@
         }
       }
     ],
-    "locked_by_quests": ["trap_therapist_meds_500"],
+    "locked_by_quests": ["#trap_therapist_meds_500#"],
     "image": "5ac4dbb086f7743e7c61ca09"
   },
   {
-    "id": "trap_jaeger_food_1",
+    "id": "#trap_jaeger_food_1#",
     "trader_id": "jaeger",
     "name": "More food part 1",
     "success_message": "Congrats, here is your reward",
@@ -2057,7 +2057,7 @@
     ]
   },
   {
-    "id": "trap_jaeger_food_3",
+    "id": "#trap_jaeger_food_3#",
     "trader_id": "jaeger",
     "name": "More food part 2",
     "success_message": "Congrats, here is your reward",
@@ -2112,10 +2112,10 @@
       }
     ],
     "image": "5a27c44386f7744237421af0",
-    "locked_by_quests": ["trap_jaeger_food_1"]
+    "locked_by_quests": ["#trap_jaeger_food_1#"]
   },
   {
-    "id": "trap_jaeger_food_5",
+    "id": "#trap_jaeger_food_5#",
     "trader_id": "jaeger",
     "name": "More food part 3",
     "success_message": "Congrats, here is your reward",
@@ -2170,10 +2170,10 @@
       }
     ],
     "image": "5a27cafa86f77424e20615d6",
-    "locked_by_quests": ["trap_jaeger_food_3"]
+    "locked_by_quests": ["#trap_jaeger_food_3#"]
   },
   {
-    "id": "trap_jaeger_food_10",
+    "id": "#trap_jaeger_food_10#",
     "trader_id": "jaeger",
     "name": "More food part 4",
     "success_message": "Congrats, here is your reward",
@@ -2228,10 +2228,10 @@
       }
     ],
     "image": "5a29221d86f77457303da9fa",
-    "locked_by_quests": ["trap_jaeger_food_5"]
+    "locked_by_quests": ["#trap_jaeger_food_5#"]
   },
   {
-    "id": "trap_jaeger_food_25",
+    "id": "#trap_jaeger_food_25#",
     "trader_id": "jaeger",
     "name": "More food part 5",
     "success_message": "Congrats, here is your reward",
@@ -2286,10 +2286,10 @@
       }
     ],
     "image": "5a29222486f77456f50d09e7",
-    "locked_by_quests": ["trap_jaeger_food_10"]
+    "locked_by_quests": ["#trap_jaeger_food_10#"]
   },
   {
-    "id": "trap_jaeger_food_50",
+    "id": "#trap_jaeger_food_50#",
     "trader_id": "jaeger",
     "name": "More food part 6",
     "success_message": "Congrats, here is your reward",
@@ -2344,10 +2344,10 @@
       }
     ],
     "image": "5ac4d8f186f774422237860d",
-    "locked_by_quests": ["trap_jaeger_food_25"]
+    "locked_by_quests": ["#trap_jaeger_food_25#"]
   },
   {
-    "id": "trap_jaeger_food_100",
+    "id": "#trap_jaeger_food_100#",
     "trader_id": "jaeger",
     "name": "More food part 7",
     "success_message": "Congrats, here is your reward",
@@ -2402,10 +2402,10 @@
       }
     ],
     "image": "5ac4d9aa86f7744784484abf",
-    "locked_by_quests": ["trap_jaeger_food_50"]
+    "locked_by_quests": ["#trap_jaeger_food_50#"]
   },
   {
-    "id": "trap_jaeger_food_250",
+    "id": "#trap_jaeger_food_250#",
     "trader_id": "jaeger",
     "name": "More food part 8",
     "success_message": "Congrats, here is your reward",
@@ -2460,10 +2460,10 @@
       }
     ],
     "image": "5ac4da0486f7744cc7701bdc",
-    "locked_by_quests": ["trap_jaeger_food_100"]
+    "locked_by_quests": ["#trap_jaeger_food_100#"]
   },
   {
-    "id": "trap_jaeger_food_500",
+    "id": "#trap_jaeger_food_500#",
     "trader_id": "jaeger",
     "name": "More food part 9",
     "success_message": "Congrats, here is your reward",
@@ -2518,10 +2518,10 @@
       }
     ],
     "image": "5ac4db0986f77442000164dd",
-    "locked_by_quests": ["trap_jaeger_food_250"]
+    "locked_by_quests": ["#trap_jaeger_food_250#"]
   },
   {
-    "id": "trap_jaeger_food_1000",
+    "id": "#trap_jaeger_food_1000#",
     "trader_id": "jaeger",
     "name": "More food part 10",
     "success_message": "Congrats, here is your reward",
@@ -2576,10 +2576,10 @@
       }
     ],
     "image": "5ac4dbb086f7743e7c61ca09",
-    "locked_by_quests": ["trap_jaeger_food_500"]
+    "locked_by_quests": ["#trap_jaeger_food_500#"]
   },
   {
-    "id": "trap_mechanic_tools_1",
+    "id": "#trap_mechanic_tools_1#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2633,7 +2633,7 @@
     ]
   },
   {
-    "id": "trap_mechanic_tools_3",
+    "id": "#trap_mechanic_tools_3#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2686,10 +2686,10 @@
       }
     ],
     "image": "5a27c44386f7744237421af0",
-    "locked_by_quests": ["trap_mechanic_tools_1"]
+    "locked_by_quests": ["#trap_mechanic_tools_1#"]
   },
   {
-    "id": "trap_mechanic_tools_5",
+    "id": "#trap_mechanic_tools_5#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2742,10 +2742,10 @@
       }
     ],
     "image": "5a27cafa86f77424e20615d6",
-    "locked_by_quests": ["trap_mechanic_tools_3"]
+    "locked_by_quests": ["#trap_mechanic_tools_3#"]
   },
   {
-    "id": "trap_mechanic_tools_10",
+    "id": "#trap_mechanic_tools_10#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2798,10 +2798,10 @@
       }
     ],
     "image": "5a29221d86f77457303da9fa",
-    "locked_by_quests": ["trap_mechanic_tools_5"]
+    "locked_by_quests": ["#trap_mechanic_tools_5#"]
   },
   {
-    "id": "trap_mechanic_tools_25",
+    "id": "#trap_mechanic_tools_25#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2854,10 +2854,10 @@
       }
     ],
     "image": "5a29222486f77456f50d09e7",
-    "locked_by_quests": ["trap_mechanic_tools_10"]
+    "locked_by_quests": ["#trap_mechanic_tools_10#"]
   },
   {
-    "id": "trap_mechanic_tools_50",
+    "id": "#trap_mechanic_tools_50#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2910,10 +2910,10 @@
       }
     ],
     "image": "5ac4d8f186f774422237860d",
-    "locked_by_quests": ["trap_mechanic_tools_25"]
+    "locked_by_quests": ["#trap_mechanic_tools_25#"]
   },
   {
-    "id": "trap_mechanic_tools_100",
+    "id": "#trap_mechanic_tools_100#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -2966,10 +2966,10 @@
       }
     ],
     "image": "5ac4d9aa86f7744784484abf",
-    "locked_by_quests": ["trap_mechanic_tools_50"]
+    "locked_by_quests": ["#trap_mechanic_tools_50#"]
   },
   {
-    "id": "trap_mechanic_tools_250",
+    "id": "#trap_mechanic_tools_250#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3022,10 +3022,10 @@
       }
     ],
     "image": "5ac4da0486f7744cc7701bdc",
-    "locked_by_quests": ["trap_mechanic_tools_100"]
+    "locked_by_quests": ["#trap_mechanic_tools_100#"]
   },
   {
-    "id": "trap_mechanic_tools_500",
+    "id": "#trap_mechanic_tools_500#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3078,10 +3078,10 @@
       }
     ],
     "image": "5ac4db0986f77442000164dd",
-    "locked_by_quests": ["trap_mechanic_tools_250"]
+    "locked_by_quests": ["#trap_mechanic_tools_250#"]
   },
   {
-    "id": "trap_mechanic_tools_1000",
+    "id": "#trap_mechanic_tools_1000#",
     "trader_id": "mechanic",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3134,10 +3134,10 @@
       }
     ],
     "image": "5ac4dbb086f7743e7c61ca09",
-    "locked_by_quests": ["trap_mechanic_tools_500"]
+    "locked_by_quests": ["#trap_mechanic_tools_500#"]
   },
   {
-    "id": "trap_peacekeeper_elec_1",
+    "id": "#trap_peacekeeper_elec_1#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3190,7 +3190,7 @@
     ]
   },
   {
-    "id": "trap_peacekeeper_elec_3",
+    "id": "#trap_peacekeeper_elec_3#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3242,10 +3242,10 @@
       }
     ],
     "image": "5a27c44386f7744237421af0",
-    "locked_by_quests": ["trap_peacekeeper_elec_1"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_1#"]
   },
   {
-    "id": "trap_peacekeeper_elec_5",
+    "id": "#trap_peacekeeper_elec_5#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3297,10 +3297,10 @@
       }
     ],
     "image": "5a27cafa86f77424e20615d6",
-    "locked_by_quests": ["trap_peacekeeper_elec_3"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_3#"]
   },
   {
-    "id": "trap_peacekeeper_elec_10",
+    "id": "#trap_peacekeeper_elec_10#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3352,10 +3352,10 @@
       }
     ],
     "image": "5a29221d86f77457303da9fa",
-    "locked_by_quests": ["trap_peacekeeper_elec_5"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_5#"]
   },
   {
-    "id": "trap_peacekeeper_elec_25",
+    "id": "#trap_peacekeeper_elec_25#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3407,10 +3407,10 @@
       }
     ],
     "image": "5a29222486f77456f50d09e7",
-    "locked_by_quests": ["trap_peacekeeper_elec_10"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_10#"]
   },
   {
-    "id": "trap_peacekeeper_elec_50",
+    "id": "#trap_peacekeeper_elec_50#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3462,10 +3462,10 @@
       }
     ],
     "image": "5ac4d8f186f774422237860d",
-    "locked_by_quests": ["trap_peacekeeper_elec_25"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_25#"]
   },
   {
-    "id": "trap_peacekeeper_elec_100",
+    "id": "#trap_peacekeeper_elec_100#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3517,10 +3517,10 @@
       }
     ],
     "image": "5ac4d9aa86f7744784484abf",
-    "locked_by_quests": ["trap_peacekeeper_elec_50"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_50#"]
   },
   {
-    "id": "trap_peacekeeper_elec_250",
+    "id": "#trap_peacekeeper_elec_250#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3572,10 +3572,10 @@
       }
     ],
     "image": "5ac4da0486f7744cc7701bdc",
-    "locked_by_quests": ["trap_peacekeeper_elec_100"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_100#"]
   },
   {
-    "id": "trap_peacekeeper_elec_500",
+    "id": "#trap_peacekeeper_elec_500#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3627,10 +3627,10 @@
       }
     ],
     "image": "5ac4db0986f77442000164dd",
-    "locked_by_quests": ["trap_peacekeeper_elec_250"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_250#"]
   },
   {
-    "id": "trap_peacekeeper_elec_1000",
+    "id": "#trap_peacekeeper_elec_1000#",
     "trader_id": "peacekeeper",
     "success_message": {
       "en": "Congrats, here is your reward"
@@ -3682,6 +3682,6 @@
       }
     ],
     "image": "5ac4dbb086f7743e7c61ca09",
-    "locked_by_quests": ["trap_peacekeeper_elec_500"]
+    "locked_by_quests": ["#trap_peacekeeper_elec_500#"]
   }
 ]

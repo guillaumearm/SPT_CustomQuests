@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_placesignaljammer",
+    "id": "#trap_example_mission_placesignaljammer#",
     "trader_id": "fence",
     "name": "PlaceSignalJammer mission",
     "description": "Place a signal jammer where you know",

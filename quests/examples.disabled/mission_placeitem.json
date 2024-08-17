@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_placeitem",
+    "id": "#trap_example_mission_placeitem#",
     "trader_id": "fence",
     "description": "Place an ai-2 kit where you know",
     "name": "PlaceItem mission",

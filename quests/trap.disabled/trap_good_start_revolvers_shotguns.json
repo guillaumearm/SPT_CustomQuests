@@ -62,7 +62,7 @@
     }
   },
   {
-    "id": "trap_good_start_revolvers_shotguns_1",
+    "id": "#trap_good_start_revolvers_shotguns_1#",
     "trader_id": "prapor",
     "name": {
       "en": "Starting stuff: Revolvers and shootguns",
@@ -79,11 +79,11 @@
     "rewards": {
       "xp": 0,
       "items": {
-        "62330b3ed4dc74626d570b95": 1000,
-        "5d6e6911a4b9361bd5780d52": 500,
-        "5d6e68a8a4b9360b6c0d54e2": 500,
-        "trap_revolver_357": 12,
-        "trap_double_barrel_shotgun": 10,
+        "62330b3ed4dc74626d570b95": 250,
+        "5d6e6911a4b9361bd5780d52": 150,
+        "5d6e68a8a4b9360b6c0d54e2": 150,
+        "trap_revolver_357": 4,
+        "trap_double_barrel_shotgun": 2,
         "trap_revolver_shotgun": 2
       }
     }

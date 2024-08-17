@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_giveitem",
+    "id": "#trap_example_mission_giveitem#",
     "trader_id": "fence",
     "name": "GiveItem mission",
     "description": "Give me some meds",

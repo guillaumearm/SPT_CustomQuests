@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_placebeacon",
+    "id": "#trap_example_mission_placebeacon#",
     "trader_id": "fence",
     "name": "PlaceBeacon mission",
     "description": "Place a beacon where you know",

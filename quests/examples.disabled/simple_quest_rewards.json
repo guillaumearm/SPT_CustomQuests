@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_simple_quest_rewards",
+    "id": "#trap_example_simple_quest_rewards#",
     "trader_id": "fence",
     "name": {
       "en": "Free medkit, xp and traders reputations !"

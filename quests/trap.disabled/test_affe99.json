@@ -1,6 +1,6 @@
 [
   {
-    "id": "Scav 10x",
+    "id": "#Scav 10x#",
     "trader_id": "prapor",
     "repeatable": "true",
     "type": "Elimination",
@@ -40,7 +40,7 @@
   },
 
   {
-    "id": "Scav 25x",
+    "id": "#Scav 25x#",
 
     "trader_id": "prapor",
 
@@ -84,7 +84,7 @@
   },
 
   {
-    "id": "Scav 50x",
+    "id": "#Scav 50x#",
 
     "trader_id": "therapist",
 
@@ -128,7 +128,7 @@
   },
 
   {
-    "id": "Scav 100x",
+    "id": "#Scav 100x#",
 
     "trader_id": "therapist",
 
@@ -172,7 +172,7 @@
   },
 
   {
-    "id": "Scav 150x",
+    "id": "#Scav 150x#",
 
     "trader_id": "fence",
 
@@ -216,7 +216,7 @@
   },
 
   {
-    "id": "Scav 200x",
+    "id": "#Scav 200x#",
 
     "trader_id": "fence",
 
@@ -262,7 +262,7 @@
   },
 
   {
-    "id": "Scav 250x",
+    "id": "#Scav 250x#",
 
     "trader_id": "skier",
 
@@ -308,7 +308,7 @@
   },
 
   {
-    "id": "Scav 500x",
+    "id": "#Scav 500x#",
 
     "trader_id": "skier",
 
@@ -356,7 +356,7 @@
   },
 
   {
-    "id": "PMC 10x",
+    "id": "#PMC 10x#",
 
     "trader_id": "peacekeeper",
 
@@ -402,7 +402,7 @@
   },
 
   {
-    "id": "PMC 10xDogtags",
+    "id": "#PMC 10xDogtags#",
 
     "trader_id": "peacekeeper",
 
@@ -450,7 +450,7 @@
   },
 
   {
-    "id": "PMC 25x",
+    "id": "#PMC 25x#",
 
     "trader_id": "peacekeeper",
 
@@ -496,7 +496,7 @@
   },
 
   {
-    "id": "PMC 25xDogtags",
+    "id": "#PMC 25xDogtags#",
 
     "trader_id": "peacekeeper",
 
@@ -544,7 +544,7 @@
   },
 
   {
-    "id": "PMC 50x",
+    "id": "#PMC 50x#",
 
     "trader_id": "mechanic",
 
@@ -590,7 +590,7 @@
   },
 
   {
-    "id": "PMC 50xDogtags",
+    "id": "#PMC 50xDogtags#",
 
     "trader_id": "mechanic",
 
@@ -638,7 +638,7 @@
   },
 
   {
-    "id": "PMC 100x",
+    "id": "#PMC 100x#",
 
     "trader_id": "mechanic",
 
@@ -690,7 +690,7 @@
   },
 
   {
-    "id": "PMC 100xDogtags",
+    "id": "#PMC 100xDogtags#",
 
     "trader_id": "mechanic",
 
@@ -742,7 +742,7 @@
   },
 
   {
-    "id": "PMC 150x",
+    "id": "#PMC 150x#",
 
     "trader_id": "ragman",
 
@@ -798,7 +798,7 @@
   },
 
   {
-    "id": "PMC 150xDogtags",
+    "id": "#PMC 150xDogtags#",
 
     "trader_id": "ragman",
 
@@ -854,7 +854,7 @@
   },
 
   {
-    "id": "PMC 200x",
+    "id": "#PMC 200x#",
 
     "trader_id": "ragman",
 
@@ -910,7 +910,7 @@
   },
 
   {
-    "id": "PMC 200xDogtags",
+    "id": "#PMC 200xDogtags#",
 
     "trader_id": "ragman",
 
@@ -966,7 +966,7 @@
   },
 
   {
-    "id": "PMC 250x",
+    "id": "#PMC 250x#",
 
     "trader_id": "jaeger",
 
@@ -1022,7 +1022,7 @@
   },
 
   {
-    "id": "PMC 250xDogtags",
+    "id": "#PMC 250xDogtags#",
 
     "trader_id": "jaeger",
 
@@ -1078,7 +1078,7 @@
   },
 
   {
-    "id": "PMC 500x",
+    "id": "#PMC 500x#",
 
     "trader_id": "jaeger",
 
@@ -1134,7 +1134,7 @@
   },
 
   {
-    "id": "PMC 500xDogtags",
+    "id": "#PMC 500xDogtags#",
 
     "trader_id": "jaeger",
 

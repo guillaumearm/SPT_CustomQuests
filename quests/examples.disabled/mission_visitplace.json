@@ -1,6 +1,6 @@
 [
   {
-    "id": "trap_example_mission_visitplace",
+    "id": "#trap_example_mission_visitplace#",
     "trader_id": "fence",
     "name": "VisitPlace mission",
     "description": "Visit gazel place on customs",
