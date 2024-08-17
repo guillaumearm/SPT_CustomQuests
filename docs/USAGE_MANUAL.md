@@ -22,13 +22,15 @@
 ## A minimal example
 ```json
 {
-  "id": "trap_quest_example_1",
+  "id": "#trap_quest_example_1#",
   "trader_id": "mechanic"
 }
 ```
 
 - `id`: is mandatory and should be unique, it allows you to identity your quest.
 - `trader_id`: could be a regular id (like `579dc571d53a0658a154fbec`) or an alias (please see the list just below).
+
+⚠ It's very recommended to surround your id with `#`, this is to prevent a weird BSG bug on the client (at some point, the client does not strict match the ids but trying to search if the string is contained into another)
 
 #### Available trader aliases
 - `prapor`
@@ -45,7 +47,7 @@ Modded traders are supported too.
 ## A minimal example (recommended)
 ```json
 {
-  "id": "trap_quest_example_1_bis",
+  "id": "#trap_quest_example_1_bis#",
   "disabled": false,
   "trader_id": "mechanic",
   "name": "My first quest",
@@ -61,7 +63,7 @@ The `disabled` field is not mandatory but can be useful when quests are under de
 ## Multilingual support
 ```json
 {
-  "id": "trap_quest_example_2",
+  "id": "#trap_quest_example_2#",
   "trader_id": "mechanic",
   "name": {
     "en": "My second quest",
@@ -100,7 +102,7 @@ Some fields are translatable, these are all available locales:
 ## Decoration only
 ```json
 {
-  "id": "trap_quest_example_3",
+  "id": "#trap_quest_example_3#",
   "trader_id": "mechanic",
   "name": "My third quest",
   "description": "My third quest description",
@@ -149,21 +151,21 @@ You can found all quests images in `Aki_Data/Server/images/quests/` directory.
 
 ```json
 {
-    "id": "trap_quest_example_4",
+    "id": "#trap_quest_example_4#",
     "trader_id": "mechanic",
     "name": "My fourth quest",
     "description": "My fourth quest description",
     "success_message": "My success message",
     "level_needed": 10,
     "locked_by_quests": [
-      "trap_quest_example_1",
-      "trap_quest_example_1_bis"
+      "#trap_quest_example_1#",
+      "#trap_quest_example_1_bis#"
     ],
     "unlock_on_quest_start": []
 }
 ```
 
-To be able to see this quest, your pmc should be at least level 10 + the `trap_quest_example_1` or `trap_quest_example_1_bis` quests should have been completed.
+To be able to see this quest, your pmc should be at least level 10 + the `#trap_quest_example_1#` or `#trap_quest_example_1_bis#` quests should have been completed.
 
 Also, you can use the `unlock_on_quest_start` array to specify which quests has to been started to unlock this quest.
 
@@ -172,7 +174,7 @@ This quest will give you +5000 xp, 2 ai-2 kits, 1 car first aid kit and give +0.
 
 ```json
 {
-  "id": "trap_quest_example_5",
+  "id": "#trap_quest_example_5#",
   "trader_id": "mechanic",
   "name": "My rewards quest",
   "description": "Complete this quest and I will give you something",
@@ -200,7 +202,7 @@ pro-tip: You can use [this tool](https://db.sp-tarkov.com/search) to find item i
 This quest give you +100 xp and 1 car first aid kit.
 ```json
 {
-  "id": "trap_quest_example_5_start_rewards",
+  "id": "#trap_quest_example_5_start_rewards#",
   "trader_id": "mechanic",
   "name": "My rewards quest",
   "description": "Complete this quest and I will give you something",
@@ -220,7 +222,7 @@ You can setup "infinite" repeatable quests like so:
 
 ```json
   {
-    "id": "trap_example_simple_repeatable_quest",
+    "id": "#trap_example_simple_repeatable_quest#",
     "repeatable": true,
     "trader_id": "fence",
     "name": {
@@ -252,7 +254,7 @@ Completing this quest will give you 1 000 000 roubles ;-)
 
 ```json
 {
-  "id": "trap_quest_example_6",
+  "id": "#trap_quest_example_6#",
   "trader_id": "mechanic",
   "name": "First mission",
   "description": "Kill 5 scavs on customs or factory and I will make you rich",
@@ -508,7 +510,7 @@ For example:
     ]
   },
   {
-    "id": "trap_therapist_meds_1",
+    "id": "#trap_therapist_meds_1#",
     "trader_id": "therapist",
     "name": {
       "en": "More meds part 1"
@@ -578,7 +580,7 @@ For example:
     }
   },
   {
-    "id": "trap_example_quest_item_build_rewards",
+    "id": "#trap_example_quest_item_build_rewards#",
     "trader_id": "fence",
     "name": {
       "en": "2 new weapons!"
