@@ -2,7 +2,6 @@
   "enabled": true,
   "debug": true,
   "quest_directory": "quests",
-  "default_quest_name_prefix": "[CQ] ",
   "limit_repeated_quest": 200,
   "at_start": {
     "disable_all_vanilla_quests": false,

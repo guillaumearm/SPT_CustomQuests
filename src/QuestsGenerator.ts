@@ -21,7 +21,6 @@ export class QuestsGenerator {
 
   constructor(
     private quests: CustomQuest[],
-    private questNamePrefix: string | undefined,
     itemBuilds: StoryItemBuild[],
     itemGroups: StoryAcceptedItemGroup[],
     private db: DatabaseServer,
@@ -64,7 +63,6 @@ export class QuestsGenerator {
         QuestsGenerator.assertValidCustomQuest(customQuest);
         const transformer = new CustomQuestsTransformer(
           customQuest,
-          this.questNamePrefix,
           this.builds,
           this.groups,
           this.db,

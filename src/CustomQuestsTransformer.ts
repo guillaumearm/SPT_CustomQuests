@@ -122,6 +122,7 @@ const DESCRIPTIVE_LOCATION_ALIASES = {
   reserve: "5704e5fad2720bc05b8b4567",
   shoreline: "5704e554d2720bac5b8b456e",
   woods: "5704e3c2d2720bac5b8b4567",
+  // TODO: add streets
   groundzero: "653e6760052c01c1c805532f",
   sandbox: "653e6760052c01c1c805532f",
   sandbox_high: "65b8d6f5cdde2479cb2a3125",
@@ -751,7 +752,6 @@ export class CustomQuestsTransformer {
 
   constructor(
     private customQuest: CustomQuest,
-    private questPrefixName = "",
     builds: Record<string, StoryItemBuild>,
     groups: Record<string, StoryAcceptedItemGroup>,
     private db: DatabaseServer,
