@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DISABLED_PREFIX = ".disabled";
-const DIST_QUESTS_FOLDER = "dist/quests";
+const DIST_QUESTS_FOLDER = "dist/user/mods/Trap-CustomQuests/quests";
 
 const main = async () => {
   const cwd = process.cwd();

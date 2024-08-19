@@ -7,7 +7,8 @@ const main = async () => {
   const zipFileName = `${packageJson.fullName}-${packageJson.version}.zip`;
 
   execSync(`rm -rf ${dirName} ${zipFileName}`);
-  execSync(`cp -R dist ${dirName}`);
+  execSync(`mkdir ${dirName}`);
+  execSync(`cp -R dist/user ${dirName}`);
   console.log(`Created '${dirName}' directory.`);
 
   await zip({

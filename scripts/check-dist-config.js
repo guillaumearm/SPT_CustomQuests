@@ -1,4 +1,4 @@
-const config = require("../dist/config/config.json");
+const config = require("../dist/user/mods/Trap-CustomQuests/config/config.json");
 
 if (
   config.at_start &&
