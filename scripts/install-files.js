@@ -7,7 +7,7 @@ const cprFlags = "--overwrite --delete-first";
 
 const main = async (modName) => {
   [
-    `cpr ./dist ../../../user/mods/${modName} ${cprFlags}`,
+    `cpr ./dist/user/mods/${modName} ../../../user/mods/${modName} ${cprFlags}`,
     'echo "> Successfully installed files!"',
   ].forEach((cmd) => {
     if (typeof cmd === "string") {
