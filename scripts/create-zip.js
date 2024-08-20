@@ -12,8 +12,9 @@ const main = async () => {
   console.log(`Created '${dirName}' directory.`);
 
   await zip({
-    source: dirName,
-    destination: zipFileName,
+    cwd: dirName,
+    source: `user`,
+    destination: `../${zipFileName}`,
   });
   console.log(`Created '${zipFileName}' file.`);
 
