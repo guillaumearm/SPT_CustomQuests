@@ -191,7 +191,7 @@ export const resetRepeatableQuestsOnGameStart = (
 
         // 3. remove all counters related to @repeated quests
         pmc.TaskConditionCounters = filterInObject((counter) => {
-          if (isRepeatedQuest(counter.sourceId ?? "")) {
+          if (isRepeatedQuest(counter.sourceId)) {
             removedCounters = removedCounters + 1;
             return false;
           }
@@ -254,5 +254,5 @@ const extractOriginalQuestId = (questId: string): string | null => {
     return null;
   }
 
-  return splitted.slice(0, -1).slice(1).join("/");
+  return `#${splitted.slice(0, -1).slice(1).join("/")}#`;
 };
