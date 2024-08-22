@@ -2,7 +2,7 @@
   "name": "custom-quests",
   "displayName": "Custom Quests",
   "fullName": "Trap-CustomQuests",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "main": "src/mod.js",
   "license": "MIT",
   "author": "Trap",
